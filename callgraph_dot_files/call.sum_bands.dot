@@ -1,0 +1,23 @@
+digraph "callgraph" {
+  F171b448 [label="sincos\n268 017 778"];
+  F17aa1e8 [label="dfftw_execute_dft_\n187 522 086"];
+  F1964608 [label="dgemm_\n551 817 000"];
+  F19a4be8 [label="__fft_scalar_fftw3_MOD_cfft3ds\n214 699 235"];
+  F19d11d8 [label="qvan2_\n1 161 604 440"];
+  F1a0ea48 [label="invfft_y_\n257 301 360"];
+  F1a495b8 [label="ylmr2_\n357 186 311"];
+  F1aba8c8 [label="addusdens_\n2 814 522 280"];
+  F1abacc8 [label="addusdens_g_\n2 814 522 232"];
+  F1bf7178 [label="sum_band_\n3 647 507 000"];
+  F1e2ac38 [label="sum_band_k.2873\n697 863 219"];
+  F19a4be8 -> F17aa1e8 [weight=2];
+  F1a0ea48 -> F19a4be8 [weight=2];
+  F1a495b8 -> F171b448 [weight=2];
+  F1aba8c8 -> F1abacc8 [weight=3];
+  F1abacc8 -> F1964608 [weight=3];
+  F1abacc8 -> F19d11d8 [weight=3];
+  F1abacc8 -> F1a495b8 [weight=2];
+  F1bf7178 -> F1aba8c8 [weight=3];
+  F1bf7178 -> F1e2ac38 [weight=3];
+  F1e2ac38 -> F1a0ea48 [weight=2];
+}
