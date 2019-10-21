@@ -1,0 +1,364 @@
+electrons
++  seqopn
++  exxinit
++  localize_orbitals
++  +  start_clock
++  +  errore
++  +  get_buffer
++  +  measure_localization
++  +  +  AbsOvR
++  +  +  AbsOvG
++  +  +  errore
++  +  +  compute_density
++  +  +  cryst_to_cart
++  +  AbsOv_histogram
++  +  +  errore
++  +  SCDM_PGG
++  +  +  scdm_thresholds
++  +  +  scdm_points
++  +  +  scdm_prescreening
++  +  +  scdm_fill
++  +  +  DGEMM
++  +  +  invchol
++  +  +  MatChol
++  +  +  MatInv
++  +  +  MatSymm
++  +  wave_to_G
++  +  +  fwfft
++  +  +  matcalc
++  +  matcalc
++  +  +  start_clock
++  +  +  calbec
++  +  +  matprt
++  +  +  errore
++  +  +  stop_clock
++  +  MatCheck
++  +  PTSVD
++  +  +  DGESVD
++  +  +  errinfo
++  +  +  DGEMM
++  +  ZGEMM
++  +  wave_to_R
++  +  +  invfft
++  +  +  DGEMM
++  +  +  MatPrt
++  +  stop_clock
++  localize_orbitals_k
++  +  errore
++  +  measure_localization_k
++  +  +  start_clock
++  +  +  compute_density_k
++  +  +  stop_clock
++  +  AbsOvG_k
++  +  +  start_clock
++  +  +  fwfft
++  +  +  matcalc_k
++  +  +  stop_clock
++  +  AbsOv_histogram_k
++  +  +  errore
++  +  SCDM_PGG_k
++  +  +  start_clock
++  +  +  scdm_thresholds
++  +  +  scdm_points
++  +  +  scdm_prescreening_k
++  +  +  scdm_fill_k
++  +  +  ZGEMM
++  +  +  invchol_k
++  +  +  stop_clock
++  aceinit
++  +  errore
++  +  allocate_bec_type
++  +  get_buffer
++  +  init_us_2
++  +  +  start_clock
++  +  +  ylmr2
++  +  +  mk_ffnl_gth
++  +  +  stop_clock
++  +  calbec
++  +  aceinit_gamma
++  +  +  start_clock
++  +  +  vexx_loc
++  +  +  MatSymm
++  +  +  vexx
++  +  +  matcalc
++  +  +  aceupdate
++  +  +  vexxace_gamma
++  +  +  stop_clock
++  +  aceinit_k
++  +  mp_sum
++  +  deallocate_bec_type
++  v_of_rho
++  +  start_clock
++  +  v_xc_meta
++  +  +  start_clock
++  +  +  fft_gradient_g2r
++  +  +  tau_xc
++  +  +  tau_xc_spin
++  +  +  fft_graddot
++  +  +  mp_sum
++  +  +  nlc
++  +  +  stop_clock
++  +  v_xc
++  +  +  start_clock
++  +  +  xc
++  +  +  xc_spin
++  +  +  mp_sum
++  +  +  gradcorr
++  +  +  nlc
++  +  +  stop_clock
++  +  add_bfield
++  +  +  get_locals
++  +  +  errore
++  +  +  mp_sum
++  +  v_h
++  +  +  start_clock
++  +  +  mp_sum
++  +  +  esm_hartree
++  +  +  cutoff_hartree
++  +  +  wg_corr_h
++  +  +  invfft
++  +  +  stop_clock
++  +  v_hubbard_nc
++  +  +  hubbard_matrix
++  +  v_hubbard
++  +  +  hubbard_matrix
++  +  add_efield
++  +  +  errore
++  +  +  compute_el_dip
++  +  +  compute_ion_dip
++  +  +  mp_bcast
++  +  tsvdw_calculate
++  +  stop_clock
++  PAW_potential
++  +  start_clock
++  +  block_distribute
++  +  mp_comm_split
++  +  PAW_rho_lm
++  +  +  start_clock
++  +  +  stop_clock
++  +  PAW_h_potential
++  +  +  start_clock
++  +  +  hartree
++  +  +  simpson
++  +  +  stop_clock
++  +  PAW_xc_potential
++  +  +  start_clock
++  +  +  PAW_lm2rad
++  +  +  add_small_mag
++  +  +  xc_spin
++  +  +  compute_g
++  +  +  evxc_t_vec
++  +  +  simpson
++  +  +  mp_sum
++  +  +  PAW_rad2lm
++  +  +  PAW_gcxc_potential
++  +  +  stop_clock
++  +  simpson
++  +  mp_sum
++  +  mp_comm_free
++  +  stop_clock
++  set_vrs
++  +  sum_vrs
++  +  interpolate_vrs
++  +  +  fft_interpolate
++  electrons_scf
++  +  restart_in_electrons
++  +  +  seqopn
++  +  memstat
++  +  start_clock
++  +  dftd3_pbc_dispersion
++  +  create_scf_type
++  +  open_mix_file
++  +  save_in_electrons
++  +  +  seqopn
++  +  scf_type_COPY
++  +  c_bands_efield
++  +  +  errore
++  +  +  h_epsi_her_set
++  +  +  c_bands
++  +  c_bands
++  +  +  start_clock
++  +  +  restart_in_cbands
++  +  +  get_buffer
++  +  +  errore
++  +  +  g2_kin
++  +  +  init_us_2
++  +  +  diag_bands
++  +  +  save_buffer
++  +  +  save_in_cbands
++  +  +  mp_sum
++  +  +  stop_clock
++  +  poolrecover
++  +  +  errore
++  +  +  mp_barrier
++  +  +  MPI_SEND
++  +  +  MPI_RECV
++  +  sum_band
++  +  +  start_clock
++  +  +  weights
++  +  +  new_evc
++  +  +  new_ns_nc
++  +  +  new_ns
++  +  +  divide
++  +  +  allocate_bec_type
++  +  +  sum_band_gamma
++  +  +  sum_band_k
++  +  +  mp_sum
++  +  +  deallocate_bec_type
++  +  +  fwfft
++  +  +  PAW_symmetrize
++  +  +  addusdens
++  +  +  sym_rho
++  +  +  invfft
++  +  +  rhoz_or_updw
++  +  +  stop_clock
++  +  +  get_buffer
++  +  +  init_us_2
++  +  +  tg_get_nnr
++  +  +  tg_get_group_nr3
++  +  +  get_rho_gamma
++  +  +  tg_reduce_rho
++  +  +  sum_bec
++  +  +  get_rho
++  +  +  get_rho_domag
++  +  +  threaded_barrier_memset
++  +  write_ns_nc
++  +  +  errore
++  +  +  cdiagh
++  +  write_ns
++  +  +  errore
++  +  +  cdiagh
++  +  ns_adj
++  +  +  errore
++  +  +  cdiagh
++  +  compute_magnetization
++  +  mix_rho
++  +  +  start_clock
++  +  +  errore
++  +  +  create_mix_type
++  +  +  assign_scf_to_mix_type
++  +  +  mix_type_AXPY
++  +  +  destroy_mix_type
++  +  +  stop_clock
++  +  +  davcio_mix_type
++  +  +  mix_type_SCAL
++  +  +  rdiagh
++  +  +  DSYTRF
++  +  +  DSYTRI
++  +  +  approx_screening
++  +  +  approx_screening2
++  +  +  high_frequency_mixing
++  +  +  assign_mix_to_scf_type
++  +  bcast_scf_type
++  +  mp_bcast
++  +  v_of_rho
++  +  +  start_clock
++  +  +  v_xc_meta
++  +  +  v_xc
++  +  +  add_bfield
++  +  +  v_h
++  +  +  v_hubbard_nc
++  +  +  v_hubbard
++  +  +  add_efield
++  +  +  tsvdw_calculate
++  +  +  stop_clock
++  +  PAW_potential
++  +  +  start_clock
++  +  +  block_distribute
++  +  +  mp_comm_split
++  +  +  PAW_rho_lm
++  +  +  PAW_h_potential
++  +  +  PAW_xc_potential
++  +  +  simpson
++  +  +  mp_sum
++  +  +  mp_comm_free
++  +  +  stop_clock
++  +  PAW_symmetrize_ddd
++  +  +  start_clock
++  +  +  block_distribute
++  +  +  inverse_s
++  +  +  mp_sum
++  +  +  stop_clock
++  +  plugin_scf_energy
++  +  plugin_scf_potential
++  +  sum_vrs
++  +  interpolate_vrs
++  +  +  fft_interpolate
++  +  newd
++  +  +  start_clock
++  +  +  newq_r
++  +  +  newq
++  +  +  add_paw_to_deeq
++  +  +  newd_so
++  +  +  newd_nc
++  +  +  add_vhub_to_deeq
++  +  +  stop_clock
++  +  report_mag
++  +  print_ks_energies
++  +  +  mp_sum
++  +  +  ipoolrecover
++  +  +  mp_bcast
++  +  +  get_homo_lumo
++  +  errore
++  +  print_energies
++  +  makov_payne
++  +  +  compute_dipole
++  +  +  write_dipole
++  +  +  vacuum_level
++  +  esm_printpot
++  +  +  cft_1z
++  +  forces
++  +  +  start_clock
++  +  +  force_us
++  +  +  force_lc
++  +  +  force_cc
++  +  +  force_hub
++  +  +  esm_force_ew
++  +  +  force_ew
++  +  +  dftd3_pbc_gdisp
++  +  +  force_corr
++  +  +  wg_corr_force
++  +  +  plugin_int_forces
++  +  +  forces_us_efield
++  +  +  forces_ion_efield
++  +  +  symvector
++  +  +  remove_tot_torque
++  +  +  plugin_ext_forces
++  +  +  stop_clock
++  +  print_clock_pw
++  +  +  print_clock
++  +  +  plugin_clock
++  +  write_scf
++  +  close_mix_file
++  +  remove_atomic_rho
++  +  +  atomic_rho_g
++  +  +  write_rhog
++  +  destroy_scf_type
++  +  stop_clock
++  +  mp_sum
++  +  c_phase_field
++  +  +  start_clock
++  +  +  allocate_bec_type
++  +  +  errore
++  +  +  calc_btq
++  +  +  ylmr2
++  +  +  qvan3
++  +  +  transform_qq_so
++  +  +  mp_bcast
++  +  +  get_buffer
++  +  +  init_us_2
++  +  +  calbec
++  +  +  mp_sum
++  +  +  ZGEMM
++  +  +  ZGETRF
++  +  +  factor_a
++  +  +  deallocate_bec_type
++  +  +  stop_clock
++  +  plugin_print_energies
++  errore
++  makov_payne
++  +  compute_dipole
++  +  write_dipole
++  +  +  errore
++  +  vacuum_level
++  +  +  mp_sum

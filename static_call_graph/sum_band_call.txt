@@ -1,0 +1,107 @@
+sum_band
++  start_clock
++  weights
++  +  tetra_weights
++  +  +  errore
++  +  +  tetra_weights_only
++  +  opt_tetra_weights
++  +  +  opt_tetra_weights_only
++  +  +  errore
++  +  poolscatter
++  +  +  mp_bcast
++  +  mp_bcast
++  +  gweights
++  +  +  gweights_only
++  +  mp_sum
++  +  iweights
++  +  +  iweights_only
++  +  +  mp_max
++  +  poolrecover
++  +  +  errore
++  +  +  mp_barrier
++  +  +  MPI_SEND
++  +  +  MPI_RECV
++  new_evc
++  +  errore
++  +  get_buffer
++  +  mp_sum
++  +  hpsort
++  +  ZGESV
++  +  orthogonalize_vects
++  new_ns_nc
++  +  start_clock
++  +  get_buffer
++  +  mp_sum
++  +  errore
++  +  mp_bcast
++  +  stop_clock
++  new_ns
++  +  start_clock
++  +  allocate_bec_type
++  +  compute_pproj
++  +  get_buffer
++  +  calbec
++  +  deallocate_bec_type
++  +  mp_sum
++  +  errore
++  +  mp_bcast
++  +  stop_clock
++  +  init_us_2
++  +  +  start_clock
++  +  +  ylmr2
++  +  +  mk_ffnl_gth
++  +  +  stop_clock
++  divide
++  allocate_bec_type
++  sum_band_gamma
++  sum_band_k
++  mp_sum
++  deallocate_bec_type
++  fwfft
++  PAW_symmetrize
++  +  start_clock
++  +  block_distribute
++  +  inverse_s
++  +  mp_sum
++  +  stop_clock
++  addusdens
++  +  addusdens_r
++  +  addusdens_g
++  +  +  start_clock
++  +  +  divide
++  +  +  ylmr2
++  +  +  dgemm
++  +  +  qvan2
++  +  +  mp_sum
++  +  +  stop_clock
++  sym_rho
++  invfft
++  rhoz_or_updw
++  stop_clock
++  get_buffer
++  init_us_2
++  +  start_clock
++  +  ylmr2
++  +  mk_ffnl_gth
++  +  stop_clock
++  tg_get_nnr
++  tg_get_group_nr3
++  get_rho_gamma
++  tg_reduce_rho
++  sum_bec
++  +  calbec
++  +  invfft_orbital_gamma
++  +  calbec_rs_gamma
++  +  mp_sum
++  +  invfft_orbital_k
++  +  calbec_rs_k
++  +  store_becxx0
++  +  start_clock
++  +  ZGEMM
++  +  DGEMM
++  +  add_becsum_nc
++  +  add_becsum_so
++  +  stop_clock
++  get_rho
++  get_rho_domag
++  threaded_barrier_memset
