@@ -73,12 +73,30 @@ def output(table, start_func, max_depth)
 end
 
 
+
 if $0 == __FILE__
-  src_wc = File.join( "/home/sakamoto/apps/q-e-qe-6.4.1/PW/src/", "*.f90")
-  file_list = Dir.glob(src_wc)
+	if ARGV.length < 2
+		raise
+	end
 
-  all_table = {}
-  file_list.each {|file| all_table.merge!(read_file(file) ) }
+	root_dir = ARGV[0]
+	start_subroutine = ARGV[1]
+	depth = ARGV[2].to_i
 
-  output(all_table, "electrons", 4)
+	src_wc_list = []
+	src_wc_list << File.join( root_dir, "PW/src", "*.f90")
+	src_wc_list << File.join( root_dir, "PP/src", "*.f90")
+	src_wc_list << File.join( root_dir, "Modules", "*.f90")
+	src_wc_list << File.join( root_dir, "FFTXLib", "*.f90")
+	src_wc_list << File.join( root_dir, "UtilXLib", "*.f90")
+
+	# Expand the wild card
+	file_list = []
+	src_wc_list.each do |src| 
+		file_list += Dir.glob(src)
+	end
+	
+  	all_table = {}
+  	file_list.each {|file| all_table.merge!(read_file(file) ) }
+  	output(all_table, start_subroutine, 5)
 end
