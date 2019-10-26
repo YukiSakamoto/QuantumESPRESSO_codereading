@@ -55,17 +55,50 @@ end
 def output(table, start_func, max_depth)
   def _output(table, start_func, max_depth, depth)
 
-    if max_depth <= depth then return end
+	print_child = false
+	if depth < max_depth and table.has_key?(start_func) and 0 < table[start_func].length()
+		print_child = true
+	end
+
+	#XXX
+	print_marker = false
+	if print_child == true && 2 < table[start_func].uniq().length
+		if 1 <= depth then print_marker = true end
+	end
+
+	open_marker = "{{{"
+	close_marker= "}}}"
     
-    title = "+  " * depth + start_func
+	title = ""
+	if 1 <= depth
+    	title = "|  " * (depth-1) + "+--" 
+	end
+	title += start_func
+
+	if print_marker
+		title += "  #{open_marker} #{depth}" 
+	end
     puts title
 
-    if table.has_key?(start_func)
+	if print_child
       callee_func_list = table[start_func].uniq()
       callee_func_list.each do |callee_func|
-        _output(table, callee_func, max_depth, depth+1)
+		  _output(table, callee_func, max_depth, depth+1)
       end
+
+	  if print_marker
+		  close_title = ""
+		  if 1 <= depth
+			  close_title += "|  " * (depth - 1) + "+  "
+		  else
+			  close_title += "+  " * depth
+		  end
+		  close_title += close_marker
+		  puts close_title
+	  end
+
     end
+
 
   end
 
@@ -85,6 +118,7 @@ if $0 == __FILE__
 
 	src_wc_list = []
 	src_wc_list << File.join( root_dir, "PW/src", "*.f90")
+	src_wc_list << File.join( root_dir, "PHonon/PH", "*.f90")
 	src_wc_list << File.join( root_dir, "PP/src", "*.f90")
 	src_wc_list << File.join( root_dir, "Modules", "*.f90")
 	src_wc_list << File.join( root_dir, "FFTXLib", "*.f90")

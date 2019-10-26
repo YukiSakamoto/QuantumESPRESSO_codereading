@@ -1,516 +1,4011 @@
 pwscf
-+  mp_startup
-+  mp_start_diag
-+  set_mpi_comm_4_solvers
-+  environment_start
-+  run_manypw
-+  +  get_environment_variable
-+  +  mp_bcast
-+  +  start_clock
-+  +  read_input_file
-+  run_pwscf
-+  +  plugin_arguments
-+  +  plugin_arguments_bcast
-+  +  qmmm_initialization
-+  +  iosys
-+  +  +  errore
-+  +  +  infomsg
-+  +  +  sup_spacegroup
-+  +  +  qmmm_config
-+  +  +  read_cards_pw
-+  +  +  cell_base_init
-+  +  +  plugin_read_input
-+  +  +  convert_tau
-+  +  +  init_start_k
-+  +  +  init_dofree
-+  +  +  check_tempdir
-+  +  +  clean_tempdir
-+  +  +  readpp
-+  +  +  set_cutoff
-+  +  +  set_exx_fraction
-+  +  +  set_screening_parameter
-+  +  +  initialize_kernel_table
-+  +  +  set_finite_size_volume
-+  +  +  init_london
-+  +  +  dftd3_init
-+  +  +  dftd3_printout
-+  +  +  dftd3_set_functional
-+  +  +  init_xdm
-+  +  +  init_constraint
-+  +  +  pw_init_qexsd_input
-+  +  +  deallocate_input_parameters
-+  +  run_dist
-+  +  plugin_initialization
-+  +  check_stop_init
-+  +  setup
-+  +  +  errore
-+  +  +  infomsg
-+  +  +  pw_readschema_file
-+  +  +  init_vars_from_schema
-+  +  +  compute_ux
-+  +  +  average_pp
-+  +  +  set_nelup_neldw
-+  +  +  check_atoms
-+  +  +  set_sym_bl
-+  +  +  kpoint_grid_efield
-+  +  +  kp_strings
-+  +  +  kpoint_grid
-+  +  +  inverse_s
-+  +  +  find_sym
-+  +  +  irreducible_BZ
-+  +  +  tetra_init
-+  +  +  opt_tetra_init
-+  +  +  set_kup_and_kdw
-+  +  +  divide_et_impera
-+  +  +  exx_grid_init
-+  +  +  exx_mp_init
-+  +  +  exx_div_check
-+  +  +  init_lda_plus_u
-+  +  +  d_matrix
-+  +  qmmm_update_positions
-+  +  pre_init
-+  +  data_structure
-+  +  +  mp_max
-+  +  +  fft_type_init
-+  +  +  fft_base_info
-+  +  +  gvect_init
-+  +  +  gvecs_init
-+  +  summary
-+  +  +  write_dft_name
-+  +  +  plugin_summary
-+  +  +  esm_summary
-+  +  +  fcp_summary
-+  +  +  print_ps_info
-+  +  +  print_vdw_info
-+  +  +  print_symmetries
-+  +  memory_report
-+  +  qexsd_set_status
-+  +  punch
-+  +  +  create_directory
-+  +  +  pw_write_schema
-+  +  +  write_scf
-+  +  +  pw_write_binaries
-+  +  +  qexsd_reset_steps
-+  +  +  diropn
-+  +  +  davcio
-+  +  +  infomsg
-+  +  +  a2Fsave
-+  +  init_run
-+  +  +  start_clock
-+  +  +  pre_init
-+  +  +  data_structure
-+  +  +  summary
-+  +  +  memory_report
-+  +  +  allocate_fft
-+  +  +  ggen
-+  +  +  ggens
-+  +  +  export_gstart_2_solvers
-+  +  +  esm_init
-+  +  +  cutoff_fact
-+  +  +  gshells
-+  +  +  sym_rho_init
-+  +  +  allocate_nlpot
-+  +  +  allocate_paw_internals
-+  +  +  paw_init_onecenter
-+  +  +  allocate_locpot
-+  +  +  allocate_wfc
-+  +  +  allocate_bp_efield
-+  +  +  bp_global_map
-+  +  +  plugin_initbase
-+  +  +  tsvdw_initialize
-+  +  +  set_h_ainv
-+  +  +  openfil
-+  +  +  hinit0
-+  +  +  potinit
-+  +  +  newd
-+  +  +  wfcinit
-+  +  +  wannier_init
-+  +  +  paw_post_init
-+  +  +  allocate_dyn_vars
-+  +  +  stop_clock
-+  +  non_scf
-+  +  electrons
-+  +  +  seqopn
-+  +  +  exxinit
-+  +  +  localize_orbitals
-+  +  +  localize_orbitals_k
-+  +  +  aceinit
-+  +  +  v_of_rho
-+  +  +  PAW_potential
-+  +  +  set_vrs
-+  +  +  electrons_scf
-+  +  +  errore
-+  +  +  makov_payne
-+  +  start_clock
-+  +  restart_in_ions
-+  +  pw2casino
-+  +  +  errore
-+  +  +  write_casino_wfn
-+  +  forces
-+  +  +  start_clock
-+  +  +  force_us
-+  +  +  force_lc
-+  +  +  force_cc
-+  +  +  force_hub
-+  +  +  esm_force_ew
-+  +  +  force_ew
-+  +  +  dftd3_pbc_gdisp
-+  +  +  force_corr
-+  +  +  wg_corr_force
-+  +  +  plugin_int_forces
-+  +  +  forces_us_efield
-+  +  +  forces_ion_efield
-+  +  +  symvector
-+  +  +  remove_tot_torque
-+  +  +  plugin_ext_forces
-+  +  +  stop_clock
-+  +  stress
-+  +  +  infomsg
-+  +  +  start_clock
-+  +  +  stres_loc
-+  +  +  stres_har
-+  +  +  stres_gradcorr
-+  +  +  stres_cc
-+  +  +  esm_stres_loclong
-+  +  +  esm_stres_har
-+  +  +  stres_mgga
-+  +  +  esm_stres_ewa
-+  +  +  stres_ewa
-+  +  +  dftd3_pbc_gdisp
-+  +  +  stres_knl
-+  +  +  stres_hub
-+  +  +  stress_bp_efield
-+  +  +  stress_ion_efield
-+  +  +  stres_nonloc_dft
-+  +  +  symmatrix
-+  +  +  stop_clock
-+  +  impose_deviatoric_stress
-+  +  impose_deviatoric_stress_2d
-+  +  update_file
-+  +  +  seqopn
-+  +  move_ions
-+  +  +  errore
-+  +  +  cryst_to_cart
-+  +  +  cell_force
-+  +  +  bfgs
-+  +  +  fcp_line_minimisation
-+  +  +  fcp_mdiis_update
-+  +  +  impose_deviatoric_strain
-+  +  +  impose_deviatoric_strain_2d
-+  +  +  remake_cell
-+  +  +  recips
-+  +  +  volume
-+  +  +  terminate_bfgs
-+  +  +  fcp_mdiis_end
-+  +  +  output_tau
-+  +  +  proj_verlet
-+  +  +  smart_MC
-+  +  +  langevin_md
-+  +  +  fcp_verlet
-+  +  +  verlet
-+  +  +  terminate_verlet
-+  +  +  vcsmd
-+  +  +  checkallsym
-+  +  +  mp_bcast
-+  +  stop_exx
-+  +  stop_clock
-+  +  qmmm_update_forces
-+  +  add_qexsd_step
-+  +  +  qexsd_step_addstep
-+  +  reset_gvectors
-+  +  +  reset_starting_magnetization
-+  +  +  clean_pw
-+  +  +  close_files
-+  +  +  init_run
-+  +  +  reset_exx
-+  +  reset_magn
-+  +  +  potinit
-+  +  +  newd
-+  +  update_pot
-+  +  hinit1
-+  +  +  setlocal
-+  +  +  plugin_init_ions
-+  +  +  plugin_init_cell
-+  +  +  plugin_scf_potential
-+  +  +  clean_pw
-+  +  +  close_files
-+  +  +  init_run
-+  +  +  fft_type_deallocate
-+  +  +  exx_grid_init
-+  +  +  exx_mp_init
-+  +  +  exx_div_check
-+  +  +  set_vrs
-+  +  +  generate_qpointlist
-+  +  +  betapointlist
-+  +  +  init_realspace_vars
-+  +  +  compute_becsum
-+  +  +  PAW_potential
-+  +  +  PAW_symmetrize_ddd
-+  +  +  newd
-+  +  +  orthoUwfc
-+  +  +  orthoatwfc
-+  +  qmmm_shutdown
-+  read_input_file
-+  run_driver
-+  +  plugin_arguments
-+  +  plugin_arguments_bcast
-+  +  iosys
-+  +  +  errore
-+  +  +  infomsg
-+  +  +  sup_spacegroup
-+  +  +  qmmm_config
-+  +  +  read_cards_pw
-+  +  +  cell_base_init
-+  +  +  plugin_read_input
-+  +  +  convert_tau
-+  +  +  init_start_k
-+  +  +  init_dofree
-+  +  +  check_tempdir
-+  +  +  clean_tempdir
-+  +  +  readpp
-+  +  +  set_cutoff
-+  +  +  set_exx_fraction
-+  +  +  set_screening_parameter
-+  +  +  initialize_kernel_table
-+  +  +  set_finite_size_volume
-+  +  +  init_london
-+  +  +  dftd3_init
-+  +  +  dftd3_printout
-+  +  +  dftd3_set_functional
-+  +  +  init_xdm
-+  +  +  init_constraint
-+  +  +  pw_init_qexsd_input
-+  +  +  deallocate_input_parameters
-+  +  plugin_initialization
-+  +  check_stop_init
-+  +  setup
-+  +  +  errore
-+  +  +  infomsg
-+  +  +  pw_readschema_file
-+  +  +  init_vars_from_schema
-+  +  +  compute_ux
-+  +  +  average_pp
-+  +  +  set_nelup_neldw
-+  +  +  check_atoms
-+  +  +  set_sym_bl
-+  +  +  kpoint_grid_efield
-+  +  +  kp_strings
-+  +  +  kpoint_grid
-+  +  +  inverse_s
-+  +  +  find_sym
-+  +  +  irreducible_BZ
-+  +  +  tetra_init
-+  +  +  opt_tetra_init
-+  +  +  set_kup_and_kdw
-+  +  +  divide_et_impera
-+  +  +  exx_grid_init
-+  +  +  exx_mp_init
-+  +  +  exx_div_check
-+  +  +  init_lda_plus_u
-+  +  +  d_matrix
-+  +  init_run
-+  +  +  start_clock
-+  +  +  pre_init
-+  +  +  data_structure
-+  +  +  summary
-+  +  +  memory_report
-+  +  +  allocate_fft
-+  +  +  ggen
-+  +  +  ggens
-+  +  +  export_gstart_2_solvers
-+  +  +  esm_init
-+  +  +  cutoff_fact
-+  +  +  gshells
-+  +  +  sym_rho_init
-+  +  +  allocate_nlpot
-+  +  +  allocate_paw_internals
-+  +  +  paw_init_onecenter
-+  +  +  allocate_locpot
-+  +  +  allocate_wfc
-+  +  +  allocate_bp_efield
-+  +  +  bp_global_map
-+  +  +  plugin_initbase
-+  +  +  tsvdw_initialize
-+  +  +  set_h_ainv
-+  +  +  openfil
-+  +  +  hinit0
-+  +  +  potinit
-+  +  +  newd
-+  +  +  wfcinit
-+  +  +  wannier_init
-+  +  +  paw_post_init
-+  +  +  allocate_dyn_vars
-+  +  +  stop_clock
-+  +  create_socket
-+  +  readbuffer
-+  +  mp_bcast
-+  +  writebuffer
-+  +  driver_init
-+  +  driver_posdata
-+  +  driver_getforce
-+  +  open_socket
-+  +  reset_history_for_extrapolation
-+  +  read_and_share
-+  +  recips
-+  +  volume
-+  +  initialize_g_vectors
-+  +  update_pot
-+  +  hinit1
-+  +  +  setlocal
-+  +  +  plugin_init_ions
-+  +  +  plugin_init_cell
-+  +  +  plugin_scf_potential
-+  +  +  clean_pw
-+  +  +  close_files
-+  +  +  init_run
-+  +  +  fft_type_deallocate
-+  +  +  exx_grid_init
-+  +  +  exx_mp_init
-+  +  +  exx_div_check
-+  +  +  set_vrs
-+  +  +  generate_qpointlist
-+  +  +  betapointlist
-+  +  +  init_realspace_vars
-+  +  +  compute_becsum
-+  +  +  PAW_potential
-+  +  +  PAW_symmetrize_ddd
-+  +  +  newd
-+  +  +  orthoUwfc
-+  +  +  orthoatwfc
-+  +  electrons
-+  +  +  seqopn
-+  +  +  exxinit
-+  +  +  localize_orbitals
-+  +  +  localize_orbitals_k
-+  +  +  aceinit
-+  +  +  v_of_rho
-+  +  +  PAW_potential
-+  +  +  set_vrs
-+  +  +  electrons_scf
-+  +  +  errore
-+  +  +  makov_payne
-+  +  punch
-+  +  +  create_directory
-+  +  +  pw_write_schema
-+  +  +  write_scf
-+  +  +  pw_write_binaries
-+  +  +  qexsd_reset_steps
-+  +  +  diropn
-+  +  +  davcio
-+  +  +  infomsg
-+  +  +  a2Fsave
-+  +  stop_run
-+  +  +  seqopn
-+  +  +  close_files
-+  +  +  print_clock_pw
-+  +  +  clean_pw
-+  +  +  environment_end
-+  +  +  mp_global_end
-+  +  forces
-+  +  +  start_clock
-+  +  +  force_us
-+  +  +  force_lc
-+  +  +  force_cc
-+  +  +  force_hub
-+  +  +  esm_force_ew
-+  +  +  force_ew
-+  +  +  dftd3_pbc_gdisp
-+  +  +  force_corr
-+  +  +  wg_corr_force
-+  +  +  plugin_int_forces
-+  +  +  forces_us_efield
-+  +  +  forces_ion_efield
-+  +  +  symvector
-+  +  +  remove_tot_torque
-+  +  +  plugin_ext_forces
-+  +  +  stop_clock
-+  +  stress
-+  +  +  infomsg
-+  +  +  start_clock
-+  +  +  stres_loc
-+  +  +  stres_har
-+  +  +  stres_gradcorr
-+  +  +  stres_cc
-+  +  +  esm_stres_loclong
-+  +  +  esm_stres_har
-+  +  +  stres_mgga
-+  +  +  esm_stres_ewa
-+  +  +  stres_ewa
-+  +  +  dftd3_pbc_gdisp
-+  +  +  stres_knl
-+  +  +  stres_hub
-+  +  +  stress_bp_efield
-+  +  +  stress_ion_efield
-+  +  +  stres_nonloc_dft
-+  +  +  symmatrix
-+  +  +  stop_clock
-+  +  update_file
-+  +  +  seqopn
-+  +  clean_pw
-+  +  +  deallocate_pseudo_upf
-+  +  +  deallocate_radial_grid
-+  +  +  deallocate_ions_base
-+  +  +  dealloca_london
-+  +  +  cleanup_xdm
-+  +  +  dftd3_clean
-+  +  +  deallocate_constraint
-+  +  +  deallocate_tetra
-+  +  +  deallocate_bp_efield
-+  +  +  deallocate_ldaU
-+  +  +  deallocate_gvect
-+  +  +  sym_rho_deallocate
-+  +  +  destroy_scf_type
-+  +  +  deallocate_igk
-+  +  +  deallocate_uspp
-+  +  +  deallocate_gth
-+  +  +  deallocate_noncol
-+  +  +  fft_type_deallocate
-+  +  +  pstickdealloc
-+  +  +  deallocate_dyn_vars
-+  +  +  deallocate_paw_internals
-+  +  +  deallocate_realsp
-+  +  +  wannier_clean
-+  +  +  deallocate_exx
-+  +  +  tsvdw_finalize
-+  +  +  plugin_clean
-+  +  delete_if_present
-+  +  seqopn
-+  unset_mpi_comm_4_solvers
-+  stop_run
-+  +  seqopn
-+  +  close_files
-+  +  +  close_buffer
-+  +  +  mp_barrier
-+  +  print_clock_pw
-+  +  +  print_clock
-+  +  +  plugin_clock
-+  +  clean_pw
-+  +  +  deallocate_pseudo_upf
-+  +  +  deallocate_radial_grid
-+  +  +  deallocate_ions_base
-+  +  +  dealloca_london
-+  +  +  cleanup_xdm
-+  +  +  dftd3_clean
-+  +  +  deallocate_constraint
-+  +  +  deallocate_tetra
-+  +  +  deallocate_bp_efield
-+  +  +  deallocate_ldaU
-+  +  +  deallocate_gvect
-+  +  +  sym_rho_deallocate
-+  +  +  destroy_scf_type
-+  +  +  deallocate_igk
-+  +  +  deallocate_uspp
-+  +  +  deallocate_gth
-+  +  +  deallocate_noncol
-+  +  +  fft_type_deallocate
-+  +  +  pstickdealloc
-+  +  +  deallocate_dyn_vars
-+  +  +  deallocate_paw_internals
-+  +  +  deallocate_realsp
-+  +  +  wannier_clean
-+  +  +  deallocate_exx
-+  +  +  tsvdw_finalize
-+  +  +  plugin_clean
-+  +  environment_end
-+  +  mp_global_end
-+  do_stop
++--mp_startup
++--mp_start_diag
++--set_mpi_comm_4_solvers
++--environment_start
++--run_manypw  {{{ 1
+|  +--get_environment_variable
+|  +--mp_bcast
+|  +--start_clock
+|  +--read_input_file
++  }}}
++--run_pwscf  {{{ 1
+|  +--plugin_arguments
+|  |  +--get_command_argument
+|  +--plugin_arguments_bcast
+|  +--qmmm_initialization
+|  +--iosys  {{{ 2
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
+|  |  +--infomsg
+|  |  +--sup_spacegroup
+|  |  +--qmmm_config
+|  |  +--read_cards_pw
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--clean_spacegroup
+|  |  +--cell_base_init
+|  |  +--plugin_read_input
+|  |  +--convert_tau
+|  |  |  +--cryst_to_cart
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--init_start_k
+|  |  +--init_dofree
+|  |  +--check_tempdir
+|  |  +--clean_tempdir
+|  |  +--readpp  {{{ 3
+|  |  |  +--deallocate_radial_grid
+|  |  |  +--nullify_radial_grid
+|  |  |  +--deallocate_pseudo_upf
+|  |  |  +--nullify_pseudo_upf
+|  |  |  +--mp_sum
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--read_upf  {{{ 4
+|  |  |  |  +--deallocate_pseudo_upf
+|  |  |  |  +--deallocate_radial_grid
+|  |  |  |  +--read_upf_v1
+|  |  |  |  +--read_upf_v2
+|  |  |  |  +--read_upf_schema
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--mp_bcast
+|  |  |  +--infomsg
+|  |  |  +--set_upf_q
+|  |  |  |  +--setqfnew
+|  |  |  +--readvan
+|  |  |  +--readgth
+|  |  |  |  +--errore
+|  |  |  |  +--gth_grid_for_rho
+|  |  |  +--readrrkj
+|  |  |  +--read_ncpp  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--bachel
+|  |  |  |  +--simpson
+|  |  |  +  }}}
+|  |  |  +--add_upf_grid
+|  |  |  |  +--allocate_radial_grid
+|  |  |  |  +--set_upf_q
+|  |  |  +--md5_from_file
+|  |  |  +--enforce_input_dft
+|  |  |  +--set_dft_from_name
+|  |  |  +--check_atwfc_norm
+|  |  |  |  +--simpson
+|  |  +  }}}
+|  |  +--set_cutoff
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--set_exx_fraction
+|  |  +--set_screening_parameter
+|  |  +--initialize_kernel_table
+|  |  +--set_finite_size_volume
+|  |  +--init_london
+|  |  +--dftd3_init
+|  |  +--dftd3_printout
+|  |  +--dftd3_set_functional
+|  |  +--init_xdm
+|  |  +--init_constraint
+|  |  +--pw_init_qexsd_input
+|  |  +--deallocate_input_parameters
+|  +  }}}
+|  +--run_dist  {{{ 2
+|  |  +--at2celldm
+|  |  |  +--infomsg
+|  |  +--celldm2abc
+|  |  +--hpsort
+|  |  +--infomsg
+|  +  }}}
+|  +--plugin_initialization
+|  +--check_stop_init
+|  +--setup  {{{ 2
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
+|  |  +--infomsg
+|  |  +--pw_readschema_file
+|  |  +--init_vars_from_schema
+|  |  +--compute_ux
+|  |  +--average_pp
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--set_nelup_neldw
+|  |  +--check_atoms
+|  |  |  +--cryst_to_cart
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--set_sym_bl
+|  |  |  +--invmat
+|  |  |  +--infomsg
+|  |  +--kpoint_grid_efield
+|  |  |  +--cryst_to_cart
+|  |  |  +--invmat
+|  |  +--kp_strings
+|  |  |  +--kpoint_grid  {{{ 4
+|  |  |  |  +--infomsg
+|  |  |  |  +--errore
+|  |  |  |  +--cryst_to_cart
+|  |  |  +  }}}
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--kpoint_grid  {{{ 3
+|  |  |  +--infomsg
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--cryst_to_cart
+|  |  +  }}}
+|  |  +--inverse_s
+|  |  +--find_sym  {{{ 3
+|  |  |  +--sgam_at
+|  |  |  +--sgam_at_mag
+|  |  |  |  +--errore
+|  |  |  +--infomsg
+|  |  |  +--inverse_s
+|  |  |  +--s_axis_to_cart
+|  |  +  }}}
+|  |  +--irreducible_BZ  {{{ 3
+|  |  |  +--multable
+|  |  |  |  +--errore
+|  |  |  +--irrek_nc
+|  |  |  |  +--errore
+|  |  |  +--coset
+|  |  |  |  +--errore
+|  |  |  +--irrek
+|  |  |  |  +--errore
+|  |  +  }}}
+|  |  +--tetra_init
+|  |  +--opt_tetra_init
+|  |  +--set_kup_and_kdw
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--divide_et_impera
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--exx_grid_init
+|  |  +--exx_mp_init
+|  |  +--exx_div_check
+|  |  +--init_lda_plus_u
+|  |  +--d_matrix  {{{ 3
+|  |  |  +--ylmr2
+|  |  |  |  +--errore
+|  |  |  +--invmat
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +  }}}
+|  +  }}}
+|  +--qmmm_update_positions
+|  +--pre_init
+|  +--data_structure  {{{ 2
+|  |  +--mp_max
+|  |  +--fft_type_init
+|  |  +--fft_base_info
+|  |  +--gvect_init
+|  |  +--gvecs_init
+|  +  }}}
+|  +--summary  {{{ 2
+|  |  +--write_dft_name
+|  |  +--plugin_summary
+|  |  +--esm_summary
+|  |  +--fcp_summary
+|  |  +--print_ps_info
+|  |  +--print_vdw_info
+|  |  +--print_symmetries  {{{ 3
+|  |  |  +--find_u
+|  |  |  |  +--versor
+|  |  |  +--find_group
+|  |  |  |  +--errore
+|  |  |  +--set_irr_rap_so
+|  |  |  |  +--errore
+|  |  |  +--divide_class_so  {{{ 4
+|  |  |  |  +--check_tgroup
+|  |  |  |  +--coniug_mat_so
+|  |  |  |  +--errore
+|  |  |  |  +--versor
+|  |  |  |  +--which_c2
+|  |  |  |  +--is_d2
+|  |  |  |  +--mirror_axis
+|  |  |  |  +--is_c2v
+|  |  |  +  }}}
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--set_class_el_name_so
+|  |  |  +--set_irr_rap
+|  |  |  |  +--errore
+|  |  |  +--divide_class  {{{ 4
+|  |  |  |  +--coniug_mat
+|  |  |  |  +--errore
+|  |  |  |  +--versor
+|  |  |  |  +--which_c2
+|  |  |  |  +--is_d2
+|  |  |  |  +--mirror_axis
+|  |  |  |  +--is_c2v
+|  |  |  +  }}}
+|  |  |  +--set_class_el_name
+|  |  |  +--write_group_info
+|  |  +  }}}
+|  +  }}}
+|  +--memory_report
+|  +--qexsd_set_status
+|  +--punch  {{{ 2
+|  |  +--create_directory
+|  |  +--pw_write_schema
+|  |  +--write_scf
+|  |  +--pw_write_binaries
+|  |  +--qexsd_reset_steps
+|  |  +--diropn
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--davcio  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--infomsg
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--infomsg
+|  |  +--a2Fsave
+|  +  }}}
+|  +--init_run  {{{ 2
+|  |  +--start_clock
+|  |  +--pre_init
+|  |  +--data_structure  {{{ 3
+|  |  |  +--mp_max
+|  |  |  +--fft_type_init
+|  |  |  +--fft_base_info
+|  |  |  +--gvect_init
+|  |  |  +--gvecs_init
+|  |  +  }}}
+|  |  +--summary  {{{ 3
+|  |  |  +--write_dft_name
+|  |  |  +--plugin_summary
+|  |  |  +--esm_summary
+|  |  |  +--fcp_summary
+|  |  |  +--print_ps_info
+|  |  |  +--print_vdw_info
+|  |  |  +--print_symmetries  {{{ 4
+|  |  |  |  +--find_u
+|  |  |  |  +--find_group
+|  |  |  |  +--set_irr_rap_so
+|  |  |  |  +--divide_class_so
+|  |  |  |  +--errore
+|  |  |  |  +--set_class_el_name_so
+|  |  |  |  +--set_irr_rap
+|  |  |  |  +--divide_class
+|  |  |  |  +--set_class_el_name
+|  |  |  |  +--write_group_info
+|  |  |  +  }}}
+|  |  +  }}}
+|  |  +--memory_report
+|  |  +--allocate_fft  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--create_scf_type
+|  |  |  +--make_pointlists  {{{ 4
+|  |  |  |  +--cryst_to_cart
+|  |  |  |  +--compute_distances_SoA
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  +  }}}
+|  |  +--ggen
+|  |  +--ggens
+|  |  +--export_gstart_2_solvers
+|  |  +--esm_init
+|  |  |  +--esm_ggen_2d
+|  |  +--cutoff_fact
+|  |  +--gshells
+|  |  +--sym_rho_init
+|  |  +--allocate_nlpot
+|  |  +--allocate_paw_internals
+|  |  +--paw_init_onecenter
+|  |  +--allocate_locpot
+|  |  +--allocate_wfc
+|  |  +--allocate_bp_efield
+|  |  +--bp_global_map
+|  |  +--plugin_initbase
+|  |  +--tsvdw_initialize
+|  |  +--set_h_ainv
+|  |  +--openfil
+|  |  |  +--open_buffer
+|  |  |  +--initialize_hdf5
+|  |  +--hinit0  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--init_vloc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--vloc_gth
+|  |  |  |  +--vloc_coul
+|  |  |  |  +--vloc_of_g
+|  |  |  |  +--cutoff_lr_Vloc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_b0  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide
+|  |  |  |  +--sph_bes
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_0  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide
+|  |  |  |  +--simpson
+|  |  |  |  +--sph_bes
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_1  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--aainit
+|  |  |  |  +--divide
+|  |  |  |  +--sph_bes
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ylmr2
+|  |  |  |  +--qvan2
+|  |  |  |  +--spline
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_q_aeps
+|  |  |  |  +--errore
+|  |  |  |  +--simpson
+|  |  |  +--init_at_1  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide
+|  |  |  |  +--sph_bes
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_igk
+|  |  |  +--cryst_to_cart
+|  |  |  +--dswap
+|  |  |  +--recips
+|  |  |  +--scale_h  {{{ 4
+|  |  |  |  +--cryst_to_cart
+|  |  |  |  +--mp_max
+|  |  |  |  +--errore
+|  |  |  |  +--init_vloc
+|  |  |  |  +--exx_grid_init
+|  |  |  |  +--exx_mp_init
+|  |  |  |  +--exx_gvec_reinit
+|  |  |  |  +--set_h_ainv
+|  |  |  +  }}}
+|  |  |  +--struc_fact
+|  |  |  +--plugin_init_ions
+|  |  |  +--plugin_init_cell
+|  |  |  +--setlocal  {{{ 4
+|  |  |  |  +--wg_corr_loc
+|  |  |  |  +--esm_local
+|  |  |  |  +--cutoff_local
+|  |  |  |  +--mp_sum
+|  |  |  |  +--invfft
+|  |  |  |  +--add_efield
+|  |  |  |  +--add_gatefield
+|  |  |  |  +--qmmm_add_esf
+|  |  |  |  +--plugin_init_potential
+|  |  |  +  }}}
+|  |  |  +--set_rhoc  {{{ 4
+|  |  |  |  +--drhoc
+|  |  |  |  +--rho_g2r
+|  |  |  |  +--mp_sum
+|  |  |  |  +--create_scf_type
+|  |  |  |  +--v_xc
+|  |  |  |  +--destroy_scf_type
+|  |  |  +  }}}
+|  |  |  +--generate_qpointlist
+|  |  |  +--betapointlist
+|  |  |  +--init_realspace_vars
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--potinit  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--read_scf
+|  |  |  +--read_rhog
+|  |  |  +--nc_magnetization_from_lsda
+|  |  |  +--atomic_rho_g
+|  |  |  |  +--threaded_nowait_memset
+|  |  |  |  +--simpson
+|  |  |  +--init_ns_nc
+|  |  |  +--init_ns
+|  |  |  +--PAW_atomic_becsum
+|  |  |  |  +--errore
+|  |  |  |  +--PAW_symmetrize
+|  |  |  +--mp_sum
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--rho_g2r
+|  |  |  +--rho_r2g
+|  |  |  +--plugin_scf_potential
+|  |  |  +--v_of_rho  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--v_xc_meta
+|  |  |  |  +--v_xc
+|  |  |  |  +--add_bfield
+|  |  |  |  +--v_h
+|  |  |  |  +--v_hubbard_nc
+|  |  |  |  +--v_hubbard
+|  |  |  |  +--add_efield
+|  |  |  |  +--tsvdw_calculate
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--block_distribute
+|  |  |  |  +--mp_comm_split
+|  |  |  |  +--PAW_rho_lm
+|  |  |  |  +--PAW_h_potential
+|  |  |  |  +--PAW_xc_potential
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_comm_free
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--set_vrs
+|  |  |  |  +--sum_vrs
+|  |  |  |  +--interpolate_vrs
+|  |  |  +--write_ns_nc
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--write_ns
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--report_mag
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--newd  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--newq_r
+|  |  |  +--newq  {{{ 4
+|  |  |  |  +--divide
+|  |  |  |  +--ylmr2
+|  |  |  |  +--fwfft
+|  |  |  |  +--qvan2
+|  |  |  |  +--DGEMM
+|  |  |  |  +--DGER
+|  |  |  |  +--mp_sum
+|  |  |  +  }}}
+|  |  |  +--add_paw_to_deeq
+|  |  |  +--newd_so
+|  |  |  +--newd_nc
+|  |  |  +--add_vhub_to_deeq
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--wfcinit  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--orthoatwfc  {{{ 4
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--atomic_wfc_nc_updown
+|  |  |  |  +--atomic_wfc
+|  |  |  |  +--init_us_2
+|  |  |  |  +--calbec
+|  |  |  |  +--s_psi
+|  |  |  |  +--ortho_swfc
+|  |  |  |  +--save_buffer
+|  |  |  |  +--deallocate_bec_type
+|  |  |  +  }}}
+|  |  |  +--orthoUwfc  {{{ 4
+|  |  |  |  +--get_buffer
+|  |  |  |  +--errore
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--atomic_wfc_nc_updown
+|  |  |  |  +--atomic_wfc
+|  |  |  |  +--init_us_2
+|  |  |  |  +--calbec
+|  |  |  |  +--s_psi
+|  |  |  |  +--ortho_swfc
+|  |  |  |  +--copy_U_wfc
+|  |  |  |  +--save_buffer
+|  |  |  |  +--deallocate_bec_type
+|  |  |  +  }}}
+|  |  |  +--open_buffer
+|  |  |  +--pw_readschema_file
+|  |  |  +--read_collected_to_evc
+|  |  |  +--diropn
+|  |  |  |  +--errore
+|  |  |  +--davcio  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--errore
+|  |  |  |  +--infomsg
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--stop_clock
+|  |  |  +--g2_kin
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--get_buffer
+|  |  |  +--init_wfc  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--start_clock
+|  |  |  |  +--atomic_wfc
+|  |  |  |  +--stop_clock
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--stop_exx
+|  |  |  |  +--rotate_wfc
+|  |  |  |  +--deallocate_bec_type
+|  |  |  +  }}}
+|  |  |  +--save_buffer
+|  |  +  }}}
+|  |  +--wannier_init
+|  |  |  +--wannier_check
+|  |  |  |  +--errore
+|  |  |  +--open_buffer
+|  |  +--paw_post_init
+|  |  +--allocate_dyn_vars
+|  |  +--stop_clock
+|  +  }}}
+|  +--non_scf
+|  +--electrons  {{{ 2
+|  |  +--seqopn
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--exxinit
+|  |  +--localize_orbitals  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--get_buffer
+|  |  |  +--measure_localization  {{{ 4
+|  |  |  |  +--AbsOvR
+|  |  |  |  +--AbsOvG
+|  |  |  |  +--errore
+|  |  |  |  +--compute_density
+|  |  |  |  +--cryst_to_cart
+|  |  |  +  }}}
+|  |  |  +--AbsOv_histogram
+|  |  |  |  +--errore
+|  |  |  +--SCDM_PGG  {{{ 4
+|  |  |  |  +--scdm_thresholds
+|  |  |  |  +--scdm_points
+|  |  |  |  +--scdm_prescreening
+|  |  |  |  +--scdm_fill
+|  |  |  |  +--DGEMM
+|  |  |  |  +--invchol
+|  |  |  |  +--MatChol
+|  |  |  |  +--MatInv
+|  |  |  |  +--MatSymm
+|  |  |  +  }}}
+|  |  |  +--wave_to_G
+|  |  |  |  +--fwfft
+|  |  |  |  +--matcalc
+|  |  |  +--matcalc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--calbec
+|  |  |  |  +--matprt
+|  |  |  |  +--errore
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--MatCheck
+|  |  |  +--PTSVD  {{{ 4
+|  |  |  |  +--DGESVD
+|  |  |  |  +--errinfo
+|  |  |  |  +--DGEMM
+|  |  |  +  }}}
+|  |  |  +--ZGEMM
+|  |  |  +--wave_to_R  {{{ 4
+|  |  |  |  +--invfft
+|  |  |  |  +--DGEMM
+|  |  |  |  +--MatPrt
+|  |  |  +  }}}
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--localize_orbitals_k  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--measure_localization_k  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--compute_density_k
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--AbsOvG_k  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--fwfft
+|  |  |  |  +--matcalc_k
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--AbsOv_histogram_k
+|  |  |  |  +--errore
+|  |  |  +--SCDM_PGG_k  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--scdm_thresholds
+|  |  |  |  +--scdm_points
+|  |  |  |  +--scdm_prescreening_k
+|  |  |  |  +--scdm_fill_k
+|  |  |  |  +--ZGEMM
+|  |  |  |  +--invchol_k
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  +  }}}
+|  |  +--aceinit  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--allocate_bec_type
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--aceinit_gamma  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--vexx_loc
+|  |  |  |  +--MatSymm
+|  |  |  |  +--vexx
+|  |  |  |  +--matcalc
+|  |  |  |  +--aceupdate
+|  |  |  |  +--vexxace_gamma
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--aceinit_k
+|  |  |  +--mp_sum
+|  |  |  +--deallocate_bec_type
+|  |  +  }}}
+|  |  +--v_of_rho  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--v_xc_meta  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--fft_gradient_g2r
+|  |  |  |  +--tau_xc
+|  |  |  |  +--tau_xc_spin
+|  |  |  |  +--fft_graddot
+|  |  |  |  +--mp_sum
+|  |  |  |  +--nlc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--v_xc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--xc
+|  |  |  |  +--xc_spin
+|  |  |  |  +--mp_sum
+|  |  |  |  +--gradcorr
+|  |  |  |  +--nlc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--add_bfield  {{{ 4
+|  |  |  |  +--get_locals
+|  |  |  |  +--errore
+|  |  |  |  +--mp_sum
+|  |  |  +  }}}
+|  |  |  +--v_h  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--mp_sum
+|  |  |  |  +--esm_hartree
+|  |  |  |  +--cutoff_hartree
+|  |  |  |  +--wg_corr_h
+|  |  |  |  +--invfft
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--v_hubbard_nc
+|  |  |  |  +--hubbard_matrix
+|  |  |  +--v_hubbard
+|  |  |  |  +--hubbard_matrix
+|  |  |  +--add_efield  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--compute_el_dip
+|  |  |  |  +--compute_ion_dip
+|  |  |  |  +--mp_bcast
+|  |  |  +  }}}
+|  |  |  +--tsvdw_calculate
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--PAW_potential  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--block_distribute
+|  |  |  +--mp_comm_split
+|  |  |  +--PAW_rho_lm
+|  |  |  |  +--start_clock
+|  |  |  |  +--stop_clock
+|  |  |  +--PAW_h_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--hartree
+|  |  |  |  +--simpson
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_xc_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--PAW_lm2rad
+|  |  |  |  +--add_small_mag
+|  |  |  |  +--xc_spin
+|  |  |  |  +--compute_g
+|  |  |  |  +--evxc_t_vec
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--PAW_rad2lm
+|  |  |  |  +--PAW_gcxc_potential
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--simpson
+|  |  |  +--mp_sum
+|  |  |  +--mp_comm_free
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--set_vrs
+|  |  |  +--sum_vrs
+|  |  |  +--interpolate_vrs
+|  |  |  |  +--fft_interpolate
+|  |  +--electrons_scf  {{{ 3
+|  |  |  +--restart_in_electrons
+|  |  |  |  +--seqopn
+|  |  |  +--memstat
+|  |  |  +--start_clock
+|  |  |  +--dftd3_pbc_dispersion
+|  |  |  +--create_scf_type
+|  |  |  +--open_mix_file
+|  |  |  +--save_in_electrons
+|  |  |  |  +--seqopn
+|  |  |  +--scf_type_COPY
+|  |  |  +--c_bands_efield  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--h_epsi_her_set
+|  |  |  |  +--c_bands
+|  |  |  +  }}}
+|  |  |  +--c_bands  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--restart_in_cbands
+|  |  |  |  +--get_buffer
+|  |  |  |  +--errore
+|  |  |  |  +--g2_kin
+|  |  |  |  +--init_us_2
+|  |  |  |  +--diag_bands
+|  |  |  |  +--save_buffer
+|  |  |  |  +--save_in_cbands
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--poolrecover  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--mp_barrier
+|  |  |  |  +--MPI_SEND
+|  |  |  |  +--MPI_RECV
+|  |  |  +  }}}
+|  |  |  +--sum_band  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--weights
+|  |  |  |  +--new_evc
+|  |  |  |  +--new_ns_nc
+|  |  |  |  +--new_ns
+|  |  |  |  +--divide
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--sum_band_gamma
+|  |  |  |  +--sum_band_k
+|  |  |  |  +--mp_sum
+|  |  |  |  +--deallocate_bec_type
+|  |  |  |  +--fwfft
+|  |  |  |  +--PAW_symmetrize
+|  |  |  |  +--addusdens
+|  |  |  |  +--sym_rho
+|  |  |  |  +--invfft
+|  |  |  |  +--rhoz_or_updw
+|  |  |  |  +--stop_clock
+|  |  |  |  +--get_buffer
+|  |  |  |  +--init_us_2
+|  |  |  |  +--tg_get_nnr
+|  |  |  |  +--tg_get_group_nr3
+|  |  |  |  +--get_rho_gamma
+|  |  |  |  +--tg_reduce_rho
+|  |  |  |  +--sum_bec
+|  |  |  |  +--get_rho
+|  |  |  |  +--get_rho_domag
+|  |  |  |  +--threaded_barrier_memset
+|  |  |  +  }}}
+|  |  |  +--write_ns_nc
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--write_ns
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--ns_adj
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--compute_magnetization
+|  |  |  +--mix_rho  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--errore
+|  |  |  |  +--create_mix_type
+|  |  |  |  +--assign_scf_to_mix_type
+|  |  |  |  +--mix_type_AXPY
+|  |  |  |  +--destroy_mix_type
+|  |  |  |  +--stop_clock
+|  |  |  |  +--davcio_mix_type
+|  |  |  |  +--mix_type_SCAL
+|  |  |  |  +--rdiagh
+|  |  |  |  +--DSYTRF
+|  |  |  |  +--DSYTRI
+|  |  |  |  +--approx_screening
+|  |  |  |  +--approx_screening2
+|  |  |  |  +--high_frequency_mixing
+|  |  |  |  +--assign_mix_to_scf_type
+|  |  |  +  }}}
+|  |  |  +--bcast_scf_type
+|  |  |  +--mp_bcast
+|  |  |  +--v_of_rho  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--v_xc_meta
+|  |  |  |  +--v_xc
+|  |  |  |  +--add_bfield
+|  |  |  |  +--v_h
+|  |  |  |  +--v_hubbard_nc
+|  |  |  |  +--v_hubbard
+|  |  |  |  +--add_efield
+|  |  |  |  +--tsvdw_calculate
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--block_distribute
+|  |  |  |  +--mp_comm_split
+|  |  |  |  +--PAW_rho_lm
+|  |  |  |  +--PAW_h_potential
+|  |  |  |  +--PAW_xc_potential
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_comm_free
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_symmetrize_ddd  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--block_distribute
+|  |  |  |  +--inverse_s
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--plugin_scf_energy
+|  |  |  +--plugin_scf_potential
+|  |  |  +--sum_vrs
+|  |  |  +--interpolate_vrs
+|  |  |  |  +--fft_interpolate
+|  |  |  +--newd  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--newq_r
+|  |  |  |  +--newq
+|  |  |  |  +--add_paw_to_deeq
+|  |  |  |  +--newd_so
+|  |  |  |  +--newd_nc
+|  |  |  |  +--add_vhub_to_deeq
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--report_mag
+|  |  |  +--print_ks_energies  {{{ 4
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ipoolrecover
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--get_homo_lumo
+|  |  |  +  }}}
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--print_energies
+|  |  |  +--makov_payne  {{{ 4
+|  |  |  |  +--compute_dipole
+|  |  |  |  +--write_dipole
+|  |  |  |  +--vacuum_level
+|  |  |  +  }}}
+|  |  |  +--esm_printpot
+|  |  |  |  +--cft_1z
+|  |  |  +--forces  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--force_us
+|  |  |  |  +--force_lc
+|  |  |  |  +--force_cc
+|  |  |  |  +--force_hub
+|  |  |  |  +--esm_force_ew
+|  |  |  |  +--force_ew
+|  |  |  |  +--dftd3_pbc_gdisp
+|  |  |  |  +--force_corr
+|  |  |  |  +--wg_corr_force
+|  |  |  |  +--plugin_int_forces
+|  |  |  |  +--forces_us_efield
+|  |  |  |  +--forces_ion_efield
+|  |  |  |  +--symvector
+|  |  |  |  +--remove_tot_torque
+|  |  |  |  +--plugin_ext_forces
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--print_clock_pw
+|  |  |  |  +--print_clock
+|  |  |  |  +--plugin_clock
+|  |  |  +--write_scf
+|  |  |  +--close_mix_file
+|  |  |  +--remove_atomic_rho
+|  |  |  |  +--atomic_rho_g
+|  |  |  |  +--write_rhog
+|  |  |  +--destroy_scf_type
+|  |  |  +--stop_clock
+|  |  |  +--mp_sum
+|  |  |  +--c_phase_field  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--errore
+|  |  |  |  +--calc_btq
+|  |  |  |  +--ylmr2
+|  |  |  |  +--qvan3
+|  |  |  |  +--transform_qq_so
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--get_buffer
+|  |  |  |  +--init_us_2
+|  |  |  |  +--calbec
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ZGEMM
+|  |  |  |  +--ZGETRF
+|  |  |  |  +--factor_a
+|  |  |  |  +--deallocate_bec_type
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--plugin_print_energies
+|  |  +  }}}
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
+|  |  +--makov_payne  {{{ 3
+|  |  |  +--compute_dipole
+|  |  |  |  +--cryst_to_cart
+|  |  |  |  +--mp_sum
+|  |  |  +--write_dipole
+|  |  |  |  +--errore
+|  |  |  +--vacuum_level
+|  |  |  |  +--mp_sum
+|  |  +  }}}
+|  +  }}}
+|  +--start_clock
+|  +--restart_in_ions
+|  +--pw2casino
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
+|  |  +--write_casino_wfn  {{{ 3
+|  |  |  +--seqopn
+|  |  |  |  +--errore
+|  |  |  +--mp_gather
+|  |  |  +--mp_bcast
+|  |  |  +--pw2blip_init
+|  |  |  +--create_index2
+|  |  |  +--write_gvecs
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--get_buffer
+|  |  |  +--mp_get
+|  |  |  +--pw2blip_transform2
+|  |  |  +--pw2blip_transform
+|  |  |  +--pw2blip_get
+|  |  |  +--print_overlap
+|  |  |  +--write_bwfn_data_gamma
+|  |  |  +--write_bwfn_data
+|  |  |  +--write_pwfn_data
+|  |  |  +--allocate_bec_type
+|  |  |  +--fwfft
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--mp_sum
+|  |  |  +--v_of_rho  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--v_xc_meta
+|  |  |  |  +--v_xc
+|  |  |  |  +--add_bfield
+|  |  |  |  +--v_h
+|  |  |  |  +--v_hubbard_nc
+|  |  |  |  +--v_hubbard
+|  |  |  |  +--add_efield
+|  |  |  |  +--tsvdw_calculate
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--deallocate_bec_type
+|  |  |  +--init_rng
+|  |  |  +--blipeval
+|  |  |  +--pweval
+|  |  |  +--create_index
+|  |  |  +--gen_ran_array
+|  |  +  }}}
+|  +--forces  {{{ 2
+|  |  +--start_clock
+|  |  +--force_us  {{{ 3
+|  |  |  +--allocate_bec_type
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--force_us_gamma
+|  |  |  +--force_us_k
+|  |  |  +--mp_sum
+|  |  |  +--deallocate_bec_type
+|  |  |  +--addusforce
+|  |  |  |  +--addusforce_r
+|  |  |  |  +--addusforce_g
+|  |  |  +--symvector
+|  |  |  +--DGEMM
+|  |  |  +--compute_deff_nc
+|  |  |  +--compute_deff
+|  |  +  }}}
+|  |  +--force_lc  {{{ 3
+|  |  |  +--fwfft
+|  |  |  +--esm_force_lc
+|  |  |  +--cutoff_force_lc
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--force_cc  {{{ 3
+|  |  |  +--v_xc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--xc
+|  |  |  |  +--xc_spin
+|  |  |  |  +--mp_sum
+|  |  |  |  +--gradcorr
+|  |  |  |  +--nlc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--fwfft
+|  |  |  +--drhoc
+|  |  |  |  +--simpson
+|  |  |  |  +--sph_bes
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--force_hub  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--start_clock
+|  |  |  +--allocate_bec_type
+|  |  |  +--block_distribute
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--atomic_wfc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--divide
+|  |  |  |  +--atomic_wfc_so
+|  |  |  |  +--atomic_wfc_so_mag
+|  |  |  |  +--atomic_wfc_nc
+|  |  |  |  +--atomic_wfc___
+|  |  |  |  +--errore
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--copy_U_wfc
+|  |  |  +--dndtau_gamma  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--dprojdtau_gamma
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  |  +--deallocate_bec_type
+|  |  |  +--symvector
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--esm_force_ew  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--esm_force_ewg
+|  |  |  +--esm_force_ewr
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--force_ew  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--cutoff_force_ew
+|  |  |  +--rgen
+|  |  |  |  +--errore
+|  |  |  |  +--hpsort
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--dftd3_pbc_gdisp
+|  |  +--force_corr  {{{ 3
+|  |  |  +--fwfft
+|  |  |  +--simpson
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--wg_corr_force
+|  |  +--plugin_int_forces
+|  |  +--forces_us_efield  {{{ 3
+|  |  |  +--allocate_bec_type
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  |  +--calc_btq  {{{ 4
+|  |  |  |  +--sph_dbes
+|  |  |  |  +--sph_bes
+|  |  |  |  +--simpson
+|  |  |  +  }}}
+|  |  |  +--ylmr2
+|  |  |  |  +--errore
+|  |  |  +--qvan3
+|  |  |  +--transform_qq_so
+|  |  |  +--factor_a
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--ZGEMM
+|  |  |  +--MPI_ALLREDUCE
+|  |  |  +--MPI_ALLTOALL
+|  |  |  +--zgefa
+|  |  |  +--zgedi
+|  |  |  +--deallocate_bec_type
+|  |  |  +--cryst_to_cart
+|  |  +  }}}
+|  |  +--forces_ion_efield
+|  |  +--symvector
+|  |  +--remove_tot_torque
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--plugin_ext_forces
+|  |  +--stop_clock
+|  +  }}}
+|  +--stress  {{{ 2
+|  |  +--infomsg
+|  |  +--start_clock
+|  |  +--stres_loc  {{{ 3
+|  |  |  +--fwfft
+|  |  |  +--cutoff_stres_evloc
+|  |  |  +--dvloc_gth
+|  |  |  |  +--errore
+|  |  |  +--dvloc_coul
+|  |  |  +--dvloc_of_g
+|  |  |  |  +--simpson
+|  |  |  +--cutoff_stres_sigmaloc
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--stres_har  {{{ 3
+|  |  |  +--fwfft
+|  |  |  +--cutoff_stres_sigmahar
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--stres_gradcorr  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--fft_gradient_g2r
+|  |  |  |  +--invfft
+|  |  |  +--tau_xc  {{{ 4
+|  |  |  |  +--tpsscxc
+|  |  |  |  +--m06lxc
+|  |  |  |  +--tb09cxc
+|  |  |  |  +--SCANcxc
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--gcxc  {{{ 4
+|  |  |  |  +--becke88
+|  |  |  |  +--ggax
+|  |  |  |  +--pbex
+|  |  |  |  +--hcth
+|  |  |  |  +--optx
+|  |  |  |  +--wcx
+|  |  |  |  +--pbexsr
+|  |  |  |  +--rPW86
+|  |  |  |  +--c09x
+|  |  |  |  +--sogga
+|  |  |  |  +--pbexgau
+|  |  |  |  +--pw86
+|  |  |  |  +--becke86b
+|  |  |  |  +--b86b
+|  |  |  |  +--cx13
+|  |  |  |  +--perdew86
+|  |  |  |  +--ggac
+|  |  |  |  +--glyp
+|  |  |  |  +--pbec
+|  |  |  +  }}}
+|  |  |  +--tau_xc_spin  {{{ 4
+|  |  |  |  +--tpsscx_spin
+|  |  |  |  +--tpsscc_spin
+|  |  |  |  +--m06lxc_spin
+|  |  |  |  +--scanxc_spin
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--gcx_spin  {{{ 4
+|  |  |  |  +--becke88_spin
+|  |  |  |  +--ggax
+|  |  |  |  +--pbex
+|  |  |  |  +--pbexsr_lsd
+|  |  |  |  +--pbexgau_lsd
+|  |  |  |  +--wcx
+|  |  |  |  +--rPW86
+|  |  |  |  +--c09x
+|  |  |  |  +--pw86
+|  |  |  |  +--becke86b
+|  |  |  |  +--b86b
+|  |  |  |  +--cx13
+|  |  |  |  +--becke88
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--gcc_spin_more
+|  |  |  +--gcc_spin  {{{ 4
+|  |  |  |  +--perdew86_spin
+|  |  |  |  +--ggac_spin
+|  |  |  |  +--pbec_spin
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--stres_cc  {{{ 3
+|  |  |  +--v_xc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--xc
+|  |  |  |  +--xc_spin
+|  |  |  |  +--mp_sum
+|  |  |  |  +--gradcorr
+|  |  |  |  +--nlc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--fwfft
+|  |  |  +--drhoc
+|  |  |  |  +--simpson
+|  |  |  |  +--sph_bes
+|  |  |  +--deriv_drhoc
+|  |  |  |  +--simpson
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--esm_stres_loclong
+|  |  +--esm_stres_har
+|  |  +--stres_mgga  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--get_buffer
+|  |  |  +--wfc_gradient
+|  |  |  |  +--invfft
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--esm_stres_ewa
+|  |  +--stres_ewa  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--cutoff_stres_sigmaewa
+|  |  |  +--rgen
+|  |  |  |  +--errore
+|  |  |  |  +--hpsort
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--dftd3_pbc_gdisp
+|  |  +--stres_knl  {{{ 3
+|  |  |  +--get_buffer
+|  |  |  +--stres_us  {{{ 4
+|  |  |  |  +--init_us_2
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--calbec
+|  |  |  |  +--stres_us_gamma
+|  |  |  |  +--stres_us_k
+|  |  |  |  +--deallocate_bec_type
+|  |  |  |  +--compute_deff
+|  |  |  |  +--gen_us_dj
+|  |  |  |  +--zaxpy
+|  |  |  |  +--mp_circular_shift_left
+|  |  |  |  +--gen_us_dy
+|  |  |  |  +--compute_deff_nc
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  |  +--addusstress
+|  |  |  |  +--addusstress_r
+|  |  |  |  +--addusstress_g
+|  |  |  +--symmatrix
+|  |  +  }}}
+|  |  +--stres_hub  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--dndepsilon  {{{ 4
+|  |  |  |  +--block_distribute
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--get_buffer
+|  |  |  |  +--init_us_2
+|  |  |  |  +--calbec
+|  |  |  |  +--atomic_wfc
+|  |  |  |  +--copy_U_wfc
+|  |  |  |  +--dprojdepsilon_gamma
+|  |  |  |  +--dprojdepsilon_k
+|  |  |  |  +--mp_sum
+|  |  |  |  +--deallocate_bec_type
+|  |  |  +  }}}
+|  |  |  +--symmatrix
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--stress_bp_efield
+|  |  +--stress_ion_efield
+|  |  +--stres_nonloc_dft  {{{ 3
+|  |  |  +--stress_vdW_DF
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--stress_rVV10
+|  |  +  }}}
+|  |  +--symmatrix
+|  |  +--stop_clock
+|  +  }}}
+|  +--impose_deviatoric_stress
+|  +--impose_deviatoric_stress_2d
+|  +--update_file
+|  |  +--seqopn
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  +--move_ions  {{{ 2
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
+|  |  +--cryst_to_cart
+|  |  +--cell_force
+|  |  +--bfgs
+|  |  +--fcp_line_minimisation
+|  |  +--fcp_mdiis_update
+|  |  +--impose_deviatoric_strain
+|  |  |  +--volume
+|  |  |  |  +--infomsg
+|  |  +--impose_deviatoric_strain_2d
+|  |  |  +--volume
+|  |  |  |  +--infomsg
+|  |  +--remake_cell
+|  |  |  +--at2celldm
+|  |  |  |  +--infomsg
+|  |  |  +--latgen
+|  |  |  |  +--errore
+|  |  |  |  +--volume
+|  |  +--recips
+|  |  +--volume
+|  |  |  +--infomsg
+|  |  +--terminate_bfgs
+|  |  +--fcp_mdiis_end
+|  |  +--output_tau
+|  |  |  +--cryst_to_cart
+|  |  +--proj_verlet
+|  |  +--smart_MC
+|  |  +--langevin_md
+|  |  +--fcp_verlet
+|  |  +--verlet
+|  |  +--terminate_verlet
+|  |  +--vcsmd  {{{ 3
+|  |  |  +--seqopn
+|  |  |  |  +--errore
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--output_tau
+|  |  |  |  +--cryst_to_cart
+|  |  |  +--remove_constr_force
+|  |  |  +--cryst_to_cart
+|  |  |  +--vcinit  {{{ 4
+|  |  |  |  +--setg
+|  |  |  |  +--updg
+|  |  |  |  +--ranv
+|  |  |  |  +--sigp
+|  |  |  +  }}}
+|  |  |  +--vcmove  {{{ 4
+|  |  |  |  +--setg
+|  |  |  |  +--updg
+|  |  |  |  +--sigp
+|  |  |  +  }}}
+|  |  |  +--delete_if_present
+|  |  |  +--impose_deviatoric_strain
+|  |  |  |  +--volume
+|  |  |  +--impose_deviatoric_strain_2d
+|  |  |  |  +--volume
+|  |  |  +--volume
+|  |  |  |  +--infomsg
+|  |  |  +--recips
+|  |  |  +--check_constraint
+|  |  +  }}}
+|  |  +--checkallsym
+|  |  +--mp_bcast
+|  +  }}}
+|  +--stop_exx
+|  +--stop_clock
+|  +--qmmm_update_forces
+|  +--add_qexsd_step
+|  |  +--qexsd_step_addstep
+|  +--reset_gvectors  {{{ 2
+|  |  +--reset_starting_magnetization
+|  |  |  +--get_locals
+|  |  +--clean_pw  {{{ 3
+|  |  |  +--deallocate_pseudo_upf
+|  |  |  +--deallocate_radial_grid
+|  |  |  +--deallocate_ions_base
+|  |  |  +--dealloca_london
+|  |  |  +--cleanup_xdm
+|  |  |  +--dftd3_clean
+|  |  |  +--deallocate_constraint
+|  |  |  +--deallocate_tetra
+|  |  |  +--deallocate_bp_efield
+|  |  |  +--deallocate_ldaU
+|  |  |  +--deallocate_gvect
+|  |  |  +--sym_rho_deallocate
+|  |  |  +--destroy_scf_type
+|  |  |  +--deallocate_igk
+|  |  |  +--deallocate_uspp
+|  |  |  +--deallocate_gth
+|  |  |  +--deallocate_noncol
+|  |  |  +--fft_type_deallocate
+|  |  |  +--pstickdealloc
+|  |  |  +--deallocate_dyn_vars
+|  |  |  +--deallocate_paw_internals
+|  |  |  +--deallocate_realsp
+|  |  |  +--wannier_clean
+|  |  |  |  +--close_buffer
+|  |  |  +--deallocate_exx
+|  |  |  +--tsvdw_finalize
+|  |  |  +--plugin_clean
+|  |  +  }}}
+|  |  +--close_files
+|  |  |  +--close_buffer
+|  |  |  +--mp_barrier
+|  |  +--init_run  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--pre_init
+|  |  |  +--data_structure  {{{ 4
+|  |  |  |  +--mp_max
+|  |  |  |  +--fft_type_init
+|  |  |  |  +--fft_base_info
+|  |  |  |  +--gvect_init
+|  |  |  |  +--gvecs_init
+|  |  |  +  }}}
+|  |  |  +--summary  {{{ 4
+|  |  |  |  +--write_dft_name
+|  |  |  |  +--plugin_summary
+|  |  |  |  +--esm_summary
+|  |  |  |  +--fcp_summary
+|  |  |  |  +--print_ps_info
+|  |  |  |  +--print_vdw_info
+|  |  |  |  +--print_symmetries
+|  |  |  +  }}}
+|  |  |  +--memory_report
+|  |  |  +--allocate_fft  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--create_scf_type
+|  |  |  |  +--make_pointlists
+|  |  |  +  }}}
+|  |  |  +--ggen
+|  |  |  +--ggens
+|  |  |  +--export_gstart_2_solvers
+|  |  |  +--esm_init
+|  |  |  |  +--esm_ggen_2d
+|  |  |  +--cutoff_fact
+|  |  |  +--gshells
+|  |  |  +--sym_rho_init
+|  |  |  +--allocate_nlpot
+|  |  |  +--allocate_paw_internals
+|  |  |  +--paw_init_onecenter
+|  |  |  +--allocate_locpot
+|  |  |  +--allocate_wfc
+|  |  |  +--allocate_bp_efield
+|  |  |  +--bp_global_map
+|  |  |  +--plugin_initbase
+|  |  |  +--tsvdw_initialize
+|  |  |  +--set_h_ainv
+|  |  |  +--openfil
+|  |  |  |  +--open_buffer
+|  |  |  |  +--initialize_hdf5
+|  |  |  +--hinit0  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--init_vloc
+|  |  |  |  +--init_us_b0
+|  |  |  |  +--init_us_0
+|  |  |  |  +--init_us_1
+|  |  |  |  +--init_q_aeps
+|  |  |  |  +--init_at_1
+|  |  |  |  +--init_igk
+|  |  |  |  +--cryst_to_cart
+|  |  |  |  +--dswap
+|  |  |  |  +--recips
+|  |  |  |  +--scale_h
+|  |  |  |  +--struc_fact
+|  |  |  |  +--plugin_init_ions
+|  |  |  |  +--plugin_init_cell
+|  |  |  |  +--setlocal
+|  |  |  |  +--set_rhoc
+|  |  |  |  +--generate_qpointlist
+|  |  |  |  +--betapointlist
+|  |  |  |  +--init_realspace_vars
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--potinit  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--read_scf
+|  |  |  |  +--read_rhog
+|  |  |  |  +--nc_magnetization_from_lsda
+|  |  |  |  +--atomic_rho_g
+|  |  |  |  +--init_ns_nc
+|  |  |  |  +--init_ns
+|  |  |  |  +--PAW_atomic_becsum
+|  |  |  |  +--mp_sum
+|  |  |  |  +--errore
+|  |  |  |  +--rho_g2r
+|  |  |  |  +--rho_r2g
+|  |  |  |  +--plugin_scf_potential
+|  |  |  |  +--v_of_rho
+|  |  |  |  +--PAW_potential
+|  |  |  |  +--set_vrs
+|  |  |  |  +--write_ns_nc
+|  |  |  |  +--write_ns
+|  |  |  |  +--report_mag
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--newd  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--newq_r
+|  |  |  |  +--newq
+|  |  |  |  +--add_paw_to_deeq
+|  |  |  |  +--newd_so
+|  |  |  |  +--newd_nc
+|  |  |  |  +--add_vhub_to_deeq
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--wfcinit  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--orthoatwfc
+|  |  |  |  +--orthoUwfc
+|  |  |  |  +--open_buffer
+|  |  |  |  +--pw_readschema_file
+|  |  |  |  +--read_collected_to_evc
+|  |  |  |  +--diropn
+|  |  |  |  +--davcio
+|  |  |  |  +--stop_clock
+|  |  |  |  +--g2_kin
+|  |  |  |  +--init_us_2
+|  |  |  |  +--get_buffer
+|  |  |  |  +--init_wfc
+|  |  |  |  +--save_buffer
+|  |  |  +  }}}
+|  |  |  +--wannier_init
+|  |  |  |  +--wannier_check
+|  |  |  |  +--open_buffer
+|  |  |  +--paw_post_init
+|  |  |  +--allocate_dyn_vars
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--reset_exx  {{{ 3
+|  |  |  +--fft_type_deallocate
+|  |  |  +--exx_grid_init
+|  |  |  +--exx_mp_init
+|  |  |  +--exx_fft_create
+|  |  |  +--exx_div_check
+|  |  +  }}}
+|  +  }}}
+|  +--reset_magn
+|  |  +--potinit  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--read_scf
+|  |  |  +--read_rhog
+|  |  |  +--nc_magnetization_from_lsda
+|  |  |  +--atomic_rho_g
+|  |  |  |  +--threaded_nowait_memset
+|  |  |  |  +--simpson
+|  |  |  +--init_ns_nc
+|  |  |  +--init_ns
+|  |  |  +--PAW_atomic_becsum
+|  |  |  |  +--errore
+|  |  |  |  +--PAW_symmetrize
+|  |  |  +--mp_sum
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--rho_g2r
+|  |  |  +--rho_r2g
+|  |  |  +--plugin_scf_potential
+|  |  |  +--v_of_rho  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--v_xc_meta
+|  |  |  |  +--v_xc
+|  |  |  |  +--add_bfield
+|  |  |  |  +--v_h
+|  |  |  |  +--v_hubbard_nc
+|  |  |  |  +--v_hubbard
+|  |  |  |  +--add_efield
+|  |  |  |  +--tsvdw_calculate
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--block_distribute
+|  |  |  |  +--mp_comm_split
+|  |  |  |  +--PAW_rho_lm
+|  |  |  |  +--PAW_h_potential
+|  |  |  |  +--PAW_xc_potential
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_comm_free
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--set_vrs
+|  |  |  |  +--sum_vrs
+|  |  |  |  +--interpolate_vrs
+|  |  |  +--write_ns_nc
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--write_ns
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--report_mag
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--newd  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--newq_r
+|  |  |  +--newq  {{{ 4
+|  |  |  |  +--divide
+|  |  |  |  +--ylmr2
+|  |  |  |  +--fwfft
+|  |  |  |  +--qvan2
+|  |  |  |  +--DGEMM
+|  |  |  |  +--DGER
+|  |  |  |  +--mp_sum
+|  |  |  +  }}}
+|  |  |  +--add_paw_to_deeq
+|  |  |  +--newd_so
+|  |  |  +--newd_nc
+|  |  |  +--add_vhub_to_deeq
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  +--update_pot
+|  +--hinit1  {{{ 2
+|  |  +--setlocal  {{{ 3
+|  |  |  +--wg_corr_loc
+|  |  |  +--esm_local
+|  |  |  +--cutoff_local
+|  |  |  +--mp_sum
+|  |  |  +--invfft
+|  |  |  +--add_efield  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--compute_el_dip
+|  |  |  |  +--compute_ion_dip
+|  |  |  |  +--mp_bcast
+|  |  |  +  }}}
+|  |  |  +--add_gatefield
+|  |  |  |  +--errore
+|  |  |  +--qmmm_add_esf
+|  |  |  +--plugin_init_potential
+|  |  +  }}}
+|  |  +--plugin_init_ions
+|  |  +--plugin_init_cell
+|  |  +--plugin_scf_potential
+|  |  +--clean_pw  {{{ 3
+|  |  |  +--deallocate_pseudo_upf
+|  |  |  +--deallocate_radial_grid
+|  |  |  +--deallocate_ions_base
+|  |  |  +--dealloca_london
+|  |  |  +--cleanup_xdm
+|  |  |  +--dftd3_clean
+|  |  |  +--deallocate_constraint
+|  |  |  +--deallocate_tetra
+|  |  |  +--deallocate_bp_efield
+|  |  |  +--deallocate_ldaU
+|  |  |  +--deallocate_gvect
+|  |  |  +--sym_rho_deallocate
+|  |  |  +--destroy_scf_type
+|  |  |  +--deallocate_igk
+|  |  |  +--deallocate_uspp
+|  |  |  +--deallocate_gth
+|  |  |  +--deallocate_noncol
+|  |  |  +--fft_type_deallocate
+|  |  |  +--pstickdealloc
+|  |  |  +--deallocate_dyn_vars
+|  |  |  +--deallocate_paw_internals
+|  |  |  +--deallocate_realsp
+|  |  |  +--wannier_clean
+|  |  |  |  +--close_buffer
+|  |  |  +--deallocate_exx
+|  |  |  +--tsvdw_finalize
+|  |  |  +--plugin_clean
+|  |  +  }}}
+|  |  +--close_files
+|  |  |  +--close_buffer
+|  |  |  +--mp_barrier
+|  |  +--init_run  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--pre_init
+|  |  |  +--data_structure  {{{ 4
+|  |  |  |  +--mp_max
+|  |  |  |  +--fft_type_init
+|  |  |  |  +--fft_base_info
+|  |  |  |  +--gvect_init
+|  |  |  |  +--gvecs_init
+|  |  |  +  }}}
+|  |  |  +--summary  {{{ 4
+|  |  |  |  +--write_dft_name
+|  |  |  |  +--plugin_summary
+|  |  |  |  +--esm_summary
+|  |  |  |  +--fcp_summary
+|  |  |  |  +--print_ps_info
+|  |  |  |  +--print_vdw_info
+|  |  |  |  +--print_symmetries
+|  |  |  +  }}}
+|  |  |  +--memory_report
+|  |  |  +--allocate_fft  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--create_scf_type
+|  |  |  |  +--make_pointlists
+|  |  |  +  }}}
+|  |  |  +--ggen
+|  |  |  +--ggens
+|  |  |  +--export_gstart_2_solvers
+|  |  |  +--esm_init
+|  |  |  |  +--esm_ggen_2d
+|  |  |  +--cutoff_fact
+|  |  |  +--gshells
+|  |  |  +--sym_rho_init
+|  |  |  +--allocate_nlpot
+|  |  |  +--allocate_paw_internals
+|  |  |  +--paw_init_onecenter
+|  |  |  +--allocate_locpot
+|  |  |  +--allocate_wfc
+|  |  |  +--allocate_bp_efield
+|  |  |  +--bp_global_map
+|  |  |  +--plugin_initbase
+|  |  |  +--tsvdw_initialize
+|  |  |  +--set_h_ainv
+|  |  |  +--openfil
+|  |  |  |  +--open_buffer
+|  |  |  |  +--initialize_hdf5
+|  |  |  +--hinit0  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--init_vloc
+|  |  |  |  +--init_us_b0
+|  |  |  |  +--init_us_0
+|  |  |  |  +--init_us_1
+|  |  |  |  +--init_q_aeps
+|  |  |  |  +--init_at_1
+|  |  |  |  +--init_igk
+|  |  |  |  +--cryst_to_cart
+|  |  |  |  +--dswap
+|  |  |  |  +--recips
+|  |  |  |  +--scale_h
+|  |  |  |  +--struc_fact
+|  |  |  |  +--plugin_init_ions
+|  |  |  |  +--plugin_init_cell
+|  |  |  |  +--setlocal
+|  |  |  |  +--set_rhoc
+|  |  |  |  +--generate_qpointlist
+|  |  |  |  +--betapointlist
+|  |  |  |  +--init_realspace_vars
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--potinit  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--read_scf
+|  |  |  |  +--read_rhog
+|  |  |  |  +--nc_magnetization_from_lsda
+|  |  |  |  +--atomic_rho_g
+|  |  |  |  +--init_ns_nc
+|  |  |  |  +--init_ns
+|  |  |  |  +--PAW_atomic_becsum
+|  |  |  |  +--mp_sum
+|  |  |  |  +--errore
+|  |  |  |  +--rho_g2r
+|  |  |  |  +--rho_r2g
+|  |  |  |  +--plugin_scf_potential
+|  |  |  |  +--v_of_rho
+|  |  |  |  +--PAW_potential
+|  |  |  |  +--set_vrs
+|  |  |  |  +--write_ns_nc
+|  |  |  |  +--write_ns
+|  |  |  |  +--report_mag
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--newd  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--newq_r
+|  |  |  |  +--newq
+|  |  |  |  +--add_paw_to_deeq
+|  |  |  |  +--newd_so
+|  |  |  |  +--newd_nc
+|  |  |  |  +--add_vhub_to_deeq
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--wfcinit  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--orthoatwfc
+|  |  |  |  +--orthoUwfc
+|  |  |  |  +--open_buffer
+|  |  |  |  +--pw_readschema_file
+|  |  |  |  +--read_collected_to_evc
+|  |  |  |  +--diropn
+|  |  |  |  +--davcio
+|  |  |  |  +--stop_clock
+|  |  |  |  +--g2_kin
+|  |  |  |  +--init_us_2
+|  |  |  |  +--get_buffer
+|  |  |  |  +--init_wfc
+|  |  |  |  +--save_buffer
+|  |  |  +  }}}
+|  |  |  +--wannier_init
+|  |  |  |  +--wannier_check
+|  |  |  |  +--open_buffer
+|  |  |  +--paw_post_init
+|  |  |  +--allocate_dyn_vars
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--fft_type_deallocate
+|  |  +--exx_grid_init
+|  |  +--exx_mp_init
+|  |  +--exx_div_check
+|  |  +--set_vrs
+|  |  |  +--sum_vrs
+|  |  |  +--interpolate_vrs
+|  |  |  |  +--fft_interpolate
+|  |  +--generate_qpointlist
+|  |  +--betapointlist
+|  |  +--init_realspace_vars
+|  |  +--compute_becsum  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--weights  {{{ 4
+|  |  |  |  +--tetra_weights
+|  |  |  |  +--opt_tetra_weights
+|  |  |  |  +--poolscatter
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--gweights
+|  |  |  |  +--mp_sum
+|  |  |  |  +--iweights
+|  |  |  |  +--poolrecover
+|  |  |  +  }}}
+|  |  |  +--allocate_bec_type
+|  |  |  +--divide
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--sum_bec  {{{ 4
+|  |  |  |  +--calbec
+|  |  |  |  +--invfft_orbital_gamma
+|  |  |  |  +--calbec_rs_gamma
+|  |  |  |  +--mp_sum
+|  |  |  |  +--invfft_orbital_k
+|  |  |  |  +--calbec_rs_k
+|  |  |  |  +--store_becxx0
+|  |  |  |  +--start_clock
+|  |  |  |  +--ZGEMM
+|  |  |  |  +--DGEMM
+|  |  |  |  +--add_becsum_nc
+|  |  |  |  +--add_becsum_so
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  |  +--PAW_symmetrize  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--block_distribute
+|  |  |  |  +--inverse_s
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--deallocate_bec_type
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--PAW_potential  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--block_distribute
+|  |  |  +--mp_comm_split
+|  |  |  +--PAW_rho_lm
+|  |  |  |  +--start_clock
+|  |  |  |  +--stop_clock
+|  |  |  +--PAW_h_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--hartree
+|  |  |  |  +--simpson
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_xc_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--PAW_lm2rad
+|  |  |  |  +--add_small_mag
+|  |  |  |  +--xc_spin
+|  |  |  |  +--compute_g
+|  |  |  |  +--evxc_t_vec
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--PAW_rad2lm
+|  |  |  |  +--PAW_gcxc_potential
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--simpson
+|  |  |  +--mp_sum
+|  |  |  +--mp_comm_free
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--PAW_symmetrize_ddd  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--block_distribute
+|  |  |  +--inverse_s
+|  |  |  +--mp_sum
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--newd  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--newq_r
+|  |  |  +--newq  {{{ 4
+|  |  |  |  +--divide
+|  |  |  |  +--ylmr2
+|  |  |  |  +--fwfft
+|  |  |  |  +--qvan2
+|  |  |  |  +--DGEMM
+|  |  |  |  +--DGER
+|  |  |  |  +--mp_sum
+|  |  |  +  }}}
+|  |  |  +--add_paw_to_deeq
+|  |  |  +--newd_so
+|  |  |  +--newd_nc
+|  |  |  +--add_vhub_to_deeq
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--orthoUwfc  {{{ 3
+|  |  |  +--get_buffer
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--allocate_bec_type
+|  |  |  +--atomic_wfc_nc_updown  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--wfc_atom
+|  |  |  |  +--errore
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--atomic_wfc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--divide
+|  |  |  |  +--atomic_wfc_so
+|  |  |  |  +--atomic_wfc_so_mag
+|  |  |  |  +--atomic_wfc_nc
+|  |  |  |  +--atomic_wfc___
+|  |  |  |  +--errore
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--s_psi  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide_all
+|  |  |  |  +--mp_type_create_column_section
+|  |  |  |  +--s_psi_
+|  |  |  |  +--mp_allgather
+|  |  |  |  +--mp_type_free
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--ortho_swfc  {{{ 4
+|  |  |  |  +--zgemm
+|  |  |  |  +--mp_sum
+|  |  |  |  +--cdiagh
+|  |  |  |  +--zgemv
+|  |  |  |  +--zcopy
+|  |  |  +  }}}
+|  |  |  +--copy_U_wfc
+|  |  |  +--save_buffer
+|  |  |  +--deallocate_bec_type
+|  |  +  }}}
+|  |  +--orthoatwfc  {{{ 3
+|  |  |  +--allocate_bec_type
+|  |  |  +--atomic_wfc_nc_updown  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--wfc_atom
+|  |  |  |  +--errore
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--atomic_wfc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--divide
+|  |  |  |  +--atomic_wfc_so
+|  |  |  |  +--atomic_wfc_so_mag
+|  |  |  |  +--atomic_wfc_nc
+|  |  |  |  +--atomic_wfc___
+|  |  |  |  +--errore
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--s_psi  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide_all
+|  |  |  |  +--mp_type_create_column_section
+|  |  |  |  +--s_psi_
+|  |  |  |  +--mp_allgather
+|  |  |  |  +--mp_type_free
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--ortho_swfc  {{{ 4
+|  |  |  |  +--zgemm
+|  |  |  |  +--mp_sum
+|  |  |  |  +--cdiagh
+|  |  |  |  +--zgemv
+|  |  |  |  +--zcopy
+|  |  |  +  }}}
+|  |  |  +--save_buffer
+|  |  |  +--deallocate_bec_type
+|  |  +  }}}
+|  +  }}}
+|  +--qmmm_shutdown
++  }}}
++--read_input_file
++--run_driver  {{{ 1
+|  +--plugin_arguments
+|  |  +--get_command_argument
+|  +--plugin_arguments_bcast
+|  +--iosys  {{{ 2
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
+|  |  +--infomsg
+|  |  +--sup_spacegroup
+|  |  +--qmmm_config
+|  |  +--read_cards_pw
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--clean_spacegroup
+|  |  +--cell_base_init
+|  |  +--plugin_read_input
+|  |  +--convert_tau
+|  |  |  +--cryst_to_cart
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--init_start_k
+|  |  +--init_dofree
+|  |  +--check_tempdir
+|  |  +--clean_tempdir
+|  |  +--readpp  {{{ 3
+|  |  |  +--deallocate_radial_grid
+|  |  |  +--nullify_radial_grid
+|  |  |  +--deallocate_pseudo_upf
+|  |  |  +--nullify_pseudo_upf
+|  |  |  +--mp_sum
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--read_upf  {{{ 4
+|  |  |  |  +--deallocate_pseudo_upf
+|  |  |  |  +--deallocate_radial_grid
+|  |  |  |  +--read_upf_v1
+|  |  |  |  +--read_upf_v2
+|  |  |  |  +--read_upf_schema
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--mp_bcast
+|  |  |  +--infomsg
+|  |  |  +--set_upf_q
+|  |  |  |  +--setqfnew
+|  |  |  +--readvan
+|  |  |  +--readgth
+|  |  |  |  +--errore
+|  |  |  |  +--gth_grid_for_rho
+|  |  |  +--readrrkj
+|  |  |  +--read_ncpp  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--bachel
+|  |  |  |  +--simpson
+|  |  |  +  }}}
+|  |  |  +--add_upf_grid
+|  |  |  |  +--allocate_radial_grid
+|  |  |  |  +--set_upf_q
+|  |  |  +--md5_from_file
+|  |  |  +--enforce_input_dft
+|  |  |  +--set_dft_from_name
+|  |  |  +--check_atwfc_norm
+|  |  |  |  +--simpson
+|  |  +  }}}
+|  |  +--set_cutoff
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--set_exx_fraction
+|  |  +--set_screening_parameter
+|  |  +--initialize_kernel_table
+|  |  +--set_finite_size_volume
+|  |  +--init_london
+|  |  +--dftd3_init
+|  |  +--dftd3_printout
+|  |  +--dftd3_set_functional
+|  |  +--init_xdm
+|  |  +--init_constraint
+|  |  +--pw_init_qexsd_input
+|  |  +--deallocate_input_parameters
+|  +  }}}
+|  +--plugin_initialization
+|  +--check_stop_init
+|  +--setup  {{{ 2
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
+|  |  +--infomsg
+|  |  +--pw_readschema_file
+|  |  +--init_vars_from_schema
+|  |  +--compute_ux
+|  |  +--average_pp
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--set_nelup_neldw
+|  |  +--check_atoms
+|  |  |  +--cryst_to_cart
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--set_sym_bl
+|  |  |  +--invmat
+|  |  |  +--infomsg
+|  |  +--kpoint_grid_efield
+|  |  |  +--cryst_to_cart
+|  |  |  +--invmat
+|  |  +--kp_strings
+|  |  |  +--kpoint_grid  {{{ 4
+|  |  |  |  +--infomsg
+|  |  |  |  +--errore
+|  |  |  |  +--cryst_to_cart
+|  |  |  +  }}}
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--kpoint_grid  {{{ 3
+|  |  |  +--infomsg
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--cryst_to_cart
+|  |  +  }}}
+|  |  +--inverse_s
+|  |  +--find_sym  {{{ 3
+|  |  |  +--sgam_at
+|  |  |  +--sgam_at_mag
+|  |  |  |  +--errore
+|  |  |  +--infomsg
+|  |  |  +--inverse_s
+|  |  |  +--s_axis_to_cart
+|  |  +  }}}
+|  |  +--irreducible_BZ  {{{ 3
+|  |  |  +--multable
+|  |  |  |  +--errore
+|  |  |  +--irrek_nc
+|  |  |  |  +--errore
+|  |  |  +--coset
+|  |  |  |  +--errore
+|  |  |  +--irrek
+|  |  |  |  +--errore
+|  |  +  }}}
+|  |  +--tetra_init
+|  |  +--opt_tetra_init
+|  |  +--set_kup_and_kdw
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--divide_et_impera
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--exx_grid_init
+|  |  +--exx_mp_init
+|  |  +--exx_div_check
+|  |  +--init_lda_plus_u
+|  |  +--d_matrix  {{{ 3
+|  |  |  +--ylmr2
+|  |  |  |  +--errore
+|  |  |  +--invmat
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +  }}}
+|  +  }}}
+|  +--init_run  {{{ 2
+|  |  +--start_clock
+|  |  +--pre_init
+|  |  +--data_structure  {{{ 3
+|  |  |  +--mp_max
+|  |  |  +--fft_type_init
+|  |  |  +--fft_base_info
+|  |  |  +--gvect_init
+|  |  |  +--gvecs_init
+|  |  +  }}}
+|  |  +--summary  {{{ 3
+|  |  |  +--write_dft_name
+|  |  |  +--plugin_summary
+|  |  |  +--esm_summary
+|  |  |  +--fcp_summary
+|  |  |  +--print_ps_info
+|  |  |  +--print_vdw_info
+|  |  |  +--print_symmetries  {{{ 4
+|  |  |  |  +--find_u
+|  |  |  |  +--find_group
+|  |  |  |  +--set_irr_rap_so
+|  |  |  |  +--divide_class_so
+|  |  |  |  +--errore
+|  |  |  |  +--set_class_el_name_so
+|  |  |  |  +--set_irr_rap
+|  |  |  |  +--divide_class
+|  |  |  |  +--set_class_el_name
+|  |  |  |  +--write_group_info
+|  |  |  +  }}}
+|  |  +  }}}
+|  |  +--memory_report
+|  |  +--allocate_fft  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--create_scf_type
+|  |  |  +--make_pointlists  {{{ 4
+|  |  |  |  +--cryst_to_cart
+|  |  |  |  +--compute_distances_SoA
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  +  }}}
+|  |  +--ggen
+|  |  +--ggens
+|  |  +--export_gstart_2_solvers
+|  |  +--esm_init
+|  |  |  +--esm_ggen_2d
+|  |  +--cutoff_fact
+|  |  +--gshells
+|  |  +--sym_rho_init
+|  |  +--allocate_nlpot
+|  |  +--allocate_paw_internals
+|  |  +--paw_init_onecenter
+|  |  +--allocate_locpot
+|  |  +--allocate_wfc
+|  |  +--allocate_bp_efield
+|  |  +--bp_global_map
+|  |  +--plugin_initbase
+|  |  +--tsvdw_initialize
+|  |  +--set_h_ainv
+|  |  +--openfil
+|  |  |  +--open_buffer
+|  |  |  +--initialize_hdf5
+|  |  +--hinit0  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--init_vloc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--vloc_gth
+|  |  |  |  +--vloc_coul
+|  |  |  |  +--vloc_of_g
+|  |  |  |  +--cutoff_lr_Vloc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_b0  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide
+|  |  |  |  +--sph_bes
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_0  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide
+|  |  |  |  +--simpson
+|  |  |  |  +--sph_bes
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_1  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--aainit
+|  |  |  |  +--divide
+|  |  |  |  +--sph_bes
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ylmr2
+|  |  |  |  +--qvan2
+|  |  |  |  +--spline
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_q_aeps
+|  |  |  |  +--errore
+|  |  |  |  +--simpson
+|  |  |  +--init_at_1  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide
+|  |  |  |  +--sph_bes
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_igk
+|  |  |  +--cryst_to_cart
+|  |  |  +--dswap
+|  |  |  +--recips
+|  |  |  +--scale_h  {{{ 4
+|  |  |  |  +--cryst_to_cart
+|  |  |  |  +--mp_max
+|  |  |  |  +--errore
+|  |  |  |  +--init_vloc
+|  |  |  |  +--exx_grid_init
+|  |  |  |  +--exx_mp_init
+|  |  |  |  +--exx_gvec_reinit
+|  |  |  |  +--set_h_ainv
+|  |  |  +  }}}
+|  |  |  +--struc_fact
+|  |  |  +--plugin_init_ions
+|  |  |  +--plugin_init_cell
+|  |  |  +--setlocal  {{{ 4
+|  |  |  |  +--wg_corr_loc
+|  |  |  |  +--esm_local
+|  |  |  |  +--cutoff_local
+|  |  |  |  +--mp_sum
+|  |  |  |  +--invfft
+|  |  |  |  +--add_efield
+|  |  |  |  +--add_gatefield
+|  |  |  |  +--qmmm_add_esf
+|  |  |  |  +--plugin_init_potential
+|  |  |  +  }}}
+|  |  |  +--set_rhoc  {{{ 4
+|  |  |  |  +--drhoc
+|  |  |  |  +--rho_g2r
+|  |  |  |  +--mp_sum
+|  |  |  |  +--create_scf_type
+|  |  |  |  +--v_xc
+|  |  |  |  +--destroy_scf_type
+|  |  |  +  }}}
+|  |  |  +--generate_qpointlist
+|  |  |  +--betapointlist
+|  |  |  +--init_realspace_vars
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--potinit  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--read_scf
+|  |  |  +--read_rhog
+|  |  |  +--nc_magnetization_from_lsda
+|  |  |  +--atomic_rho_g
+|  |  |  |  +--threaded_nowait_memset
+|  |  |  |  +--simpson
+|  |  |  +--init_ns_nc
+|  |  |  +--init_ns
+|  |  |  +--PAW_atomic_becsum
+|  |  |  |  +--errore
+|  |  |  |  +--PAW_symmetrize
+|  |  |  +--mp_sum
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--rho_g2r
+|  |  |  +--rho_r2g
+|  |  |  +--plugin_scf_potential
+|  |  |  +--v_of_rho  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--v_xc_meta
+|  |  |  |  +--v_xc
+|  |  |  |  +--add_bfield
+|  |  |  |  +--v_h
+|  |  |  |  +--v_hubbard_nc
+|  |  |  |  +--v_hubbard
+|  |  |  |  +--add_efield
+|  |  |  |  +--tsvdw_calculate
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--block_distribute
+|  |  |  |  +--mp_comm_split
+|  |  |  |  +--PAW_rho_lm
+|  |  |  |  +--PAW_h_potential
+|  |  |  |  +--PAW_xc_potential
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_comm_free
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--set_vrs
+|  |  |  |  +--sum_vrs
+|  |  |  |  +--interpolate_vrs
+|  |  |  +--write_ns_nc
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--write_ns
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--report_mag
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--newd  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--newq_r
+|  |  |  +--newq  {{{ 4
+|  |  |  |  +--divide
+|  |  |  |  +--ylmr2
+|  |  |  |  +--fwfft
+|  |  |  |  +--qvan2
+|  |  |  |  +--DGEMM
+|  |  |  |  +--DGER
+|  |  |  |  +--mp_sum
+|  |  |  +  }}}
+|  |  |  +--add_paw_to_deeq
+|  |  |  +--newd_so
+|  |  |  +--newd_nc
+|  |  |  +--add_vhub_to_deeq
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--wfcinit  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--orthoatwfc  {{{ 4
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--atomic_wfc_nc_updown
+|  |  |  |  +--atomic_wfc
+|  |  |  |  +--init_us_2
+|  |  |  |  +--calbec
+|  |  |  |  +--s_psi
+|  |  |  |  +--ortho_swfc
+|  |  |  |  +--save_buffer
+|  |  |  |  +--deallocate_bec_type
+|  |  |  +  }}}
+|  |  |  +--orthoUwfc  {{{ 4
+|  |  |  |  +--get_buffer
+|  |  |  |  +--errore
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--atomic_wfc_nc_updown
+|  |  |  |  +--atomic_wfc
+|  |  |  |  +--init_us_2
+|  |  |  |  +--calbec
+|  |  |  |  +--s_psi
+|  |  |  |  +--ortho_swfc
+|  |  |  |  +--copy_U_wfc
+|  |  |  |  +--save_buffer
+|  |  |  |  +--deallocate_bec_type
+|  |  |  +  }}}
+|  |  |  +--open_buffer
+|  |  |  +--pw_readschema_file
+|  |  |  +--read_collected_to_evc
+|  |  |  +--diropn
+|  |  |  |  +--errore
+|  |  |  +--davcio  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--errore
+|  |  |  |  +--infomsg
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--stop_clock
+|  |  |  +--g2_kin
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--get_buffer
+|  |  |  +--init_wfc  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--start_clock
+|  |  |  |  +--atomic_wfc
+|  |  |  |  +--stop_clock
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--stop_exx
+|  |  |  |  +--rotate_wfc
+|  |  |  |  +--deallocate_bec_type
+|  |  |  +  }}}
+|  |  |  +--save_buffer
+|  |  +  }}}
+|  |  +--wannier_init
+|  |  |  +--wannier_check
+|  |  |  |  +--errore
+|  |  |  +--open_buffer
+|  |  +--paw_post_init
+|  |  +--allocate_dyn_vars
+|  |  +--stop_clock
+|  +  }}}
+|  +--create_socket
+|  +--readbuffer
+|  +--mp_bcast
+|  +--writebuffer
+|  +--driver_init
+|  +--driver_posdata
+|  +--driver_getforce
+|  +--open_socket
+|  +--reset_history_for_extrapolation
+|  +--read_and_share
+|  +--recips
+|  +--volume
+|  |  +--infomsg
+|  +--initialize_g_vectors
+|  +--update_pot
+|  +--hinit1  {{{ 2
+|  |  +--setlocal  {{{ 3
+|  |  |  +--wg_corr_loc
+|  |  |  +--esm_local
+|  |  |  +--cutoff_local
+|  |  |  +--mp_sum
+|  |  |  +--invfft
+|  |  |  +--add_efield  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--compute_el_dip
+|  |  |  |  +--compute_ion_dip
+|  |  |  |  +--mp_bcast
+|  |  |  +  }}}
+|  |  |  +--add_gatefield
+|  |  |  |  +--errore
+|  |  |  +--qmmm_add_esf
+|  |  |  +--plugin_init_potential
+|  |  +  }}}
+|  |  +--plugin_init_ions
+|  |  +--plugin_init_cell
+|  |  +--plugin_scf_potential
+|  |  +--clean_pw  {{{ 3
+|  |  |  +--deallocate_pseudo_upf
+|  |  |  +--deallocate_radial_grid
+|  |  |  +--deallocate_ions_base
+|  |  |  +--dealloca_london
+|  |  |  +--cleanup_xdm
+|  |  |  +--dftd3_clean
+|  |  |  +--deallocate_constraint
+|  |  |  +--deallocate_tetra
+|  |  |  +--deallocate_bp_efield
+|  |  |  +--deallocate_ldaU
+|  |  |  +--deallocate_gvect
+|  |  |  +--sym_rho_deallocate
+|  |  |  +--destroy_scf_type
+|  |  |  +--deallocate_igk
+|  |  |  +--deallocate_uspp
+|  |  |  +--deallocate_gth
+|  |  |  +--deallocate_noncol
+|  |  |  +--fft_type_deallocate
+|  |  |  +--pstickdealloc
+|  |  |  +--deallocate_dyn_vars
+|  |  |  +--deallocate_paw_internals
+|  |  |  +--deallocate_realsp
+|  |  |  +--wannier_clean
+|  |  |  |  +--close_buffer
+|  |  |  +--deallocate_exx
+|  |  |  +--tsvdw_finalize
+|  |  |  +--plugin_clean
+|  |  +  }}}
+|  |  +--close_files
+|  |  |  +--close_buffer
+|  |  |  +--mp_barrier
+|  |  +--init_run  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--pre_init
+|  |  |  +--data_structure  {{{ 4
+|  |  |  |  +--mp_max
+|  |  |  |  +--fft_type_init
+|  |  |  |  +--fft_base_info
+|  |  |  |  +--gvect_init
+|  |  |  |  +--gvecs_init
+|  |  |  +  }}}
+|  |  |  +--summary  {{{ 4
+|  |  |  |  +--write_dft_name
+|  |  |  |  +--plugin_summary
+|  |  |  |  +--esm_summary
+|  |  |  |  +--fcp_summary
+|  |  |  |  +--print_ps_info
+|  |  |  |  +--print_vdw_info
+|  |  |  |  +--print_symmetries
+|  |  |  +  }}}
+|  |  |  +--memory_report
+|  |  |  +--allocate_fft  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--create_scf_type
+|  |  |  |  +--make_pointlists
+|  |  |  +  }}}
+|  |  |  +--ggen
+|  |  |  +--ggens
+|  |  |  +--export_gstart_2_solvers
+|  |  |  +--esm_init
+|  |  |  |  +--esm_ggen_2d
+|  |  |  +--cutoff_fact
+|  |  |  +--gshells
+|  |  |  +--sym_rho_init
+|  |  |  +--allocate_nlpot
+|  |  |  +--allocate_paw_internals
+|  |  |  +--paw_init_onecenter
+|  |  |  +--allocate_locpot
+|  |  |  +--allocate_wfc
+|  |  |  +--allocate_bp_efield
+|  |  |  +--bp_global_map
+|  |  |  +--plugin_initbase
+|  |  |  +--tsvdw_initialize
+|  |  |  +--set_h_ainv
+|  |  |  +--openfil
+|  |  |  |  +--open_buffer
+|  |  |  |  +--initialize_hdf5
+|  |  |  +--hinit0  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--init_vloc
+|  |  |  |  +--init_us_b0
+|  |  |  |  +--init_us_0
+|  |  |  |  +--init_us_1
+|  |  |  |  +--init_q_aeps
+|  |  |  |  +--init_at_1
+|  |  |  |  +--init_igk
+|  |  |  |  +--cryst_to_cart
+|  |  |  |  +--dswap
+|  |  |  |  +--recips
+|  |  |  |  +--scale_h
+|  |  |  |  +--struc_fact
+|  |  |  |  +--plugin_init_ions
+|  |  |  |  +--plugin_init_cell
+|  |  |  |  +--setlocal
+|  |  |  |  +--set_rhoc
+|  |  |  |  +--generate_qpointlist
+|  |  |  |  +--betapointlist
+|  |  |  |  +--init_realspace_vars
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--potinit  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--read_scf
+|  |  |  |  +--read_rhog
+|  |  |  |  +--nc_magnetization_from_lsda
+|  |  |  |  +--atomic_rho_g
+|  |  |  |  +--init_ns_nc
+|  |  |  |  +--init_ns
+|  |  |  |  +--PAW_atomic_becsum
+|  |  |  |  +--mp_sum
+|  |  |  |  +--errore
+|  |  |  |  +--rho_g2r
+|  |  |  |  +--rho_r2g
+|  |  |  |  +--plugin_scf_potential
+|  |  |  |  +--v_of_rho
+|  |  |  |  +--PAW_potential
+|  |  |  |  +--set_vrs
+|  |  |  |  +--write_ns_nc
+|  |  |  |  +--write_ns
+|  |  |  |  +--report_mag
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--newd  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--newq_r
+|  |  |  |  +--newq
+|  |  |  |  +--add_paw_to_deeq
+|  |  |  |  +--newd_so
+|  |  |  |  +--newd_nc
+|  |  |  |  +--add_vhub_to_deeq
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--wfcinit  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--orthoatwfc
+|  |  |  |  +--orthoUwfc
+|  |  |  |  +--open_buffer
+|  |  |  |  +--pw_readschema_file
+|  |  |  |  +--read_collected_to_evc
+|  |  |  |  +--diropn
+|  |  |  |  +--davcio
+|  |  |  |  +--stop_clock
+|  |  |  |  +--g2_kin
+|  |  |  |  +--init_us_2
+|  |  |  |  +--get_buffer
+|  |  |  |  +--init_wfc
+|  |  |  |  +--save_buffer
+|  |  |  +  }}}
+|  |  |  +--wannier_init
+|  |  |  |  +--wannier_check
+|  |  |  |  +--open_buffer
+|  |  |  +--paw_post_init
+|  |  |  +--allocate_dyn_vars
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--fft_type_deallocate
+|  |  +--exx_grid_init
+|  |  +--exx_mp_init
+|  |  +--exx_div_check
+|  |  +--set_vrs
+|  |  |  +--sum_vrs
+|  |  |  +--interpolate_vrs
+|  |  |  |  +--fft_interpolate
+|  |  +--generate_qpointlist
+|  |  +--betapointlist
+|  |  +--init_realspace_vars
+|  |  +--compute_becsum  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--weights  {{{ 4
+|  |  |  |  +--tetra_weights
+|  |  |  |  +--opt_tetra_weights
+|  |  |  |  +--poolscatter
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--gweights
+|  |  |  |  +--mp_sum
+|  |  |  |  +--iweights
+|  |  |  |  +--poolrecover
+|  |  |  +  }}}
+|  |  |  +--allocate_bec_type
+|  |  |  +--divide
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--sum_bec  {{{ 4
+|  |  |  |  +--calbec
+|  |  |  |  +--invfft_orbital_gamma
+|  |  |  |  +--calbec_rs_gamma
+|  |  |  |  +--mp_sum
+|  |  |  |  +--invfft_orbital_k
+|  |  |  |  +--calbec_rs_k
+|  |  |  |  +--store_becxx0
+|  |  |  |  +--start_clock
+|  |  |  |  +--ZGEMM
+|  |  |  |  +--DGEMM
+|  |  |  |  +--add_becsum_nc
+|  |  |  |  +--add_becsum_so
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  |  +--PAW_symmetrize  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--block_distribute
+|  |  |  |  +--inverse_s
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--deallocate_bec_type
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--PAW_potential  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--block_distribute
+|  |  |  +--mp_comm_split
+|  |  |  +--PAW_rho_lm
+|  |  |  |  +--start_clock
+|  |  |  |  +--stop_clock
+|  |  |  +--PAW_h_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--hartree
+|  |  |  |  +--simpson
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_xc_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--PAW_lm2rad
+|  |  |  |  +--add_small_mag
+|  |  |  |  +--xc_spin
+|  |  |  |  +--compute_g
+|  |  |  |  +--evxc_t_vec
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--PAW_rad2lm
+|  |  |  |  +--PAW_gcxc_potential
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--simpson
+|  |  |  +--mp_sum
+|  |  |  +--mp_comm_free
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--PAW_symmetrize_ddd  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--block_distribute
+|  |  |  +--inverse_s
+|  |  |  +--mp_sum
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--newd  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--newq_r
+|  |  |  +--newq  {{{ 4
+|  |  |  |  +--divide
+|  |  |  |  +--ylmr2
+|  |  |  |  +--fwfft
+|  |  |  |  +--qvan2
+|  |  |  |  +--DGEMM
+|  |  |  |  +--DGER
+|  |  |  |  +--mp_sum
+|  |  |  +  }}}
+|  |  |  +--add_paw_to_deeq
+|  |  |  +--newd_so
+|  |  |  +--newd_nc
+|  |  |  +--add_vhub_to_deeq
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--orthoUwfc  {{{ 3
+|  |  |  +--get_buffer
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--allocate_bec_type
+|  |  |  +--atomic_wfc_nc_updown  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--wfc_atom
+|  |  |  |  +--errore
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--atomic_wfc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--divide
+|  |  |  |  +--atomic_wfc_so
+|  |  |  |  +--atomic_wfc_so_mag
+|  |  |  |  +--atomic_wfc_nc
+|  |  |  |  +--atomic_wfc___
+|  |  |  |  +--errore
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--s_psi  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide_all
+|  |  |  |  +--mp_type_create_column_section
+|  |  |  |  +--s_psi_
+|  |  |  |  +--mp_allgather
+|  |  |  |  +--mp_type_free
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--ortho_swfc  {{{ 4
+|  |  |  |  +--zgemm
+|  |  |  |  +--mp_sum
+|  |  |  |  +--cdiagh
+|  |  |  |  +--zgemv
+|  |  |  |  +--zcopy
+|  |  |  +  }}}
+|  |  |  +--copy_U_wfc
+|  |  |  +--save_buffer
+|  |  |  +--deallocate_bec_type
+|  |  +  }}}
+|  |  +--orthoatwfc  {{{ 3
+|  |  |  +--allocate_bec_type
+|  |  |  +--atomic_wfc_nc_updown  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--wfc_atom
+|  |  |  |  +--errore
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--atomic_wfc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--divide
+|  |  |  |  +--atomic_wfc_so
+|  |  |  |  +--atomic_wfc_so_mag
+|  |  |  |  +--atomic_wfc_nc
+|  |  |  |  +--atomic_wfc___
+|  |  |  |  +--errore
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--s_psi  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--divide_all
+|  |  |  |  +--mp_type_create_column_section
+|  |  |  |  +--s_psi_
+|  |  |  |  +--mp_allgather
+|  |  |  |  +--mp_type_free
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--ortho_swfc  {{{ 4
+|  |  |  |  +--zgemm
+|  |  |  |  +--mp_sum
+|  |  |  |  +--cdiagh
+|  |  |  |  +--zgemv
+|  |  |  |  +--zcopy
+|  |  |  +  }}}
+|  |  |  +--save_buffer
+|  |  |  +--deallocate_bec_type
+|  |  +  }}}
+|  +  }}}
+|  +--electrons  {{{ 2
+|  |  +--seqopn
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--exxinit
+|  |  +--localize_orbitals  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--get_buffer
+|  |  |  +--measure_localization  {{{ 4
+|  |  |  |  +--AbsOvR
+|  |  |  |  +--AbsOvG
+|  |  |  |  +--errore
+|  |  |  |  +--compute_density
+|  |  |  |  +--cryst_to_cart
+|  |  |  +  }}}
+|  |  |  +--AbsOv_histogram
+|  |  |  |  +--errore
+|  |  |  +--SCDM_PGG  {{{ 4
+|  |  |  |  +--scdm_thresholds
+|  |  |  |  +--scdm_points
+|  |  |  |  +--scdm_prescreening
+|  |  |  |  +--scdm_fill
+|  |  |  |  +--DGEMM
+|  |  |  |  +--invchol
+|  |  |  |  +--MatChol
+|  |  |  |  +--MatInv
+|  |  |  |  +--MatSymm
+|  |  |  +  }}}
+|  |  |  +--wave_to_G
+|  |  |  |  +--fwfft
+|  |  |  |  +--matcalc
+|  |  |  +--matcalc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--calbec
+|  |  |  |  +--matprt
+|  |  |  |  +--errore
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--MatCheck
+|  |  |  +--PTSVD  {{{ 4
+|  |  |  |  +--DGESVD
+|  |  |  |  +--errinfo
+|  |  |  |  +--DGEMM
+|  |  |  +  }}}
+|  |  |  +--ZGEMM
+|  |  |  +--wave_to_R  {{{ 4
+|  |  |  |  +--invfft
+|  |  |  |  +--DGEMM
+|  |  |  |  +--MatPrt
+|  |  |  +  }}}
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--localize_orbitals_k  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--measure_localization_k  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--compute_density_k
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--AbsOvG_k  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--fwfft
+|  |  |  |  +--matcalc_k
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--AbsOv_histogram_k
+|  |  |  |  +--errore
+|  |  |  +--SCDM_PGG_k  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--scdm_thresholds
+|  |  |  |  +--scdm_points
+|  |  |  |  +--scdm_prescreening_k
+|  |  |  |  +--scdm_fill_k
+|  |  |  |  +--ZGEMM
+|  |  |  |  +--invchol_k
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  +  }}}
+|  |  +--aceinit  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--allocate_bec_type
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--aceinit_gamma  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--vexx_loc
+|  |  |  |  +--MatSymm
+|  |  |  |  +--vexx
+|  |  |  |  +--matcalc
+|  |  |  |  +--aceupdate
+|  |  |  |  +--vexxace_gamma
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--aceinit_k
+|  |  |  +--mp_sum
+|  |  |  +--deallocate_bec_type
+|  |  +  }}}
+|  |  +--v_of_rho  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--v_xc_meta  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--fft_gradient_g2r
+|  |  |  |  +--tau_xc
+|  |  |  |  +--tau_xc_spin
+|  |  |  |  +--fft_graddot
+|  |  |  |  +--mp_sum
+|  |  |  |  +--nlc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--v_xc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--xc
+|  |  |  |  +--xc_spin
+|  |  |  |  +--mp_sum
+|  |  |  |  +--gradcorr
+|  |  |  |  +--nlc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--add_bfield  {{{ 4
+|  |  |  |  +--get_locals
+|  |  |  |  +--errore
+|  |  |  |  +--mp_sum
+|  |  |  +  }}}
+|  |  |  +--v_h  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--mp_sum
+|  |  |  |  +--esm_hartree
+|  |  |  |  +--cutoff_hartree
+|  |  |  |  +--wg_corr_h
+|  |  |  |  +--invfft
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--v_hubbard_nc
+|  |  |  |  +--hubbard_matrix
+|  |  |  +--v_hubbard
+|  |  |  |  +--hubbard_matrix
+|  |  |  +--add_efield  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--compute_el_dip
+|  |  |  |  +--compute_ion_dip
+|  |  |  |  +--mp_bcast
+|  |  |  +  }}}
+|  |  |  +--tsvdw_calculate
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--PAW_potential  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--block_distribute
+|  |  |  +--mp_comm_split
+|  |  |  +--PAW_rho_lm
+|  |  |  |  +--start_clock
+|  |  |  |  +--stop_clock
+|  |  |  +--PAW_h_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--hartree
+|  |  |  |  +--simpson
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_xc_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--PAW_lm2rad
+|  |  |  |  +--add_small_mag
+|  |  |  |  +--xc_spin
+|  |  |  |  +--compute_g
+|  |  |  |  +--evxc_t_vec
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--PAW_rad2lm
+|  |  |  |  +--PAW_gcxc_potential
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--simpson
+|  |  |  +--mp_sum
+|  |  |  +--mp_comm_free
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--set_vrs
+|  |  |  +--sum_vrs
+|  |  |  +--interpolate_vrs
+|  |  |  |  +--fft_interpolate
+|  |  +--electrons_scf  {{{ 3
+|  |  |  +--restart_in_electrons
+|  |  |  |  +--seqopn
+|  |  |  +--memstat
+|  |  |  +--start_clock
+|  |  |  +--dftd3_pbc_dispersion
+|  |  |  +--create_scf_type
+|  |  |  +--open_mix_file
+|  |  |  +--save_in_electrons
+|  |  |  |  +--seqopn
+|  |  |  +--scf_type_COPY
+|  |  |  +--c_bands_efield  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--h_epsi_her_set
+|  |  |  |  +--c_bands
+|  |  |  +  }}}
+|  |  |  +--c_bands  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--restart_in_cbands
+|  |  |  |  +--get_buffer
+|  |  |  |  +--errore
+|  |  |  |  +--g2_kin
+|  |  |  |  +--init_us_2
+|  |  |  |  +--diag_bands
+|  |  |  |  +--save_buffer
+|  |  |  |  +--save_in_cbands
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--poolrecover  {{{ 4
+|  |  |  |  +--errore
+|  |  |  |  +--mp_barrier
+|  |  |  |  +--MPI_SEND
+|  |  |  |  +--MPI_RECV
+|  |  |  +  }}}
+|  |  |  +--sum_band  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--weights
+|  |  |  |  +--new_evc
+|  |  |  |  +--new_ns_nc
+|  |  |  |  +--new_ns
+|  |  |  |  +--divide
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--sum_band_gamma
+|  |  |  |  +--sum_band_k
+|  |  |  |  +--mp_sum
+|  |  |  |  +--deallocate_bec_type
+|  |  |  |  +--fwfft
+|  |  |  |  +--PAW_symmetrize
+|  |  |  |  +--addusdens
+|  |  |  |  +--sym_rho
+|  |  |  |  +--invfft
+|  |  |  |  +--rhoz_or_updw
+|  |  |  |  +--stop_clock
+|  |  |  |  +--get_buffer
+|  |  |  |  +--init_us_2
+|  |  |  |  +--tg_get_nnr
+|  |  |  |  +--tg_get_group_nr3
+|  |  |  |  +--get_rho_gamma
+|  |  |  |  +--tg_reduce_rho
+|  |  |  |  +--sum_bec
+|  |  |  |  +--get_rho
+|  |  |  |  +--get_rho_domag
+|  |  |  |  +--threaded_barrier_memset
+|  |  |  +  }}}
+|  |  |  +--write_ns_nc
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--write_ns
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--ns_adj
+|  |  |  |  +--errore
+|  |  |  |  +--cdiagh
+|  |  |  +--compute_magnetization
+|  |  |  +--mix_rho  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--errore
+|  |  |  |  +--create_mix_type
+|  |  |  |  +--assign_scf_to_mix_type
+|  |  |  |  +--mix_type_AXPY
+|  |  |  |  +--destroy_mix_type
+|  |  |  |  +--stop_clock
+|  |  |  |  +--davcio_mix_type
+|  |  |  |  +--mix_type_SCAL
+|  |  |  |  +--rdiagh
+|  |  |  |  +--DSYTRF
+|  |  |  |  +--DSYTRI
+|  |  |  |  +--approx_screening
+|  |  |  |  +--approx_screening2
+|  |  |  |  +--high_frequency_mixing
+|  |  |  |  +--assign_mix_to_scf_type
+|  |  |  +  }}}
+|  |  |  +--bcast_scf_type
+|  |  |  +--mp_bcast
+|  |  |  +--v_of_rho  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--v_xc_meta
+|  |  |  |  +--v_xc
+|  |  |  |  +--add_bfield
+|  |  |  |  +--v_h
+|  |  |  |  +--v_hubbard_nc
+|  |  |  |  +--v_hubbard
+|  |  |  |  +--add_efield
+|  |  |  |  +--tsvdw_calculate
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_potential  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--block_distribute
+|  |  |  |  +--mp_comm_split
+|  |  |  |  +--PAW_rho_lm
+|  |  |  |  +--PAW_h_potential
+|  |  |  |  +--PAW_xc_potential
+|  |  |  |  +--simpson
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_comm_free
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--PAW_symmetrize_ddd  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--block_distribute
+|  |  |  |  +--inverse_s
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--plugin_scf_energy
+|  |  |  +--plugin_scf_potential
+|  |  |  +--sum_vrs
+|  |  |  +--interpolate_vrs
+|  |  |  |  +--fft_interpolate
+|  |  |  +--newd  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--newq_r
+|  |  |  |  +--newq
+|  |  |  |  +--add_paw_to_deeq
+|  |  |  |  +--newd_so
+|  |  |  |  +--newd_nc
+|  |  |  |  +--add_vhub_to_deeq
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--report_mag
+|  |  |  +--print_ks_energies  {{{ 4
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ipoolrecover
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--get_homo_lumo
+|  |  |  +  }}}
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--print_energies
+|  |  |  +--makov_payne  {{{ 4
+|  |  |  |  +--compute_dipole
+|  |  |  |  +--write_dipole
+|  |  |  |  +--vacuum_level
+|  |  |  +  }}}
+|  |  |  +--esm_printpot
+|  |  |  |  +--cft_1z
+|  |  |  +--forces  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--force_us
+|  |  |  |  +--force_lc
+|  |  |  |  +--force_cc
+|  |  |  |  +--force_hub
+|  |  |  |  +--esm_force_ew
+|  |  |  |  +--force_ew
+|  |  |  |  +--dftd3_pbc_gdisp
+|  |  |  |  +--force_corr
+|  |  |  |  +--wg_corr_force
+|  |  |  |  +--plugin_int_forces
+|  |  |  |  +--forces_us_efield
+|  |  |  |  +--forces_ion_efield
+|  |  |  |  +--symvector
+|  |  |  |  +--remove_tot_torque
+|  |  |  |  +--plugin_ext_forces
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--print_clock_pw
+|  |  |  |  +--print_clock
+|  |  |  |  +--plugin_clock
+|  |  |  +--write_scf
+|  |  |  +--close_mix_file
+|  |  |  +--remove_atomic_rho
+|  |  |  |  +--atomic_rho_g
+|  |  |  |  +--write_rhog
+|  |  |  +--destroy_scf_type
+|  |  |  +--stop_clock
+|  |  |  +--mp_sum
+|  |  |  +--c_phase_field  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--errore
+|  |  |  |  +--calc_btq
+|  |  |  |  +--ylmr2
+|  |  |  |  +--qvan3
+|  |  |  |  +--transform_qq_so
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--get_buffer
+|  |  |  |  +--init_us_2
+|  |  |  |  +--calbec
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ZGEMM
+|  |  |  |  +--ZGETRF
+|  |  |  |  +--factor_a
+|  |  |  |  +--deallocate_bec_type
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--plugin_print_energies
+|  |  +  }}}
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
+|  |  +--makov_payne  {{{ 3
+|  |  |  +--compute_dipole
+|  |  |  |  +--cryst_to_cart
+|  |  |  |  +--mp_sum
+|  |  |  +--write_dipole
+|  |  |  |  +--errore
+|  |  |  +--vacuum_level
+|  |  |  |  +--mp_sum
+|  |  +  }}}
+|  +  }}}
+|  +--punch  {{{ 2
+|  |  +--create_directory
+|  |  +--pw_write_schema
+|  |  +--write_scf
+|  |  +--pw_write_binaries
+|  |  +--qexsd_reset_steps
+|  |  +--diropn
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--davcio  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--infomsg
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--infomsg
+|  |  +--a2Fsave
+|  +  }}}
+|  +--stop_run  {{{ 2
+|  |  +--seqopn
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--close_files
+|  |  |  +--close_buffer
+|  |  |  +--mp_barrier
+|  |  +--print_clock_pw
+|  |  |  +--print_clock
+|  |  |  |  +--print_this_clock
+|  |  |  +--plugin_clock
+|  |  +--clean_pw  {{{ 3
+|  |  |  +--deallocate_pseudo_upf
+|  |  |  +--deallocate_radial_grid
+|  |  |  +--deallocate_ions_base
+|  |  |  +--dealloca_london
+|  |  |  +--cleanup_xdm
+|  |  |  +--dftd3_clean
+|  |  |  +--deallocate_constraint
+|  |  |  +--deallocate_tetra
+|  |  |  +--deallocate_bp_efield
+|  |  |  +--deallocate_ldaU
+|  |  |  +--deallocate_gvect
+|  |  |  +--sym_rho_deallocate
+|  |  |  +--destroy_scf_type
+|  |  |  +--deallocate_igk
+|  |  |  +--deallocate_uspp
+|  |  |  +--deallocate_gth
+|  |  |  +--deallocate_noncol
+|  |  |  +--fft_type_deallocate
+|  |  |  +--pstickdealloc
+|  |  |  +--deallocate_dyn_vars
+|  |  |  +--deallocate_paw_internals
+|  |  |  +--deallocate_realsp
+|  |  |  +--wannier_clean
+|  |  |  |  +--close_buffer
+|  |  |  +--deallocate_exx
+|  |  |  +--tsvdw_finalize
+|  |  |  +--plugin_clean
+|  |  +  }}}
+|  |  +--environment_end
+|  |  +--mp_global_end
+|  +  }}}
+|  +--forces  {{{ 2
+|  |  +--start_clock
+|  |  +--force_us  {{{ 3
+|  |  |  +--allocate_bec_type
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--force_us_gamma
+|  |  |  +--force_us_k
+|  |  |  +--mp_sum
+|  |  |  +--deallocate_bec_type
+|  |  |  +--addusforce
+|  |  |  |  +--addusforce_r
+|  |  |  |  +--addusforce_g
+|  |  |  +--symvector
+|  |  |  +--DGEMM
+|  |  |  +--compute_deff_nc
+|  |  |  +--compute_deff
+|  |  +  }}}
+|  |  +--force_lc  {{{ 3
+|  |  |  +--fwfft
+|  |  |  +--esm_force_lc
+|  |  |  +--cutoff_force_lc
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--force_cc  {{{ 3
+|  |  |  +--v_xc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--xc
+|  |  |  |  +--xc_spin
+|  |  |  |  +--mp_sum
+|  |  |  |  +--gradcorr
+|  |  |  |  +--nlc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--fwfft
+|  |  |  +--drhoc
+|  |  |  |  +--simpson
+|  |  |  |  +--sph_bes
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--force_hub  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--start_clock
+|  |  |  +--allocate_bec_type
+|  |  |  +--block_distribute
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--atomic_wfc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--divide
+|  |  |  |  +--atomic_wfc_so
+|  |  |  |  +--atomic_wfc_so_mag
+|  |  |  |  +--atomic_wfc_nc
+|  |  |  |  +--atomic_wfc___
+|  |  |  |  +--errore
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--copy_U_wfc
+|  |  |  +--dndtau_gamma  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--dprojdtau_gamma
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  |  +--deallocate_bec_type
+|  |  |  +--symvector
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--esm_force_ew  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--esm_force_ewg
+|  |  |  +--esm_force_ewr
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--force_ew  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--cutoff_force_ew
+|  |  |  +--rgen
+|  |  |  |  +--errore
+|  |  |  |  +--hpsort
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--dftd3_pbc_gdisp
+|  |  +--force_corr  {{{ 3
+|  |  |  +--fwfft
+|  |  |  +--simpson
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--wg_corr_force
+|  |  +--plugin_int_forces
+|  |  +--forces_us_efield  {{{ 3
+|  |  |  +--allocate_bec_type
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  |  +--calc_btq  {{{ 4
+|  |  |  |  +--sph_dbes
+|  |  |  |  +--sph_bes
+|  |  |  |  +--simpson
+|  |  |  +  }}}
+|  |  |  +--ylmr2
+|  |  |  |  +--errore
+|  |  |  +--qvan3
+|  |  |  +--transform_qq_so
+|  |  |  +--factor_a
+|  |  |  +--get_buffer
+|  |  |  +--init_us_2  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--ylmr2
+|  |  |  |  +--mk_ffnl_gth
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--calbec
+|  |  |  +--ZGEMM
+|  |  |  +--MPI_ALLREDUCE
+|  |  |  +--MPI_ALLTOALL
+|  |  |  +--zgefa
+|  |  |  +--zgedi
+|  |  |  +--deallocate_bec_type
+|  |  |  +--cryst_to_cart
+|  |  +  }}}
+|  |  +--forces_ion_efield
+|  |  +--symvector
+|  |  +--remove_tot_torque
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  +--plugin_ext_forces
+|  |  +--stop_clock
+|  +  }}}
+|  +--stress  {{{ 2
+|  |  +--infomsg
+|  |  +--start_clock
+|  |  +--stres_loc  {{{ 3
+|  |  |  +--fwfft
+|  |  |  +--cutoff_stres_evloc
+|  |  |  +--dvloc_gth
+|  |  |  |  +--errore
+|  |  |  +--dvloc_coul
+|  |  |  +--dvloc_of_g
+|  |  |  |  +--simpson
+|  |  |  +--cutoff_stres_sigmaloc
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--stres_har  {{{ 3
+|  |  |  +--fwfft
+|  |  |  +--cutoff_stres_sigmahar
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--stres_gradcorr  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--fft_gradient_g2r
+|  |  |  |  +--invfft
+|  |  |  +--tau_xc  {{{ 4
+|  |  |  |  +--tpsscxc
+|  |  |  |  +--m06lxc
+|  |  |  |  +--tb09cxc
+|  |  |  |  +--SCANcxc
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--gcxc  {{{ 4
+|  |  |  |  +--becke88
+|  |  |  |  +--ggax
+|  |  |  |  +--pbex
+|  |  |  |  +--hcth
+|  |  |  |  +--optx
+|  |  |  |  +--wcx
+|  |  |  |  +--pbexsr
+|  |  |  |  +--rPW86
+|  |  |  |  +--c09x
+|  |  |  |  +--sogga
+|  |  |  |  +--pbexgau
+|  |  |  |  +--pw86
+|  |  |  |  +--becke86b
+|  |  |  |  +--b86b
+|  |  |  |  +--cx13
+|  |  |  |  +--perdew86
+|  |  |  |  +--ggac
+|  |  |  |  +--glyp
+|  |  |  |  +--pbec
+|  |  |  +  }}}
+|  |  |  +--tau_xc_spin  {{{ 4
+|  |  |  |  +--tpsscx_spin
+|  |  |  |  +--tpsscc_spin
+|  |  |  |  +--m06lxc_spin
+|  |  |  |  +--scanxc_spin
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--gcx_spin  {{{ 4
+|  |  |  |  +--becke88_spin
+|  |  |  |  +--ggax
+|  |  |  |  +--pbex
+|  |  |  |  +--pbexsr_lsd
+|  |  |  |  +--pbexgau_lsd
+|  |  |  |  +--wcx
+|  |  |  |  +--rPW86
+|  |  |  |  +--c09x
+|  |  |  |  +--pw86
+|  |  |  |  +--becke86b
+|  |  |  |  +--b86b
+|  |  |  |  +--cx13
+|  |  |  |  +--becke88
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--gcc_spin_more
+|  |  |  +--gcc_spin  {{{ 4
+|  |  |  |  +--perdew86_spin
+|  |  |  |  +--ggac_spin
+|  |  |  |  +--pbec_spin
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--stres_cc  {{{ 3
+|  |  |  +--v_xc  {{{ 4
+|  |  |  |  +--start_clock
+|  |  |  |  +--xc
+|  |  |  |  +--xc_spin
+|  |  |  |  +--mp_sum
+|  |  |  |  +--gradcorr
+|  |  |  |  +--nlc
+|  |  |  |  +--stop_clock
+|  |  |  +  }}}
+|  |  |  +--fwfft
+|  |  |  +--drhoc
+|  |  |  |  +--simpson
+|  |  |  |  +--sph_bes
+|  |  |  +--deriv_drhoc
+|  |  |  |  +--simpson
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--esm_stres_loclong
+|  |  +--esm_stres_har
+|  |  +--stres_mgga  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--get_buffer
+|  |  |  +--wfc_gradient
+|  |  |  |  +--invfft
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--esm_stres_ewa
+|  |  +--stres_ewa  {{{ 3
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--cutoff_stres_sigmaewa
+|  |  |  +--rgen
+|  |  |  |  +--errore
+|  |  |  |  +--hpsort
+|  |  |  +--mp_sum
+|  |  +  }}}
+|  |  +--dftd3_pbc_gdisp
+|  |  +--stres_knl  {{{ 3
+|  |  |  +--get_buffer
+|  |  |  +--stres_us  {{{ 4
+|  |  |  |  +--init_us_2
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--calbec
+|  |  |  |  +--stres_us_gamma
+|  |  |  |  +--stres_us_k
+|  |  |  |  +--deallocate_bec_type
+|  |  |  |  +--compute_deff
+|  |  |  |  +--gen_us_dj
+|  |  |  |  +--zaxpy
+|  |  |  |  +--mp_circular_shift_left
+|  |  |  |  +--gen_us_dy
+|  |  |  |  +--compute_deff_nc
+|  |  |  |  +--errore
+|  |  |  +  }}}
+|  |  |  +--mp_sum
+|  |  |  +--addusstress
+|  |  |  |  +--addusstress_r
+|  |  |  |  +--addusstress_g
+|  |  |  +--symmatrix
+|  |  +  }}}
+|  |  +--stres_hub  {{{ 3
+|  |  |  +--start_clock
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--dndepsilon  {{{ 4
+|  |  |  |  +--block_distribute
+|  |  |  |  +--allocate_bec_type
+|  |  |  |  +--get_buffer
+|  |  |  |  +--init_us_2
+|  |  |  |  +--calbec
+|  |  |  |  +--atomic_wfc
+|  |  |  |  +--copy_U_wfc
+|  |  |  |  +--dprojdepsilon_gamma
+|  |  |  |  +--dprojdepsilon_k
+|  |  |  |  +--mp_sum
+|  |  |  |  +--deallocate_bec_type
+|  |  |  +  }}}
+|  |  |  +--symmatrix
+|  |  |  +--stop_clock
+|  |  +  }}}
+|  |  +--stress_bp_efield
+|  |  +--stress_ion_efield
+|  |  +--stres_nonloc_dft  {{{ 3
+|  |  |  +--stress_vdW_DF
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  |  |  +--stress_rVV10
+|  |  +  }}}
+|  |  +--symmatrix
+|  |  +--stop_clock
+|  +  }}}
+|  +--update_file
+|  |  +--seqopn
+|  |  |  +--errore  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort
+|  |  |  +  }}}
+|  +--clean_pw  {{{ 2
+|  |  +--deallocate_pseudo_upf
+|  |  +--deallocate_radial_grid
+|  |  +--deallocate_ions_base
+|  |  +--dealloca_london
+|  |  +--cleanup_xdm
+|  |  +--dftd3_clean
+|  |  +--deallocate_constraint
+|  |  +--deallocate_tetra
+|  |  +--deallocate_bp_efield
+|  |  +--deallocate_ldaU
+|  |  +--deallocate_gvect
+|  |  +--sym_rho_deallocate
+|  |  +--destroy_scf_type
+|  |  +--deallocate_igk
+|  |  +--deallocate_uspp
+|  |  +--deallocate_gth
+|  |  +--deallocate_noncol
+|  |  +--fft_type_deallocate
+|  |  +--pstickdealloc
+|  |  +--deallocate_dyn_vars
+|  |  +--deallocate_paw_internals
+|  |  +--deallocate_realsp
+|  |  +--wannier_clean
+|  |  |  +--close_buffer
+|  |  +--deallocate_exx
+|  |  +--tsvdw_finalize
+|  |  +--plugin_clean
+|  +  }}}
+|  +--delete_if_present
+|  +--seqopn
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
++  }}}
++--unset_mpi_comm_4_solvers
++--stop_run  {{{ 1
+|  +--seqopn
+|  |  +--errore  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort
+|  |  +  }}}
+|  +--close_files
+|  |  +--close_buffer
+|  |  +--mp_barrier
+|  +--print_clock_pw
+|  |  +--print_clock
+|  |  |  +--print_this_clock
+|  |  |  |  +--mp_max
+|  |  +--plugin_clock
+|  +--clean_pw  {{{ 2
+|  |  +--deallocate_pseudo_upf
+|  |  +--deallocate_radial_grid
+|  |  +--deallocate_ions_base
+|  |  +--dealloca_london
+|  |  +--cleanup_xdm
+|  |  +--dftd3_clean
+|  |  +--deallocate_constraint
+|  |  +--deallocate_tetra
+|  |  +--deallocate_bp_efield
+|  |  +--deallocate_ldaU
+|  |  +--deallocate_gvect
+|  |  +--sym_rho_deallocate
+|  |  +--destroy_scf_type
+|  |  +--deallocate_igk
+|  |  +--deallocate_uspp
+|  |  +--deallocate_gth
+|  |  +--deallocate_noncol
+|  |  +--fft_type_deallocate
+|  |  +--pstickdealloc
+|  |  +--deallocate_dyn_vars
+|  |  +--deallocate_paw_internals
+|  |  +--deallocate_realsp
+|  |  +--wannier_clean
+|  |  |  +--close_buffer
+|  |  +--deallocate_exx
+|  |  +--tsvdw_finalize
+|  |  +--plugin_clean
+|  +  }}}
+|  +--environment_end
+|  +--mp_global_end
++  }}}
++--do_stop
