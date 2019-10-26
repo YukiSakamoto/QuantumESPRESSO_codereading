@@ -1,0 +1,4194 @@
+phonon (PHonon/PH/phonon.f90)
++--mp_startup (Modules/mp_global.f90)  {{{ 1
+|  +--mp_world_start (Modules/mp_world.f90)  {{{ 2
+|  |  +--MPI_Initialized
+|  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--mpi_abort
+|  |  +--MPI_Init_thread
+|  |  +--MPI_Init
+|  |  +--mp_start (UtilXLib/mp.f90)  {{{ 3
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  +--mpi_comm_rank
+|  |  |  +--mpi_comm_size
+|  |  |  +--allocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  +--allocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  *}}}
+|  |  +--mp_count_nodes (UtilXLib/mp.f90)  {{{ 3
+|  |  |  +--MPI_GET_PROCESSOR_NAME
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  +--MPI_COMM_SIZE
+|  |  |  +--MPI_COMM_RANK
+|  |  |  +--MPI_BCAST
+|  |  |  *}}}
+|  |  *}}}
+|  +--get_command_line (Modules/command_line_options.f90)  {{{ 2
+|  |  +--mp_bcast
+|  |  +--my_getarg (Modules/command_line_options.f90)
+|  |  +--get_command_argument
+|  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  *}}}
+|  +--mp_start_images (Modules/mp_images.f90)  {{{ 2
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--MPI_BARRIER
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  +--MPI_COMM_SPLIT
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  *}}}
+|  +--mp_init_image (Modules/mp_images.f90)
+|  +--mp_start_pools (Modules/mp_pools.f90)  {{{ 2
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--MPI_BARRIER
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  +--MPI_COMM_SPLIT
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  *}}}
+|  +--mp_start_orthopools
+|  +--mp_start_bands (Modules/mp_bands.f90)  {{{ 2
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--MPI_BARRIER
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  +--MPI_COMM_SPLIT
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  *}}}
+|  +--mp_start_exx (Modules/mp_exx.f90)  {{{ 2
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--MPI_BARRIER
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  +--MPI_COMM_SPLIT
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  *}}}
+|  *}}}
++--mp_start_diag
++--set_mpi_comm_4_solvers
++--environment_start (Modules/environment.f90)  {{{ 1
+|  +--remove_stack_limit
+|  +--init_clocks (UtilXLib/clocks_handler.f90)
+|  |  +--mpi_comm_rank
+|  |  +--mpi_abort
+|  +--start_clock (UtilXLib/clocks_handler.f90)
+|  +--opening_message (Modules/environment.f90)
+|  |  +--date_and_tim (Modules/date_and_tim.f90)
+|  |  |  +--date_and_time
+|  +--compilation_info (Modules/environment.f90)
+|  +--parallel_info (Modules/environment.f90)
+|  +--serial_info (Modules/environment.f90)
+|  +--fox_init (Modules/fox_init_module.f90)  {{{ 2
+|  |  +--setup_io
+|  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--MPI_BARRIER
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  +--mp_bcast
+|  |  *}}}
+|  +--initialize_hdf5 (Modules/qeh5_module.f90)
+|  |  +--h5open_f
+|  *}}}
++--phq_readin (PHonon/PH/phq_readin.f90)  {{{ 1
+|  +--input_from_file (Modules/inpfile.f90)
+|  |  +--get_command_argument
+|  +--mp_bcast
+|  +--errore (UtilXLib/error_handler.f90)  {{{ 2
+|  |  +--tracebackqq
+|  |  +--ptrace
+|  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 3
+|  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  +--mpi_abort
+|  |  |  *}}}
+|  |  *}}}
+|  +--get_environment_variable
+|  +--infomsg (UtilXLib/error_handler.f90)
+|  +--bcast_ph_input (PHonon/PH/bcast_ph_input.f90)
+|  |  +--mp_bcast
+|  +--check_tempdir (Modules/io_files.f90)  {{{ 2
+|  |  +--mp_bcast
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--mp_sum
+|  |  *}}}
+|  +--ph_readfile (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_free_unit
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--create_directory (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--iotk_open_write
+|  |  |  +--iotk_open_read
+|  |  |  *}}}
+|  |  +--read_header (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_empty
+|  |  |  +--iotk_scan_attr
+|  |  |  +--iotk_scan_end
+|  |  |  +--mp_bcast
+|  |  |  *}}}
+|  |  +--read_control_ph (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--read_qu (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--read_status_ph (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  +--mp_bcast
+|  |  |  *}}}
+|  |  +--read_modes (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--iotk_scan_end
+|  |  |  *}}}
+|  |  +--read_polarization (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  +--mp_bcast
+|  |  |  *}}}
+|  |  +--read_tensors (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  +--mp_bcast
+|  |  |  *}}}
+|  |  +--read_partial_ph (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  +--mp_bcast
+|  |  |  *}}}
+|  |  +--read_el_phon (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  +--mp_bcast
+|  |  |  +--el_ph_distribute (PHonon/PH/el_ph_collect.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  *}}}
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--iotk_close_read
+|  |  *}}}
+|  +--check_restart_recover (PHonon/PH/check_restart_recover.f90)
+|  |  +--seqopn (Modules/io_files.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  +--generate_k_in_plane (Modules/generate_k_along_lines.f90)
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  +--generate_k_along_lines (Modules/generate_k_along_lines.f90)
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  +--read_file (PW/src/read_file_new.f90)  {{{ 2
+|  |  +--read_xml_file (PW/src/read_file_new.f90)  {{{ 3
+|  |  |  +--pw_readschema_file (PW/src/pw_restart_new.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--qexsd_init_schema (Modules/qexsd.f90)
+|  |  |  |  +--qes_read
+|  |  |  |  +--qes_write_general_info (Modules/qes_write_module.f90)
+|  |  |  |  +--qes_write_parallel_info (Modules/qes_write_module.f90)
+|  |  |  |  +--qes_write_output (Modules/qes_write_module.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--qes_reset
+|  |  |  |  +--destroy
+|  |  |  |  *}}}
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--qes_bcast
+|  |  |  +--init_vars_from_schema (PW/src/pw_restart_new.f90)  {{{ 4
+|  |  |  |  +--readschema_header (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_dim (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_kdim (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_cell (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_planewaves (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_ions (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_spin (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_magnetization (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_xc (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_occupations (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_brillouin_zone (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_band_structure (PW/src/pw_restart_new.f90)
+|  |  |  |  +--read_collected_to_evc (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_symmetry (PW/src/pw_restart_new.f90)
+|  |  |  |  +--read_scf (PW/src/io_rho_xml.f90)
+|  |  |  |  +--readschema_ef (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_outputPBC (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_efield (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_exx (PW/src/pw_restart_new.f90)
+|  |  |  |  +--readschema_algo (PW/src/pw_restart_new.f90)
+|  |  |  |  *}}}
+|  |  |  +--set_dimensions (PP/src/vasp_xml_module.f90)
+|  |  |  +--fft_type_allocate (FFTXLib/fft_types.f90)  {{{ 4
+|  |  |  |  +--fftx_error__ (FFTXLib/fft_error.f90)
+|  |  |  |  +--MPI_COMM_RANK
+|  |  |  |  +--MPI_COMM_SIZE
+|  |  |  |  +--MPI_COMM_SPLIT
+|  |  |  |  +--realspace_grid_init (FFTXLib/fft_types.f90)
+|  |  |  |  *}}}
+|  |  |  +--divide_et_impera (PW/src/divide_et_impera.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--poolscatter (PW/src/para.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  +--checkallsym (PW/src/symm_base.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--symmetrize_at (PW/src/symmetrize_at.f90)
+|  |  |  +--readpp (Modules/read_pseudo.f90)  {{{ 4
+|  |  |  |  +--deallocate_radial_grid
+|  |  |  |  +--nullify_radial_grid (Modules/radial_grids.f90)
+|  |  |  |  +--deallocate_pseudo_upf (Modules/pseudo_types.f90)
+|  |  |  |  +--nullify_pseudo_upf (Modules/pseudo_types.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--read_upf (Modules/upf.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--set_upf_q (Modules/upf_to_internal.f90)
+|  |  |  |  +--readvan (Modules/read_uspp.f90)
+|  |  |  |  +--readgth (Modules/gth.f90)
+|  |  |  |  +--readrrkj (Modules/read_uspp.f90)
+|  |  |  |  +--read_ncpp (Modules/read_ncpp.f90)
+|  |  |  |  +--add_upf_grid (Modules/upf_to_internal.f90)
+|  |  |  |  +--md5_from_file
+|  |  |  |  +--enforce_input_dft (Modules/funct.f90)
+|  |  |  |  +--set_dft_from_name (Modules/funct.f90)
+|  |  |  |  +--check_atwfc_norm (Modules/read_pseudo.f90)
+|  |  |  |  *}}}
+|  |  |  +--initialize_kernel_table (Modules/kernel_table.f90)  {{{ 4
+|  |  |  |  +--get_environment_variable
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--md5_from_file
+|  |  |  |  *}}}
+|  |  |  +--average_pp (PW/src/average_pp.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--pre_init (PW/src/init_run.f90)
+|  |  |  +--data_structure (PW/src/data_structure.f90)  {{{ 4
+|  |  |  |  +--mp_max
+|  |  |  |  +--fft_type_init (FFTXLib/fft_types.f90)
+|  |  |  |  +--fft_base_info (FFTXLib/test.f90)
+|  |  |  |  +--gvect_init (Modules/recvec.f90)
+|  |  |  |  +--gvecs_init (Modules/recvec.f90)
+|  |  |  |  *}}}
+|  |  |  +--allocate_fft (PW/src/allocate_fft.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--create_scf_type (PW/src/scf_mod.f90)
+|  |  |  |  +--make_pointlists (PW/src/make_pointlists.f90)
+|  |  |  |  *}}}
+|  |  |  +--ggen (FFTXLib/test.f90)  {{{ 4
+|  |  |  |  +--fftx_error__ (FFTXLib/fft_error.f90)
+|  |  |  |  +--hpsort_eps (Modules/sort.f90)
+|  |  |  |  +--MPI_COMM_RANK
+|  |  |  |  +--MPI_COMM_SIZE
+|  |  |  |  +--mp_sum
+|  |  |  |  +--MPI_ALLREDUCE
+|  |  |  |  +--fft_set_nl (FFTXLib/fft_ggen.f90)
+|  |  |  |  *}}}
+|  |  |  +--ggens (FFTXLib/test.f90)
+|  |  |  |  +--fftx_error__ (FFTXLib/fft_error.f90)
+|  |  |  |  +--fft_set_nl (FFTXLib/fft_ggen.f90)
+|  |  |  +--esm_init (PW/src/esm.f90)
+|  |  |  |  +--esm_ggen_2d (PW/src/esm.f90)
+|  |  |  +--gshells (Modules/recvec.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--allocate_locpot (PW/src/allocate_locpot.f90)
+|  |  |  +--allocate_nlpot (PW/src/allocate_nlpot.f90)
+|  |  |  +--allocate_paw_internals (PW/src/paw_init.f90)
+|  |  |  +--paw_init_onecenter
+|  |  |  +--d_matrix (PW/src/d_matrix.f90)  {{{ 4
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--invmat
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_lda_plus_u (PW/src/ldaU.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--comp_dspinldau (PW/src/plus_u_full.f90)
+|  |  |  |  +--offset_atom_wfc (PW/src/offset_atom_wfc.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_at_1 (PW/src/init_at_1.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--divide (UtilXLib/divide.f90)
+|  |  |  |  +--sph_bes (Modules/sph_bes.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--allocate_wfc (PW/src/allocate_wfc.f90)
+|  |  |  +--read_scf (PW/src/io_rho_xml.f90)  {{{ 4
+|  |  |  |  +--read_rhog (Modules/io_base.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  *}}}
+|  |  |  +--rho_g2r
+|  |  |  +--cutoff_fact (PW/src/Coul_cut_2D.f90)
+|  |  |  +--init_vloc (PW/src/init_vloc.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--vloc_gth (Modules/gth.f90)
+|  |  |  |  +--vloc_coul (PW/src/vloc_of_g.f90)
+|  |  |  |  +--vloc_of_g (PW/src/vloc_of_g.f90)
+|  |  |  |  +--cutoff_lr_Vloc (PW/src/Coul_cut_2D.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--struc_fact (PW/src/struct_fact.f90)
+|  |  |  +--setlocal (PW/src/setlocal.f90)  {{{ 4
+|  |  |  |  +--wg_corr_loc (PW/src/martyna_tuckerman.f90)
+|  |  |  |  +--esm_local (PW/src/esm.f90)
+|  |  |  |  +--cutoff_local (PW/src/Coul_cut_2D.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--invfft
+|  |  |  |  +--add_efield (PW/src/add_efield.f90)
+|  |  |  |  +--add_gatefield (PW/src/add_gatefield.f90)
+|  |  |  |  +--qmmm_add_esf (Modules/qmmm.f90)
+|  |  |  |  +--plugin_init_potential (PW/src/plugin_init_potential.f90)
+|  |  |  |  *}}}
+|  |  |  +--set_rhoc (PW/src/set_rhoc.f90)  {{{ 4
+|  |  |  |  +--drhoc (PW/src/drhoc.f90)
+|  |  |  |  +--rho_g2r
+|  |  |  |  +--mp_sum
+|  |  |  |  +--create_scf_type (PW/src/scf_mod.f90)
+|  |  |  |  +--v_xc (PW/src/v_of_rho.f90)
+|  |  |  |  +--destroy_scf_type (PW/src/scf_mod.f90)
+|  |  |  |  *}}}
+|  |  |  +--fwfft
+|  |  |  +--tsvdw_initialize (Modules/tsvdw.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--Num1stDer (Modules/tsvdw.f90)
+|  |  |  |  +--CubSplCoeff (Modules/tsvdw.f90)
+|  |  |  |  +--GetVdWParam (Modules/tsvdw.f90)
+|  |  |  |  *}}}
+|  |  |  +--set_h_ainv (Modules/cell_base.f90)
+|  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  +--v_of_rho (PW/src/v_of_rho.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--v_xc_meta (PW/src/v_of_rho.f90)
+|  |  |  |  +--v_xc (PW/src/v_of_rho.f90)
+|  |  |  |  +--add_bfield (PW/src/add_bfield.f90)
+|  |  |  |  +--v_h (PW/src/v_of_rho.f90)
+|  |  |  |  +--v_hubbard_nc (PW/src/v_of_rho.f90)
+|  |  |  |  +--v_hubbard (PW/src/v_of_rho.f90)
+|  |  |  |  +--add_efield (PW/src/add_efield.f90)
+|  |  |  |  +--tsvdw_calculate (Modules/tsvdw.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--qes_reset
+|  |  |  *}}}
+|  |  +--open_buffer (PW/src/buffers.f90)  {{{ 3
+|  |  |  +--init_buiol (PW/src/buffers.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  *}}}
+|  |  +--init_igk (PW/src/pwcom.f90)
+|  |  |  +--gk_sort (PW/src/gk_sort.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--hpsort_eps (Modules/sort.f90)
+|  |  |  |  *}}}
+|  |  +--read_collected_to_evc (PW/src/pw_restart_new.f90)  {{{ 3
+|  |  |  +--mp_sum
+|  |  |  +--mp_max
+|  |  |  +--gk_l2gmap_kdip (PW/src/pw_restart_new.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--read_wfc (Modules/io_base.f90)  {{{ 4
+|  |  |  |  +--mp_max
+|  |  |  |  +--qeh5_openfile (Modules/qeh5_module.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--qeh5_read_attribute
+|  |  |  |  +--qeh5_open_dataset (Modules/qeh5_module.f90)
+|  |  |  |  +--qeh5_read_dataset
+|  |  |  |  +--qeh5_close
+|  |  |  |  +--splitkg (Modules/mp_wave.f90)
+|  |  |  |  +--qeh5_set_space
+|  |  |  |  +--qeh5_set_file_hyperslab (Modules/qeh5_module.f90)
+|  |  |  |  +--splitwf (Modules/mp_wave.f90)
+|  |  |  |  *}}}
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  *}}}
+|  |  +--init_us_1 (PW/src/init_us_1.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--aainit (Modules/uspp.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--gen_rndm_r (Modules/uspp.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--invmat
+|  |  |  |  *}}}
+|  |  |  +--divide (UtilXLib/divide.f90)
+|  |  |  +--sph_bes (Modules/sph_bes.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--vcos
+|  |  |  |  +--vsin
+|  |  |  |  *}}}
+|  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  +--mp_sum
+|  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--qvan2 (PW/src/qvan2.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--spline (Modules/splinelib.f90)
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--init_q_aeps (PW/src/init_q_aeps.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--simpson (Modules/simpsn.f90)
+|  |  +--PAW_potential (PW/src/paw_onecenter.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--block_distribute
+|  |  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_COMM_SPLIT
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--PAW_rho_lm (PW/src/paw_onecenter.f90)
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--PAW_h_potential (PW/src/paw_onecenter.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--hartree (Modules/radial_grids.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--PAW_xc_potential (PW/src/paw_onecenter.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--PAW_lm2rad (PW/src/paw_onecenter.f90)
+|  |  |  |  +--add_small_mag (PW/src/paw_onecenter.f90)
+|  |  |  |  +--xc_spin (Modules/funct.f90)
+|  |  |  |  +--compute_g (PW/src/paw_onecenter.f90)
+|  |  |  |  +--evxc_t_vec (Modules/funct.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--PAW_rad2lm (PW/src/paw_onecenter.f90)
+|  |  |  |  +--PAW_gcxc_potential (PW/src/paw_onecenter.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  +--mp_sum
+|  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_comm_free
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--betapointlist (PW/src/realus.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--set_xkphase (PW/src/realus.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--radial_gradient (Modules/radial_gradients.f90)
+|  |  |  |  +--fit_pol (Modules/radial_gradients.f90)
+|  |  |  +--spline (Modules/splinelib.f90)
+|  |  |  *}}}
+|  |  +--init_realspace_vars (PW/src/realus.f90)
+|  |  +--newd (PW/src/newd.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--newq_r (PW/src/realus.f90)
+|  |  |  |  +--generate_qpointlist (PW/src/realus.f90)
+|  |  |  |  +--mp_sum
+|  |  |  +--newq (PW/src/newd.f90)  {{{ 4
+|  |  |  |  +--divide (UtilXLib/divide.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--fwfft
+|  |  |  |  +--qvan2 (PW/src/qvan2.f90)
+|  |  |  |  +--DGEMM
+|  |  |  |  +--DGER
+|  |  |  |  +--mp_sum
+|  |  |  |  *}}}
+|  |  |  +--add_paw_to_deeq (PW/src/add_paw_to_deeq.f90)
+|  |  |  +--newd_so
+|  |  |  +--newd_nc (PW/src/newd.f90)
+|  |  |  +--add_vhub_to_deeq (PW/src/add_vhub_to_deeq.f90)
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  *}}}
+|  +--allocate_part (PHonon/PH/allocate_part.f90)
+|  +--save_ph_input_variables (PHonon/PH/save_ph_input.f90)
+|  *}}}
++--check_stop_init (Modules/check_stop.f90)
+|  +--signal_trap_init (Modules/set_signal.f90)
++--check_initial_status (PHonon/PH/check_initial_status.f90)  {{{ 1
+|  +--q_points_wannier (PHonon/PH/q_points_wannier.f90)  {{{ 2
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--dfile_get_qlist (PHonon/PH/dfile_autoname.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  +--mp_bcast
+|  |  *}}}
+|  +--q_points (PHonon/PH/q_points.f90)  {{{ 2
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--kpoint_grid (PW/src/kpoint_grid.f90)  {{{ 3
+|  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  |  *}}}
+|  |  +--mp_bcast
+|  |  *}}}
+|  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_free_unit
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--create_directory (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--iotk_open_write
+|  |  |  +--iotk_open_read
+|  |  |  *}}}
+|  |  +--write_header_ph (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_attr
+|  |  |  +--iotk_write_empty
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--write_control_ph (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--write_qu (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_attr
+|  |  |  +--iotk_write_empty
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--write_status_ph (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--write_modes (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--write_polarization
+|  |  +--write_tensors (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--write_el_phon (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--iotk_close_write
+|  |  +--iotk_write_begin
+|  |  +--iotk_write_dat
+|  |  +--iotk_write_end
+|  |  *}}}
+|  +--init_representations (PHonon/PH/init_representations.f90)  {{{ 2
+|  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  +--set_small_group_of_q
+|  |  +--sgam_lr
+|  |  +--set_giq
+|  |  +--prepare_sym_analysis (PHonon/PH/prepare_sym_analysis.f90)  {{{ 3
+|  |  |  +--find_group (PW/src/find_group.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--set_irr_rap (PW/src/divide_class.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--divide_class (PW/src/divide_class.f90)  {{{ 4
+|  |  |  |  +--coniug_mat (PW/src/divide_class.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--versor (PW/src/divide_class.f90)
+|  |  |  |  +--which_c2 (PW/src/divide_class.f90)
+|  |  |  |  +--is_d2 (PW/src/divide_class.f90)
+|  |  |  |  +--mirror_axis (PW/src/divide_class.f90)
+|  |  |  |  +--is_c2v (PW/src/divide_class.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--find_irrep (PHonon/PH/find_irrep.f90)
+|  |  |  +--set_irr_new (PHonon/PH/set_irr.f90)  {{{ 4
+|  |  |  |  +--random_matrix_new (PHonon/PH/random_matrix.f90)
+|  |  |  |  +--write_matrix (PHonon/PH/write_matrix.f90)
+|  |  |  |  +--symdynph_gq_new (PHonon/PH/symdynph_gq.f90)
+|  |  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--compact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  |  +--cdiagh (PW/src/cdiagh.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--write_modes_out (PHonon/PH/write_modes.f90)
+|  |  |  |  +--find_mode_sym_new (PHonon/PH/find_mode_sym.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  *}}}
+|  |  |  +--set_irr_nosym_new (PHonon/PH/set_irr_nosym.f90)
+|  |  +--mp_bcast
+|  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_free_unit
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--create_directory (Modules/io_files.f90)
+|  |  |  |  +--iotk_open_write
+|  |  |  |  +--iotk_open_read
+|  |  |  |  *}}}
+|  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_attr
+|  |  |  |  +--iotk_write_empty
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_qu (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_attr
+|  |  |  |  +--iotk_write_empty
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_modes (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_polarization
+|  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--iotk_close_write
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  *}}}
+|  +--clean_pw (PW/src/clean_pw.f90)  {{{ 2
+|  |  +--deallocate_pseudo_upf (Modules/pseudo_types.f90)
+|  |  |  +--deallocate_paw_in_upf (Modules/pseudo_types.f90)
+|  |  +--deallocate_radial_grid
+|  |  +--deallocate_ions_base (Modules/ions_base.f90)
+|  |  +--dealloca_london (Modules/mm_dispersion.f90)
+|  |  +--cleanup_xdm (PW/src/xdm_dispersion.f90)
+|  |  +--dftd3_clean
+|  |  +--deallocate_constraint (Modules/constraints_module.f90)
+|  |  +--deallocate_tetra (PW/src/tetra.f90)
+|  |  +--deallocate_bp_efield (PW/src/bp_mod.f90)
+|  |  +--deallocate_ldaU (PW/src/ldaU.f90)
+|  |  +--deallocate_gvect (Modules/recvec.f90)
+|  |  +--sym_rho_deallocate (PW/src/symme.f90)
+|  |  +--destroy_scf_type (PW/src/scf_mod.f90)
+|  |  +--deallocate_igk (PW/src/pwcom.f90)
+|  |  +--deallocate_uspp (Modules/uspp.f90)
+|  |  +--deallocate_gth (Modules/gth.f90)
+|  |  +--deallocate_noncol (Modules/noncol.f90)
+|  |  +--fft_type_deallocate (FFTXLib/fft_types.f90)
+|  |  |  +--MPI_COMM_FREE
+|  |  +--pstickdealloc (Modules/fft_base.f90)
+|  |  |  +--sticks_map_deallocate (FFTXLib/stick_base.f90)
+|  |  +--deallocate_dyn_vars (PW/src/dynamics_module.f90)
+|  |  +--deallocate_paw_internals (PW/src/paw_init.f90)
+|  |  +--deallocate_realsp (PW/src/realus.f90)
+|  |  |  +--deallocate_realsp_aug (PW/src/realus.f90)
+|  |  +--wannier_clean (PW/src/wannier_clean.f90)
+|  |  |  +--close_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  +--deallocate_exx (PW/src/exx.f90)
+|  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  +--tsvdw_finalize (Modules/tsvdw.f90)
+|  |  +--plugin_clean (PW/src/plugin_clean.f90)
+|  |  *}}}
+|  +--close_files (PW/src/close_files.f90)
+|  |  +--close_buffer (PW/src/buffers.f90)  {{{ 3
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--davcio (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--MPI_BARRIER
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  +--mp_global_end (Modules/mp_global.f90)  {{{ 2
+|  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  +--mpi_comm_free
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  +--mp_stop_orthopools (Modules/mp_pools.f90)  {{{ 3
+|  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_comm_free
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_COMM_SPLIT
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  *}}}
+|  |  +--mp_world_end (Modules/mp_world.f90)  {{{ 3
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--mp_end (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--mpi_comm_rank
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  *}}}
+|  |  |  +--mpi_finalize
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  *}}}
+|  |  *}}}
+|  +--errore (UtilXLib/error_handler.f90)  {{{ 2
+|  |  +--tracebackqq
+|  |  +--ptrace
+|  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 3
+|  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  +--mpi_abort
+|  |  |  *}}}
+|  |  *}}}
+|  +--allocate_grid_variables (PHonon/PH/ph_restart.f90)
+|  +--initialize_grid_variables (PHonon/PH/init_representations.f90)  {{{ 2
+|  |  +--ph_readfile (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_free_unit
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--create_directory (Modules/io_files.f90)
+|  |  |  |  +--iotk_open_write
+|  |  |  |  +--iotk_open_read
+|  |  |  |  *}}}
+|  |  |  +--read_header (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_empty
+|  |  |  |  +--iotk_scan_attr
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--mp_bcast
+|  |  |  |  *}}}
+|  |  |  +--read_control_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--read_qu (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--read_status_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--mp_bcast
+|  |  |  |  *}}}
+|  |  |  +--read_modes (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  *}}}
+|  |  |  +--read_polarization (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--mp_bcast
+|  |  |  |  *}}}
+|  |  |  +--read_tensors (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--mp_bcast
+|  |  |  |  *}}}
+|  |  |  +--read_partial_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--mp_bcast
+|  |  |  |  *}}}
+|  |  |  +--read_el_phon (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--el_ph_distribute (PHonon/PH/el_ph_collect.f90)
+|  |  |  |  *}}}
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--iotk_close_read
+|  |  |  *}}}
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--check_if_partial_dyn (PHonon/PH/check_if_partial_dyn.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  +--clean_pw (PW/src/clean_pw.f90)  {{{ 3
+|  |  |  +--deallocate_pseudo_upf (Modules/pseudo_types.f90)
+|  |  |  |  +--deallocate_paw_in_upf (Modules/pseudo_types.f90)
+|  |  |  +--deallocate_radial_grid
+|  |  |  +--deallocate_ions_base (Modules/ions_base.f90)
+|  |  |  +--dealloca_london (Modules/mm_dispersion.f90)
+|  |  |  +--cleanup_xdm (PW/src/xdm_dispersion.f90)
+|  |  |  +--dftd3_clean
+|  |  |  +--deallocate_constraint (Modules/constraints_module.f90)
+|  |  |  +--deallocate_tetra (PW/src/tetra.f90)
+|  |  |  +--deallocate_bp_efield (PW/src/bp_mod.f90)
+|  |  |  +--deallocate_ldaU (PW/src/ldaU.f90)
+|  |  |  +--deallocate_gvect (Modules/recvec.f90)
+|  |  |  +--sym_rho_deallocate (PW/src/symme.f90)
+|  |  |  +--destroy_scf_type (PW/src/scf_mod.f90)
+|  |  |  +--deallocate_igk (PW/src/pwcom.f90)
+|  |  |  +--deallocate_uspp (Modules/uspp.f90)
+|  |  |  +--deallocate_gth (Modules/gth.f90)
+|  |  |  +--deallocate_noncol (Modules/noncol.f90)
+|  |  |  +--fft_type_deallocate (FFTXLib/fft_types.f90)
+|  |  |  |  +--MPI_COMM_FREE
+|  |  |  +--pstickdealloc (Modules/fft_base.f90)
+|  |  |  |  +--sticks_map_deallocate (FFTXLib/stick_base.f90)
+|  |  |  +--deallocate_dyn_vars (PW/src/dynamics_module.f90)
+|  |  |  +--deallocate_paw_internals (PW/src/paw_init.f90)
+|  |  |  +--deallocate_realsp (PW/src/realus.f90)
+|  |  |  |  +--deallocate_realsp_aug (PW/src/realus.f90)
+|  |  |  +--wannier_clean (PW/src/wannier_clean.f90)
+|  |  |  |  +--close_buffer (PW/src/buffers.f90)
+|  |  |  +--deallocate_exx (PW/src/exx.f90)
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  +--tsvdw_finalize (Modules/tsvdw.f90)
+|  |  |  +--plugin_clean (PW/src/plugin_clean.f90)
+|  |  |  *}}}
+|  |  +--close_files (PW/src/close_files.f90)
+|  |  |  +--close_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  +--environment_end (Modules/environment.f90)  {{{ 3
+|  |  |  +--finalize_hdf5 (Modules/qeh5_module.f90)
+|  |  |  |  +--h5close_f
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--print_this_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--closing_message (Modules/environment.f90)
+|  |  |  |  +--date_and_tim (Modules/date_and_tim.f90)
+|  |  |  *}}}
+|  |  +--mp_global_end (Modules/mp_global.f90)  {{{ 3
+|  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_comm_free
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--mp_stop_orthopools (Modules/mp_pools.f90)  {{{ 4
+|  |  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_world_end (Modules/mp_world.f90)  {{{ 4
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--mp_end (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_finalize
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  *}}}
+|  +--image_q_irr (PHonon/PH/check_initial_status.f90)
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  +--check_directory_phsave (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_free_unit
+|  |  +--mp_bcast
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--iotk_open_read
+|  |  +--iotk_scan_begin
+|  |  +--iotk_scan_dat
+|  |  +--iotk_scan_end
+|  |  +--iotk_close_read
+|  |  *}}}
+|  +--check_restart_recover (PHonon/PH/check_restart_recover.f90)
+|  |  +--seqopn (Modules/io_files.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  +--check_available_bands (PHonon/PH/ph_restart.f90)
+|  |  +--mp_bcast
+|  |  +--check_restart_recover (PHonon/PH/check_restart_recover.f90)
+|  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  +--write_scf (PW/src/io_rho_xml.f90)  {{{ 2
+|  |  +--create_directory (Modules/io_files.f90)  {{{ 3
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  *}}}
+|  |  +--write_rhog (Modules/io_base.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  |  +--qeh5_openfile (Modules/qeh5_module.f90)  {{{ 4
+|  |  |  |  +--H5Eset_auto_f
+|  |  |  |  +--H5Fcreate_f
+|  |  |  |  +--H5Fopen_f
+|  |  |  |  +--H5Eprint_f
+|  |  |  |  *}}}
+|  |  |  +--mp_bcast
+|  |  |  +--qeh5_add_attribute
+|  |  |  +--mergekg (Modules/mp_wave.f90)  {{{ 4
+|  |  |  |  +--MPI_ALLREDUCE
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--MPI_SEND
+|  |  |  |  +--MPI_RECV
+|  |  |  |  +--MPI_GET_COUNT
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  *}}}
+|  |  |  +--qeh5_set_space
+|  |  |  +--qeh5_open_dataset (Modules/qeh5_module.f90)  {{{ 4
+|  |  |  |  +--H5Lexists_f
+|  |  |  |  +--H5Ldelete_f
+|  |  |  |  +--H5Dcreate_f
+|  |  |  |  +--H5Dopen_f
+|  |  |  |  +--H5Dget_space_f
+|  |  |  |  +--H5Sget_simple_extent_ndims_f
+|  |  |  |  +--H5Sget_simple_extent_dims_f
+|  |  |  |  +--H5Dget_type_f
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--qeh5_write_dataset
+|  |  |  +--qeh5_close
+|  |  |  +--mergewf (Modules/mp_wave.f90)  {{{ 4
+|  |  |  |  +--MPI_ALLREDUCE
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--MPI_SEND
+|  |  |  |  +--MPI_RECV
+|  |  |  |  +--MPI_GET_COUNT
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  *}}}
+|  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  *}}}
+|  |  +--seqopn (Modules/io_files.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  +--mp_bcast
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  *}}}
+|  +--mp_bcast
+|  +--create_directory (Modules/io_files.f90)  {{{ 2
+|  |  +--mp_bcast
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--MPI_BARRIER
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  |  *}}}
+|  *}}}
++--do_phonon (PHonon/PH/do_phonon.f90)  {{{ 1
+|  +--prepare_q (PHonon/PH/prepare_q.f90)
+|  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_free_unit
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--create_directory (Modules/io_files.f90)
+|  |  |  |  +--iotk_open_write
+|  |  |  |  +--iotk_open_read
+|  |  |  |  *}}}
+|  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_attr
+|  |  |  |  +--iotk_write_empty
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_qu (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_attr
+|  |  |  |  +--iotk_write_empty
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_modes (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_polarization
+|  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--iotk_close_write
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  +--run_nscf (PHonon/PH/run_nscf.f90)  {{{ 2
+|  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  +--clean_pw (PW/src/clean_pw.f90)  {{{ 3
+|  |  |  +--deallocate_pseudo_upf (Modules/pseudo_types.f90)
+|  |  |  |  +--deallocate_paw_in_upf (Modules/pseudo_types.f90)
+|  |  |  +--deallocate_radial_grid
+|  |  |  +--deallocate_ions_base (Modules/ions_base.f90)
+|  |  |  +--dealloca_london (Modules/mm_dispersion.f90)
+|  |  |  +--cleanup_xdm (PW/src/xdm_dispersion.f90)
+|  |  |  +--dftd3_clean
+|  |  |  +--deallocate_constraint (Modules/constraints_module.f90)
+|  |  |  +--deallocate_tetra (PW/src/tetra.f90)
+|  |  |  +--deallocate_bp_efield (PW/src/bp_mod.f90)
+|  |  |  +--deallocate_ldaU (PW/src/ldaU.f90)
+|  |  |  +--deallocate_gvect (Modules/recvec.f90)
+|  |  |  +--sym_rho_deallocate (PW/src/symme.f90)
+|  |  |  +--destroy_scf_type (PW/src/scf_mod.f90)
+|  |  |  +--deallocate_igk (PW/src/pwcom.f90)
+|  |  |  +--deallocate_uspp (Modules/uspp.f90)
+|  |  |  +--deallocate_gth (Modules/gth.f90)
+|  |  |  +--deallocate_noncol (Modules/noncol.f90)
+|  |  |  +--fft_type_deallocate (FFTXLib/fft_types.f90)
+|  |  |  |  +--MPI_COMM_FREE
+|  |  |  +--pstickdealloc (Modules/fft_base.f90)
+|  |  |  |  +--sticks_map_deallocate (FFTXLib/stick_base.f90)
+|  |  |  +--deallocate_dyn_vars (PW/src/dynamics_module.f90)
+|  |  |  +--deallocate_paw_internals (PW/src/paw_init.f90)
+|  |  |  +--deallocate_realsp (PW/src/realus.f90)
+|  |  |  |  +--deallocate_realsp_aug (PW/src/realus.f90)
+|  |  |  +--wannier_clean (PW/src/wannier_clean.f90)
+|  |  |  |  +--close_buffer (PW/src/buffers.f90)
+|  |  |  +--deallocate_exx (PW/src/exx.f90)
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  +--tsvdw_finalize (Modules/tsvdw.f90)
+|  |  |  +--plugin_clean (PW/src/plugin_clean.f90)
+|  |  |  *}}}
+|  |  +--close_files (PW/src/close_files.f90)
+|  |  |  +--close_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  +--read_file (PW/src/read_file_new.f90)  {{{ 3
+|  |  |  +--read_xml_file (PW/src/read_file_new.f90)  {{{ 4
+|  |  |  |  +--pw_readschema_file (PW/src/pw_restart_new.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--qes_bcast
+|  |  |  |  +--init_vars_from_schema (PW/src/pw_restart_new.f90)
+|  |  |  |  +--set_dimensions (PP/src/vasp_xml_module.f90)
+|  |  |  |  +--fft_type_allocate (FFTXLib/fft_types.f90)
+|  |  |  |  +--divide_et_impera (PW/src/divide_et_impera.f90)
+|  |  |  |  +--poolscatter (PW/src/para.f90)
+|  |  |  |  +--checkallsym (PW/src/symm_base.f90)
+|  |  |  |  +--readpp (Modules/read_pseudo.f90)
+|  |  |  |  +--initialize_kernel_table (Modules/kernel_table.f90)
+|  |  |  |  +--average_pp (PW/src/average_pp.f90)
+|  |  |  |  +--pre_init (PW/src/init_run.f90)
+|  |  |  |  +--data_structure (PW/src/data_structure.f90)
+|  |  |  |  +--allocate_fft (PW/src/allocate_fft.f90)
+|  |  |  |  +--ggen (FFTXLib/test.f90)
+|  |  |  |  +--ggens (FFTXLib/test.f90)
+|  |  |  |  +--esm_init (PW/src/esm.f90)
+|  |  |  |  +--gshells (Modules/recvec.f90)
+|  |  |  |  +--allocate_locpot (PW/src/allocate_locpot.f90)
+|  |  |  |  +--allocate_nlpot (PW/src/allocate_nlpot.f90)
+|  |  |  |  +--allocate_paw_internals (PW/src/paw_init.f90)
+|  |  |  |  +--paw_init_onecenter
+|  |  |  |  +--d_matrix (PW/src/d_matrix.f90)
+|  |  |  |  +--init_lda_plus_u (PW/src/ldaU.f90)
+|  |  |  |  +--init_at_1 (PW/src/init_at_1.f90)
+|  |  |  |  +--allocate_wfc (PW/src/allocate_wfc.f90)
+|  |  |  |  +--read_scf (PW/src/io_rho_xml.f90)
+|  |  |  |  +--rho_g2r
+|  |  |  |  +--cutoff_fact (PW/src/Coul_cut_2D.f90)
+|  |  |  |  +--init_vloc (PW/src/init_vloc.f90)
+|  |  |  |  +--struc_fact (PW/src/struct_fact.f90)
+|  |  |  |  +--setlocal (PW/src/setlocal.f90)
+|  |  |  |  +--set_rhoc (PW/src/set_rhoc.f90)
+|  |  |  |  +--fwfft
+|  |  |  |  +--tsvdw_initialize (Modules/tsvdw.f90)
+|  |  |  |  +--set_h_ainv (Modules/cell_base.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--v_of_rho (PW/src/v_of_rho.f90)
+|  |  |  |  +--qes_reset
+|  |  |  |  *}}}
+|  |  |  +--open_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--init_buiol (PW/src/buffers.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_igk (PW/src/pwcom.f90)
+|  |  |  |  +--gk_sort (PW/src/gk_sort.f90)
+|  |  |  +--read_collected_to_evc (PW/src/pw_restart_new.f90)  {{{ 4
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_max
+|  |  |  |  +--gk_l2gmap_kdip (PW/src/pw_restart_new.f90)
+|  |  |  |  +--read_wfc (Modules/io_base.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_us_1 (PW/src/init_us_1.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--aainit (Modules/uspp.f90)
+|  |  |  |  +--divide (UtilXLib/divide.f90)
+|  |  |  |  +--sph_bes (Modules/sph_bes.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--qvan2 (PW/src/qvan2.f90)
+|  |  |  |  +--spline (Modules/splinelib.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_q_aeps (PW/src/init_q_aeps.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  +--PAW_potential (PW/src/paw_onecenter.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--block_distribute
+|  |  |  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  |  +--PAW_rho_lm (PW/src/paw_onecenter.f90)
+|  |  |  |  +--PAW_h_potential (PW/src/paw_onecenter.f90)
+|  |  |  |  +--PAW_xc_potential (PW/src/paw_onecenter.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--betapointlist (PW/src/realus.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--set_xkphase (PW/src/realus.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--radial_gradient (Modules/radial_gradients.f90)
+|  |  |  |  +--spline (Modules/splinelib.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_realspace_vars (PW/src/realus.f90)
+|  |  |  +--newd (PW/src/newd.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--newq_r (PW/src/realus.f90)
+|  |  |  |  +--newq (PW/src/newd.f90)
+|  |  |  |  +--add_paw_to_deeq (PW/src/add_paw_to_deeq.f90)
+|  |  |  |  +--newd_so
+|  |  |  |  +--newd_nc (PW/src/newd.f90)
+|  |  |  |  +--add_vhub_to_deeq (PW/src/add_vhub_to_deeq.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--fft_type_allocate (FFTXLib/fft_types.f90)  {{{ 3
+|  |  |  +--fftx_error__ (FFTXLib/fft_error.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  +--MPI_COMM_RANK
+|  |  |  +--MPI_COMM_SIZE
+|  |  |  +--MPI_COMM_SPLIT
+|  |  |  +--realspace_grid_init (FFTXLib/fft_types.f90)
+|  |  |  |  +--grid_set (FFTXLib/fft_types.f90)
+|  |  |  *}}}
+|  |  +--setup_nscf
+|  |  +--init_run (PW/src/init_run.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--pre_init (PW/src/init_run.f90)
+|  |  |  +--data_structure (PW/src/data_structure.f90)  {{{ 4
+|  |  |  |  +--mp_max
+|  |  |  |  +--fft_type_init (FFTXLib/fft_types.f90)
+|  |  |  |  +--fft_base_info (FFTXLib/test.f90)
+|  |  |  |  +--gvect_init (Modules/recvec.f90)
+|  |  |  |  +--gvecs_init (Modules/recvec.f90)
+|  |  |  |  *}}}
+|  |  |  +--summary (PW/src/summary.f90)  {{{ 4
+|  |  |  |  +--write_dft_name (Modules/funct.f90)
+|  |  |  |  +--plugin_summary (PW/src/plugin_summary.f90)
+|  |  |  |  +--esm_summary (PW/src/esm.f90)
+|  |  |  |  +--fcp_summary (PW/src/fcp.f90)
+|  |  |  |  +--print_ps_info (PW/src/summary.f90)
+|  |  |  |  +--print_vdw_info (PW/src/summary.f90)
+|  |  |  |  +--print_symmetries (PW/src/summary.f90)
+|  |  |  |  *}}}
+|  |  |  +--memory_report (PW/src/memory_report.f90)
+|  |  |  +--allocate_fft (PW/src/allocate_fft.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--create_scf_type (PW/src/scf_mod.f90)
+|  |  |  |  +--make_pointlists (PW/src/make_pointlists.f90)
+|  |  |  |  *}}}
+|  |  |  +--ggen (FFTXLib/test.f90)  {{{ 4
+|  |  |  |  +--fftx_error__ (FFTXLib/fft_error.f90)
+|  |  |  |  +--hpsort_eps (Modules/sort.f90)
+|  |  |  |  +--MPI_COMM_RANK
+|  |  |  |  +--MPI_COMM_SIZE
+|  |  |  |  +--mp_sum
+|  |  |  |  +--MPI_ALLREDUCE
+|  |  |  |  +--fft_set_nl (FFTXLib/fft_ggen.f90)
+|  |  |  |  *}}}
+|  |  |  +--ggens (FFTXLib/test.f90)
+|  |  |  |  +--fftx_error__ (FFTXLib/fft_error.f90)
+|  |  |  |  +--fft_set_nl (FFTXLib/fft_ggen.f90)
+|  |  |  +--export_gstart_2_solvers
+|  |  |  +--esm_init (PW/src/esm.f90)
+|  |  |  |  +--esm_ggen_2d (PW/src/esm.f90)
+|  |  |  +--cutoff_fact (PW/src/Coul_cut_2D.f90)
+|  |  |  +--gshells (Modules/recvec.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--sym_rho_init (PW/src/symme.f90)
+|  |  |  |  +--sym_rho_init_para (PW/src/symme.f90)
+|  |  |  |  +--sym_rho_init_shells (PW/src/symme.f90)
+|  |  |  +--allocate_nlpot (PW/src/allocate_nlpot.f90)
+|  |  |  +--allocate_paw_internals (PW/src/paw_init.f90)
+|  |  |  +--paw_init_onecenter
+|  |  |  +--allocate_locpot (PW/src/allocate_locpot.f90)
+|  |  |  +--allocate_wfc (PW/src/allocate_wfc.f90)
+|  |  |  +--allocate_bp_efield (PW/src/bp_mod.f90)
+|  |  |  +--bp_global_map (PW/src/bp_mod.f90)
+|  |  |  |  +--mp_sum
+|  |  |  +--plugin_initbase (PW/src/plugin_initbase.f90)
+|  |  |  +--tsvdw_initialize (Modules/tsvdw.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--Num1stDer (Modules/tsvdw.f90)
+|  |  |  |  +--CubSplCoeff (Modules/tsvdw.f90)
+|  |  |  |  +--GetVdWParam (Modules/tsvdw.f90)
+|  |  |  |  *}}}
+|  |  |  +--set_h_ainv (Modules/cell_base.f90)
+|  |  |  +--openfil (PW/src/openfil.f90)
+|  |  |  |  +--open_buffer (PW/src/buffers.f90)
+|  |  |  |  +--initialize_hdf5 (Modules/qeh5_module.f90)
+|  |  |  +--hinit0 (PW/src/hinit0.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--init_vloc (PW/src/init_vloc.f90)
+|  |  |  |  +--init_us_b0 (PW/src/init_us_b0.f90)
+|  |  |  |  +--init_us_0 (PW/src/init_us_0.f90)
+|  |  |  |  +--init_us_1 (PW/src/init_us_1.f90)
+|  |  |  |  +--init_q_aeps (PW/src/init_q_aeps.f90)
+|  |  |  |  +--init_at_1 (PW/src/init_at_1.f90)
+|  |  |  |  +--init_igk (PW/src/pwcom.f90)
+|  |  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  |  |  +--dswap
+|  |  |  |  +--recips (Modules/recips.f90)
+|  |  |  |  +--scale_h (PW/src/scale_h.f90)
+|  |  |  |  +--struc_fact (PW/src/struct_fact.f90)
+|  |  |  |  +--plugin_init_ions (PW/src/plugin_init_ions.f90)
+|  |  |  |  +--plugin_init_cell (PW/src/plugin_init_cell.f90)
+|  |  |  |  +--setlocal (PW/src/setlocal.f90)
+|  |  |  |  +--set_rhoc (PW/src/set_rhoc.f90)
+|  |  |  |  +--generate_qpointlist (PW/src/realus.f90)
+|  |  |  |  +--betapointlist (PW/src/realus.f90)
+|  |  |  |  +--init_realspace_vars (PW/src/realus.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--potinit (PW/src/potinit.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--read_scf (PW/src/io_rho_xml.f90)
+|  |  |  |  +--read_rhog (Modules/io_base.f90)
+|  |  |  |  +--nc_magnetization_from_lsda (PW/src/potinit.f90)
+|  |  |  |  +--atomic_rho_g (PW/src/atomic_rho.f90)
+|  |  |  |  +--init_ns_nc (PW/src/init_ns.f90)
+|  |  |  |  +--init_ns (PW/src/init_ns.f90)
+|  |  |  |  +--PAW_atomic_becsum (PW/src/paw_init.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--rho_g2r
+|  |  |  |  +--rho_r2g (Modules/fft_rho.f90)
+|  |  |  |  +--plugin_scf_potential (PW/src/plugin_scf_potential.f90)
+|  |  |  |  +--v_of_rho (PW/src/v_of_rho.f90)
+|  |  |  |  +--PAW_potential (PW/src/paw_onecenter.f90)
+|  |  |  |  +--set_vrs (PW/src/set_vrs.f90)
+|  |  |  |  +--write_ns_nc (PW/src/write_ns.f90)
+|  |  |  |  +--write_ns (PW/src/write_ns.f90)
+|  |  |  |  +--report_mag (PW/src/report_mag.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--newd (PW/src/newd.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--newq_r (PW/src/realus.f90)
+|  |  |  |  +--newq (PW/src/newd.f90)
+|  |  |  |  +--add_paw_to_deeq (PW/src/add_paw_to_deeq.f90)
+|  |  |  |  +--newd_so
+|  |  |  |  +--newd_nc (PW/src/newd.f90)
+|  |  |  |  +--add_vhub_to_deeq (PW/src/add_vhub_to_deeq.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--wfcinit (PW/src/wfcinit.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--orthoatwfc (PW/src/orthoatwfc.f90)
+|  |  |  |  +--orthoUwfc (PW/src/orthoatwfc.f90)
+|  |  |  |  +--open_buffer (PW/src/buffers.f90)
+|  |  |  |  +--pw_readschema_file (PW/src/pw_restart_new.f90)
+|  |  |  |  +--read_collected_to_evc (PW/src/pw_restart_new.f90)
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--init_wfc (PW/src/wfcinit.f90)
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  *}}}
+|  |  |  +--wannier_init (PW/src/wannier_init.f90)
+|  |  |  |  +--wannier_check (PW/src/wannier_check.f90)
+|  |  |  |  +--open_buffer (PW/src/buffers.f90)
+|  |  |  +--paw_post_init
+|  |  |  +--allocate_dyn_vars (PW/src/dynamics_module.f90)
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--non_scf (PW/src/non_scf.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--c_bands_efield (PW/src/c_bands.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--h_epsi_her_set (PW/src/h_epsi_her_set.f90)
+|  |  |  |  +--c_bands (PW/src/c_bands.f90)
+|  |  |  |  *}}}
+|  |  |  +--c_bands_nscf (PW/src/c_bands.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--restart_in_cbands (PW/src/save_in_cbands.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--init_wfc (PW/src/wfcinit.f90)
+|  |  |  |  +--diag_bands (PW/src/c_bands.f90)
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--save_in_cbands (PW/src/save_in_cbands.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--poolrecover (PW/src/para.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_SEND
+|  |  |  |  +--MPI_RECV
+|  |  |  |  *}}}
+|  |  |  +--print_ks_energies (PW/src/print_ks_energies.f90)  {{{ 4
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ipoolrecover (PW/src/para.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--get_homo_lumo (PW/src/print_ks_energies.f90)
+|  |  |  |  *}}}
+|  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  +--c_phase (PW/src/bp_c_phase.f90)  {{{ 4
+|  |  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--calc_btq (PW/src/bp_calc_btq.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--qvan3 (PW/src/bp_qvan3.f90)
+|  |  |  |  +--transform_qq_so (PW/src/transform_qq_so.f90)
+|  |  |  |  +--weights (PW/src/weights.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--calbec
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ZGETRF
+|  |  |  |  +--qes_reset
+|  |  |  |  +--qexsd_init_berryPhaseOutput
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  |  *}}}
+|  |  |  +--orbm_kubo (PW/src/orbm_kubo.f90)  {{{ 4
+|  |  |  |  +--set_vrs (PW/src/set_vrs.f90)
+|  |  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--zgefa
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--zgedi
+|  |  |  |  +--h_psi (PW/src/h_psi.f90)
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  |  *}}}
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--punch (PW/src/punch.f90)  {{{ 3
+|  |  |  +--create_directory (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--pw_write_schema (PW/src/pw_restart_new.f90)  {{{ 4
+|  |  |  |  +--mp_sum
+|  |  |  |  +--ipoolrecover (PW/src/para.f90)
+|  |  |  |  +--qexsd_init_schema (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_openschema (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_convergence_info (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_algorithmic_info (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_atomic_species (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_atomic_structure (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_symmetries (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_basis_set (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_hybrid (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_vdw (Modules/qexsd.f90)
+|  |  |  |  +--check_and_allocate
+|  |  |  |  +--qexsd_init_dftU (Modules/qexsd.f90)
+|  |  |  |  +--qes_reset
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--qexsd_init_outputPBC (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_magnetization (Modules/qexsd.f90)
+|  |  |  |  +--get_homo_lumo (PW/src/print_ks_energies.f90)
+|  |  |  |  +--qexsd_init_k_points_ibz (Modules/qexsd_input.f90)
+|  |  |  |  +--qexsd_init_occupations (Modules/qexsd_input.f90)
+|  |  |  |  +--qexsd_init_smearing (Modules/qexsd_input.f90)
+|  |  |  |  +--qexsd_init_band_structure (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_total_energy (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_forces (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_stress (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_gate_info (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_dipole_info (Modules/qexsd.f90)
+|  |  |  |  +--qexsd_init_outputElectricField (Modules/qexsd.f90)
+|  |  |  |  +--qes_write
+|  |  |  |  +--qexsd_closeschema (Modules/qexsd.f90)
+|  |  |  |  *}}}
+|  |  |  +--write_scf (PW/src/io_rho_xml.f90)  {{{ 4
+|  |  |  |  +--create_directory (Modules/io_files.f90)
+|  |  |  |  +--write_rhog (Modules/io_base.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--pw_write_binaries (PW/src/pw_restart_new.f90)  {{{ 4
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_max
+|  |  |  |  +--gk_l2gmap_kdip (PW/src/pw_restart_new.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--write_wfc (Modules/io_base.f90)
+|  |  |  |  *}}}
+|  |  |  +--qexsd_reset_steps (Modules/qexsd.f90)
+|  |  |  |  +--qes_reset
+|  |  |  |  +--qes_init
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--davcio (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  +--a2Fsave (PW/src/a2fmod.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  *}}}
+|  |  +--stop_run (PW/src/stop_run.f90)  {{{ 3
+|  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--close_files (PW/src/close_files.f90)
+|  |  |  |  +--close_buffer (PW/src/buffers.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--print_clock_pw (PW/src/print_clock_pw.f90)
+|  |  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--plugin_clock (PW/src/plugin_clock.f90)
+|  |  |  +--clean_pw (PW/src/clean_pw.f90)  {{{ 4
+|  |  |  |  +--deallocate_pseudo_upf (Modules/pseudo_types.f90)
+|  |  |  |  +--deallocate_radial_grid
+|  |  |  |  +--deallocate_ions_base (Modules/ions_base.f90)
+|  |  |  |  +--dealloca_london (Modules/mm_dispersion.f90)
+|  |  |  |  +--cleanup_xdm (PW/src/xdm_dispersion.f90)
+|  |  |  |  +--dftd3_clean
+|  |  |  |  +--deallocate_constraint (Modules/constraints_module.f90)
+|  |  |  |  +--deallocate_tetra (PW/src/tetra.f90)
+|  |  |  |  +--deallocate_bp_efield (PW/src/bp_mod.f90)
+|  |  |  |  +--deallocate_ldaU (PW/src/ldaU.f90)
+|  |  |  |  +--deallocate_gvect (Modules/recvec.f90)
+|  |  |  |  +--sym_rho_deallocate (PW/src/symme.f90)
+|  |  |  |  +--destroy_scf_type (PW/src/scf_mod.f90)
+|  |  |  |  +--deallocate_igk (PW/src/pwcom.f90)
+|  |  |  |  +--deallocate_uspp (Modules/uspp.f90)
+|  |  |  |  +--deallocate_gth (Modules/gth.f90)
+|  |  |  |  +--deallocate_noncol (Modules/noncol.f90)
+|  |  |  |  +--fft_type_deallocate (FFTXLib/fft_types.f90)
+|  |  |  |  +--pstickdealloc (Modules/fft_base.f90)
+|  |  |  |  +--deallocate_dyn_vars (PW/src/dynamics_module.f90)
+|  |  |  |  +--deallocate_paw_internals (PW/src/paw_init.f90)
+|  |  |  |  +--deallocate_realsp (PW/src/realus.f90)
+|  |  |  |  +--wannier_clean (PW/src/wannier_clean.f90)
+|  |  |  |  +--deallocate_exx (PW/src/exx.f90)
+|  |  |  |  +--tsvdw_finalize (Modules/tsvdw.f90)
+|  |  |  |  +--plugin_clean (PW/src/plugin_clean.f90)
+|  |  |  |  *}}}
+|  |  |  +--environment_end (Modules/environment.f90)  {{{ 4
+|  |  |  |  +--finalize_hdf5 (Modules/qeh5_module.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--closing_message (Modules/environment.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_global_end (Modules/mp_global.f90)  {{{ 4
+|  |  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mp_stop_orthopools (Modules/mp_pools.f90)
+|  |  |  |  +--mp_world_end (Modules/mp_world.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--do_stop (PW/src/stop_run.f90)
+|  |  +--seqopn (Modules/io_files.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  *}}}
+|  +--initialize_ph (PHonon/PH/initialize_ph.f90)  {{{ 2
+|  |  +--allocate_phq (PHonon/PH/allocate_phq.f90)
+|  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  +--phq_setup (PHonon/PH/phq_setup.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--ph_readfile (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_header (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_control_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_qu (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_status_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_modes (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_polarization (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_tensors (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_partial_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_el_phon (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--iotk_close_read
+|  |  |  |  *}}}
+|  |  |  +--set_vrs (PW/src/set_vrs.f90)
+|  |  |  |  +--sum_vrs (PW/src/set_vrs.f90)
+|  |  |  |  +--interpolate_vrs (PW/src/set_vrs.f90)
+|  |  |  +--compute_ux (PW/src/compute_ux.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--setup_dmuxc
+|  |  |  +--setup_dgc
+|  |  |  +--inverse_s (PW/src/symm_base.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--setup_nbnd_occ
+|  |  |  +--setup_alpha_pv
+|  |  |  +--poolcollect (PW/src/para.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_sum
+|  |  |  +--set_small_group_of_q
+|  |  |  +--sgam_lr
+|  |  |  +--set_giq
+|  |  |  +--prepare_sym_analysis (PHonon/PH/prepare_sym_analysis.f90)  {{{ 4
+|  |  |  |  +--find_group (PW/src/find_group.f90)
+|  |  |  |  +--set_irr_rap (PW/src/divide_class.f90)
+|  |  |  |  +--divide_class (PW/src/divide_class.f90)
+|  |  |  |  *}}}
+|  |  |  +--find_irrep (PHonon/PH/find_irrep.f90)
+|  |  |  |  +--set_irr_new (PHonon/PH/set_irr.f90)
+|  |  |  |  +--set_irr_nosym_new (PHonon/PH/set_irr_nosym.f90)
+|  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_qu (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_modes (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_polarization
+|  |  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--iotk_close_write
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--find_irrep_sym (PHonon/PH/find_irrep.f90)
+|  |  |  |  +--allocate_pert (PHonon/PH/allocate_pert.f90)
+|  |  |  |  +--set_irr_sym_new (PHonon/PH/set_irr_sym.f90)
+|  |  |  +--find_equiv_sites (PHonon/PH/find_equiv_sites.f90)
+|  |  |  +--io_pattern (PHonon/PH/io_pattern.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  +--mp_min
+|  |  |  +--mp_max
+|  |  |  +--d_matrix (PW/src/d_matrix.f90)  {{{ 4
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--invmat
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--setup_offset_beta
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--phq_recover (PHonon/PH/phq_recover.f90)
+|  |  |  +--ph_readfile (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_header (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_control_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_qu (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_status_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_modes (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_polarization (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_tensors (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_partial_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--read_el_phon (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--iotk_close_read
+|  |  |  |  *}}}
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  +--phq_summary (PHonon/PH/phq_summary.f90)  {{{ 3
+|  |  |  +--write_dft_name (Modules/funct.f90)
+|  |  |  +--print_ps_info (PW/src/summary.f90)
+|  |  |  +--write_group_info (PW/src/divide_class_so.f90)
+|  |  |  +--write_modes_out (PHonon/PH/write_modes.f90)
+|  |  |  *}}}
+|  |  +--openfilq (PHonon/PH/openfilq.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--open_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--init_buiol (PW/src/buffers.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--close_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  *}}}
+|  |  +--phq_init (PHonon/PH/phq_init.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--set_drhoc (PHonon/PH/set_drhoc.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--sph_bes (Modules/sph_bes.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--setlocq_coul (PHonon/PH/setlocq.f90)
+|  |  |  +--setlocq_gth (Modules/gth.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--setlocq (PHonon/PH/setlocq.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  +--cutoff_fact_qg
+|  |  |  +--cutoff_lr_Vlocq
+|  |  |  +--get_equivalent_kpq (PHonon/PH/ep_matrix_element_wannier.f90)  {{{ 4
+|  |  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  *}}}
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--read_wfc_rspace_and_fwfft (PHonon/PH/read_wfc_rspace_and_fwfft.f90)  {{{ 4
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--scatter_grid
+|  |  |  |  +--fwfft
+|  |  |  |  *}}}
+|  |  |  +--davcio (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--calbec
+|  |  |  +--calculate_and_apply_phase (PHonon/PH/ep_matrix_element_wannier.f90)  {{{ 4
+|  |  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  |  |  +--gk_sort (PW/src/gk_sort.f90)
+|  |  |  |  +--read_wfc_rspace_and_fwfft (PHonon/PH/read_wfc_rspace_and_fwfft.f90)
+|  |  |  |  +--invfft
+|  |  |  |  +--cft3s
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--fwfft
+|  |  |  |  *}}}
+|  |  |  +--dvanqq (PHonon/PH/dvanqq.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--setqmod
+|  |  |  |  +--fwfft
+|  |  |  |  +--qvan2 (PW/src/qvan2.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--set_int12_nc (PHonon/PH/set_int12_nc.f90)
+|  |  |  |  +--transform_int4_so (PHonon/PH/transform_int_so.f90)
+|  |  |  |  +--transform_int5_so (PHonon/PH/transform_int_so.f90)
+|  |  |  |  +--transform_int4_nc (PHonon/PH/transform_int_nc.f90)
+|  |  |  |  +--transform_int5_nc (PHonon/PH/transform_int_nc.f90)
+|  |  |  |  +--stop_ph (PHonon/PH/stop_ph.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--drho (PHonon/PH/drho.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--compute_becsum_ph (PHonon/PH/compute_becsum_ph.f90)
+|  |  |  |  +--compute_alphasum (PHonon/PH/compute_alphasum.f90)
+|  |  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--compute_weight (PHonon/PH/compute_weight.f90)
+|  |  |  |  +--compute_becalp (PHonon/PH/compute_becalp.f90)
+|  |  |  |  +--compute_nldyn (PHonon/PH/compute_nldyn.f90)
+|  |  |  |  +--compute_drhous_nc (PHonon/PH/compute_drhous_nc.f90)
+|  |  |  |  +--compute_drhous (PHonon/PH/compute_drhous.f90)
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--compute_dvloc (PHonon/PH/compute_dvloc.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--zaxpy
+|  |  |  |  +--tra_write_matrix (PHonon/PH/tra_write_matrix.f90)
+|  |  |  |  +--set_dbecsum_nc
+|  |  |  |  +--fft_interpolate
+|  |  |  |  +--zcopy
+|  |  |  |  +--dscal
+|  |  |  |  +--addusddens (PHonon/PH/addusddens.f90)
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--compute_qdipol (PW/src/compute_qdipol.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--compute_qdipol_so (PW/src/compute_qdipol_so.f90)
+|  |  |  +--qdipol_cryst
+|  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  +--lr_orthoUwfc
+|  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--dnsq_bare (PHonon/PH/dnsq_bare.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--dwfc (PHonon/PH/dwfc.f90)
+|  |  |  |  +--swfc (PHonon/PH/swfc.f90)
+|  |  |  |  +--delta_sphi (PHonon/PH/delta_sphi.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--sym_dns_wrapper (PHonon/PH/sym_dns_wrapper.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dnsq_orth (PHonon/PH/dnsq_orth.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--compute_weight (PHonon/PH/compute_weight.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--dwfc (PHonon/PH/dwfc.f90)
+|  |  |  |  +--doubleprojqq (PHonon/PH/d2nsq_bare.f90)
+|  |  |  |  +--sym_dns_wrapper (PHonon/PH/sym_dns_wrapper.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dynmat0_new (PHonon/PH/dynmat0.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--zcopy
+|  |  |  |  +--dynmat_us (PHonon/PH/dynmat_us.f90)
+|  |  |  |  +--d2ionq (PHonon/PH/d2ionq.f90)
+|  |  |  |  +--init_london (Modules/mm_dispersion.f90)
+|  |  |  |  +--d2ionq_mm (PHonon/PH/d2ionq_mm.f90)
+|  |  |  |  +--rotate_pattern_add (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  |  +--dealloca_london (Modules/mm_dispersion.f90)
+|  |  |  |  +--dynmatcc (PHonon/PH/dynmatcc.f90)
+|  |  |  |  +--dynmat_hub_bare (PHonon/PH/dynmat_hub_bare.f90)
+|  |  |  |  +--symdyn_munu_new (PHonon/PH/symdyn_munu.f90)
+|  |  |  |  +--tra_write_matrix (PHonon/PH/tra_write_matrix.f90)
+|  |  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--print_this_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--mp_max
+|  |  *}}}
+|  +--phescf (PHonon/PH/phescf.f90)  {{{ 2
+|  |  +--summarize_epsilon (PHonon/PH/summarize.f90)
+|  |  +--summarize_zeu (PHonon/PH/summarize.f90)
+|  |  +--summarize_elopt (PHonon/PH/summarize.f90)
+|  |  +--write_ramtns (PHonon/PH/write_ramtns.f90)
+|  |  +--solve_e_fpol (PHonon/PH/solve_e_fpol.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--fft_interpolate
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  +--dvpsi_e (PHonon/PH/dvpsi_e.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--commutator_Hx_psi
+|  |  |  |  +--orthogonalize
+|  |  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  |  +--h_prec
+|  |  |  |  +--cgsolve_all
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--divide (UtilXLib/divide.f90)
+|  |  |  |  +--calbec
+|  |  |  |  +--s_psi (PW/src/s_psi.f90)
+|  |  |  |  +--dcopy
+|  |  |  |  +--adddvepsi_us
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  |  *}}}
+|  |  |  +--invfft
+|  |  |  +--fwfft
+|  |  |  +--adddvscf
+|  |  |  +--zgemm
+|  |  |  +--mp_sum
+|  |  |  +--calbec
+|  |  |  +--s_psi (PW/src/s_psi.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--divide_all (UtilXLib/divide.f90)
+|  |  |  |  +--mp_type_create_column_section
+|  |  |  |  +--s_psi_ (PW/src/s_psi.f90)
+|  |  |  |  +--mp_allgather
+|  |  |  |  +--mp_type_free (UtilXLib/mp.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--gmressolve_all (PHonon/PH/gmressolve_all.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--h_psi (PW/src/h_psi.f90)
+|  |  |  |  +--zaxpy
+|  |  |  |  +--dscal
+|  |  |  |  +--cg_psi
+|  |  |  |  +--mp_sum
+|  |  |  |  +--zcopy
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  +--incdrhoscf
+|  |  |  +--addusddense (PHonon/PH/addusddense.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--qvan2 (PW/src/qvan2.f90)
+|  |  |  |  +--zaxpy
+|  |  |  |  +--invfft
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--psyme (PHonon/PH/psyme.f90)  {{{ 4
+|  |  |  |  +--cgather_sym (FFTXLib/scatter_mod.f90)
+|  |  |  |  +--syme (PHonon/PH/syme.f90)
+|  |  |  |  +--zcopy
+|  |  |  |  *}}}
+|  |  |  +--davcio_drho (PHonon/PH/davcio_drho.f90)  {{{ 4
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--gather_grid
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--scatter_grid
+|  |  |  |  *}}}
+|  |  |  +--dv_of_drho
+|  |  |  +--mix_potential
+|  |  |  +--newdq
+|  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--stop_smoothly_ph (PHonon/PH/stop_ph.f90)  {{{ 4
+|  |  |  |  +--collect_grid_files (PHonon/PH/check_initial_status.f90)
+|  |  |  |  +--close_phq (PHonon/PH/close_phq.f90)
+|  |  |  |  +--stop_ph (PHonon/PH/stop_ph.f90)
+|  |  |  |  *}}}
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--polariz (PHonon/PH/polariz.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  |  +--crys_to_cart (PW/src/symme.f90)
+|  |  |  +--symmatrix (PW/src/symme.f90)
+|  |  |  |  +--cart_to_crys (PW/src/symme.f90)
+|  |  |  |  +--crys_to_cart (PW/src/symme.f90)
+|  |  |  +--write_polariz (PHonon/PH/polariz.f90)
+|  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_qu (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_modes (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_polarization
+|  |  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--iotk_close_write
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--solve_e (PHonon/PH/solve_e.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--read_rec (PHonon/PH/write_rec.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--set_int12_nc (PHonon/PH/set_int12_nc.f90)
+|  |  |  |  +--set_int3_nc
+|  |  |  |  +--fft_interpolate
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--setmixout
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--dnsq_scf (PHonon/PH/dnsq_scf.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--syme_dns (PHonon/PH/syme_dns.f90)
+|  |  |  |  +--sym_dns (PHonon/PH/sym_dns.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  +--h_prec
+|  |  |  +--dvpsi_e (PHonon/PH/dvpsi_e.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--commutator_Hx_psi
+|  |  |  |  +--orthogonalize
+|  |  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  |  +--h_prec
+|  |  |  |  +--cgsolve_all
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--divide (UtilXLib/divide.f90)
+|  |  |  |  +--calbec
+|  |  |  |  +--s_psi (PW/src/s_psi.f90)
+|  |  |  |  +--dcopy
+|  |  |  |  +--adddvepsi_us
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  |  *}}}
+|  |  |  +--tg_cgather (FFTXLib/tg_gather.f90)  {{{ 4
+|  |  |  |  +--mp_sum
+|  |  |  |  +--MPI_ALLREDUCE
+|  |  |  |  +--fftx_error__ (FFTXLib/fft_error.f90)
+|  |  |  |  +--MPI_Allgatherv
+|  |  |  |  *}}}
+|  |  |  +--cft_wave_tg
+|  |  |  +--apply_dpot
+|  |  |  +--cft_wave
+|  |  |  +--adddvscf
+|  |  |  +--adddvhubscf (PHonon/PH/adddvhubscf.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--orthogonalize
+|  |  |  +--cgsolve_all
+|  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  +--incdrhoscf_nc
+|  |  |  +--incdrhoscf
+|  |  |  +--mp_sum
+|  |  |  +--fft_interpolate
+|  |  |  +--set_dbecsum_nc
+|  |  |  +--addusddense (PHonon/PH/addusddense.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--qvan2 (PW/src/qvan2.f90)
+|  |  |  |  +--zaxpy
+|  |  |  |  +--invfft
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--psyme (PHonon/PH/psyme.f90)  {{{ 4
+|  |  |  |  +--cgather_sym (FFTXLib/scatter_mod.f90)
+|  |  |  |  +--syme (PHonon/PH/syme.f90)
+|  |  |  |  +--zcopy
+|  |  |  |  *}}}
+|  |  |  +--psym_dmage (PHonon/PH/psym_dmage.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--cgather_sym (FFTXLib/scatter_mod.f90)
+|  |  |  |  +--sym_dmage (PHonon/PH/sym_dmage.f90)
+|  |  |  |  +--zcopy
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--davcio_drho (PHonon/PH/davcio_drho.f90)  {{{ 4
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--gather_grid
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--scatter_grid
+|  |  |  |  *}}}
+|  |  |  +--dv_of_drho
+|  |  |  +--mix_potential
+|  |  |  +--PAW_dpotential (PW/src/paw_onecenter.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--block_distribute
+|  |  |  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  |  +--PAW_rho_lm (PW/src/paw_onecenter.f90)
+|  |  |  |  +--PAW_h_potential (PW/src/paw_onecenter.f90)
+|  |  |  |  +--PAW_dxc_potential (PW/src/paw_onecenter.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--PAW_desymmetrize (PW/src/paw_symmetry.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--block_distribute
+|  |  |  |  +--inverse_s (PW/src/symm_base.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--newdq
+|  |  |  +--write_rec (PHonon/PH/write_rec.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--stop_smoothly_ph (PHonon/PH/stop_ph.f90)  {{{ 4
+|  |  |  |  +--collect_grid_files (PHonon/PH/check_initial_status.f90)
+|  |  |  |  +--close_phq (PHonon/PH/close_phq.f90)
+|  |  |  |  +--stop_ph (PHonon/PH/stop_ph.f90)
+|  |  |  |  *}}}
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--dielec (PHonon/PH/dielec.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  |  +--crys_to_cart (PW/src/symme.f90)
+|  |  |  +--symmatrix (PW/src/symme.f90)
+|  |  |  |  +--cart_to_crys (PW/src/symme.f90)
+|  |  |  |  +--crys_to_cart (PW/src/symme.f90)
+|  |  |  +--summarize_epsilon (PHonon/PH/summarize.f90)
+|  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_qu (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_modes (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_polarization
+|  |  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--iotk_close_write
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--zstar_eu (PHonon/PH/zstar_eu.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvqpsi_us (PHonon/PH/dvqpsi_us.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--cutoff_localq
+|  |  |  |  +--invfft
+|  |  |  |  +--dgradcorr
+|  |  |  |  +--dnonloccorr
+|  |  |  |  +--fwfft
+|  |  |  |  +--dvqpsi_us_only (PHonon/PH/dvqpsi_us_only.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvqhub_barepsi_us (PHonon/PH/dvqhub_barepsi_us.f90)  {{{ 4
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--dwfc (PHonon/PH/dwfc.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--swfc (PHonon/PH/swfc.f90)
+|  |  |  |  +--delta_sphi (PHonon/PH/delta_sphi.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  |  +--symtensor (PW/src/symme.f90)
+|  |  |  |  +--cart_to_crys (PW/src/symme.f90)
+|  |  |  |  +--crys_to_cart (PW/src/symme.f90)
+|  |  |  +--summarize_zeu (PHonon/PH/summarize.f90)
+|  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_qu (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_modes (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_polarization
+|  |  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--iotk_close_write
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--punch_plot_e (PHonon/PH/punch_plot_e.f90)  {{{ 3
+|  |  |  +--davcio_drho (PHonon/PH/davcio_drho.f90)  {{{ 4
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--gather_grid
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--scatter_grid
+|  |  |  |  *}}}
+|  |  |  +--daxpy
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--gather_grid
+|  |  |  *}}}
+|  |  +--stop_ph (PHonon/PH/stop_ph.f90)  {{{ 3
+|  |  |  +--clean_input_variables (PHonon/PH/save_ph_input.f90)
+|  |  |  +--destroy_status_run (PHonon/PH/ph_restart.f90)
+|  |  |  +--deallocate_part (PHonon/PH/deallocate_part.f90)
+|  |  |  +--print_clock_ph (PHonon/PH/print_clock_ph.f90)
+|  |  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--environment_end (Modules/environment.f90)  {{{ 4
+|  |  |  |  +--finalize_hdf5 (Modules/qeh5_module.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--closing_message (Modules/environment.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_global_end (Modules/mp_global.f90)  {{{ 4
+|  |  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mp_stop_orthopools (Modules/mp_pools.f90)
+|  |  |  |  +--mp_world_end (Modules/mp_world.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--raman (PHonon/PH/raman.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--dhdrhopsi (PHonon/PH/dhdrhopsi.f90)  {{{ 4
+|  |  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--set_dvscf (PHonon/PH/set_dvscf.f90)
+|  |  |  |  +--dcopy
+|  |  |  |  +--beccopy (Modules/becmod.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--zcopy
+|  |  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--hdiag (PHonon/PH/hdiag.f90)
+|  |  |  |  +--calbec
+|  |  |  |  +--solve_e_nscf (PHonon/PH/solve_e_nscf.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--zaxpy
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--cft_wave
+|  |  |  |  +--daxpy
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--el_opt (PHonon/PH/el_opt.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--zgemm
+|  |  |  |  +--mp_sum
+|  |  |  |  +--davcio_drho (PHonon/PH/davcio_drho.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--symmatrix3 (PW/src/symme.f90)
+|  |  |  |  +--dcopy
+|  |  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--summarize_elopt (PHonon/PH/summarize.f90)
+|  |  |  +--dvpsi_e2 (PHonon/PH/dvpsi_e2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--cft_wave
+|  |  |  |  +--zgemm
+|  |  |  |  +--mp_sum
+|  |  |  |  +--fft_interpolate
+|  |  |  |  +--dv_of_drho
+|  |  |  |  +--davcio_drho (PHonon/PH/davcio_drho.f90)
+|  |  |  |  +--psyme2 (PHonon/PH/psyme2.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--solve_e2 (PHonon/PH/solve_e2.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--read_rec (PHonon/PH/write_rec.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--cft_wave
+|  |  |  |  +--pcgreen (PHonon/PH/pcgreen.f90)
+|  |  |  |  +--incdrhoscf
+|  |  |  |  +--mp_sum
+|  |  |  |  +--fft_interpolate
+|  |  |  |  +--dv_of_drho
+|  |  |  |  +--psyme2 (PHonon/PH/psyme2.f90)
+|  |  |  |  +--mix_potential
+|  |  |  |  +--write_rec (PHonon/PH/write_rec.f90)
+|  |  |  |  +--stop_smoothly_ph (PHonon/PH/stop_ph.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--raman_mat (PHonon/PH/raman_mat.f90)  {{{ 4
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--zaxpy
+|  |  |  |  +--daxpy
+|  |  |  |  +--dvqpsi_us (PHonon/PH/dvqpsi_us.f90)
+|  |  |  |  +--zcopy
+|  |  |  |  +--calbec
+|  |  |  |  +--dcopy
+|  |  |  |  +--write_raman (PHonon/PH/raman_mat.f90)
+|  |  |  |  +--symtensor3 (PW/src/symme.f90)
+|  |  |  |  +--write_ramtns (PHonon/PH/write_ramtns.f90)
+|  |  |  |  *}}}
+|  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_qu (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_modes (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_polarization
+|  |  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--iotk_close_write
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_free_unit
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--create_directory (Modules/io_files.f90)
+|  |  |  |  +--iotk_open_write
+|  |  |  |  +--iotk_open_read
+|  |  |  |  *}}}
+|  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_attr
+|  |  |  |  +--iotk_write_empty
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_qu (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_attr
+|  |  |  |  +--iotk_write_empty
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_modes (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_polarization
+|  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--iotk_close_write
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--write_dnsscf_e (PHonon/PH/write_hub.f90)
+|  |  *}}}
+|  +--phqscf (PHonon/PH/phqscf.f90)  {{{ 2
+|  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  +--solve_linter (PHonon/PH/solve_linter.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--read_rec (PHonon/PH/write_rec.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--set_int12_nc (PHonon/PH/set_int12_nc.f90)
+|  |  |  |  +--set_int3_nc
+|  |  |  |  +--fft_interpolate
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--PAW_dpotential (PW/src/paw_onecenter.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--block_distribute
+|  |  |  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  |  +--PAW_rho_lm (PW/src/paw_onecenter.f90)
+|  |  |  |  +--PAW_h_potential (PW/src/paw_onecenter.f90)
+|  |  |  |  +--PAW_dxc_potential (PW/src/paw_onecenter.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--setmixout
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--localdos
+|  |  |  +--dnsq_scf (PHonon/PH/dnsq_scf.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--syme_dns (PHonon/PH/syme_dns.f90)
+|  |  |  |  +--sym_dns (PHonon/PH/sym_dns.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  +--h_prec
+|  |  |  +--tg_cgather (FFTXLib/tg_gather.f90)  {{{ 4
+|  |  |  |  +--mp_sum
+|  |  |  |  +--MPI_ALLREDUCE
+|  |  |  |  +--fftx_error__ (FFTXLib/fft_error.f90)
+|  |  |  |  +--MPI_Allgatherv
+|  |  |  |  *}}}
+|  |  |  +--cft_wave_tg
+|  |  |  +--apply_dpot
+|  |  |  +--cft_wave
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--adddvscf
+|  |  |  +--adddvhubscf (PHonon/PH/adddvhubscf.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvqpsi_us (PHonon/PH/dvqpsi_us.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--cutoff_localq
+|  |  |  |  +--invfft
+|  |  |  |  +--dgradcorr
+|  |  |  |  +--dnonloccorr
+|  |  |  |  +--fwfft
+|  |  |  |  +--dvqpsi_us_only (PHonon/PH/dvqpsi_us_only.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvqhub_barepsi_us (PHonon/PH/dvqhub_barepsi_us.f90)  {{{ 4
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--dwfc (PHonon/PH/dwfc.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--swfc (PHonon/PH/swfc.f90)
+|  |  |  |  +--delta_sphi (PHonon/PH/delta_sphi.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  *}}}
+|  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  +--orthogonalize
+|  |  |  +--cgsolve_all
+|  |  |  +--incdrhoscf_nc
+|  |  |  +--incdrhoscf
+|  |  |  +--mp_sum
+|  |  |  +--fft_interpolate
+|  |  |  +--zcopy
+|  |  |  +--set_dbecsum_nc
+|  |  |  +--addusddens (PHonon/PH/addusddens.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--setqmod
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--qvan2 (PW/src/qvan2.f90)
+|  |  |  |  +--zaxpy
+|  |  |  |  +--invfft
+|  |  |  |  +--daxpy
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--ef_shift_paw (PHonon/PH/ef_shift.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--fwfft
+|  |  |  |  +--invfft
+|  |  |  |  +--mp_sum
+|  |  |  |  +--sym_def (PHonon/PH/sym_def.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--zaxpy
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--ef_shift (PHonon/PH/ef_shift.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--fwfft
+|  |  |  |  +--invfft
+|  |  |  |  +--mp_sum
+|  |  |  |  +--sym_def (PHonon/PH/sym_def.f90)
+|  |  |  |  +--zaxpy
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--psymdvscf (PHonon/PH/psymdvscf.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--cgather_sym (FFTXLib/scatter_mod.f90)
+|  |  |  |  +--symdvscf (PHonon/PH/symdvscf.f90)
+|  |  |  |  +--zcopy
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--psym_dmag (PHonon/PH/psym_dmag.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--cgather_sym (FFTXLib/scatter_mod.f90)
+|  |  |  |  +--sym_dmag (PHonon/PH/sym_dmag.f90)
+|  |  |  |  +--zcopy
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--PAW_dumqsymmetrize (PW/src/paw_symmetry.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--block_distribute
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--PAW_dusymmetrize (PW/src/paw_symmetry.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--block_distribute
+|  |  |  |  +--inverse_s (PW/src/symm_base.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--davcio_drho (PHonon/PH/davcio_drho.f90)  {{{ 4
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--gather_grid
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--scatter_grid
+|  |  |  |  *}}}
+|  |  |  +--addcore (PHonon/PH/addcore.f90)
+|  |  |  |  +--invfft
+|  |  |  +--dv_of_drho
+|  |  |  +--mix_potential
+|  |  |  +--check_all_convt (PHonon/PH/solve_linter.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--newdq
+|  |  |  +--write_rec (PHonon/PH/write_rec.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--stop_smoothly_ph (PHonon/PH/stop_ph.f90)  {{{ 4
+|  |  |  |  +--collect_grid_files (PHonon/PH/check_initial_status.f90)
+|  |  |  |  +--close_phq (PHonon/PH/close_phq.f90)
+|  |  |  |  +--stop_ph (PHonon/PH/stop_ph.f90)
+|  |  |  |  *}}}
+|  |  |  +--drhodvus (PHonon/PH/drhodvus.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--tra_write_matrix (PHonon/PH/tra_write_matrix.f90)
+|  |  |  |  +--stop_ph (PHonon/PH/stop_ph.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--davcio (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--elphel (PHonon/PH/elphon.f90)  {{{ 4
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--elphel_read_dnsscf_check (PHonon/PH/elphon.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--dvqpsi_us (PHonon/PH/dvqpsi_us.f90)
+|  |  |  |  +--dvqhub_barepsi_us (PHonon/PH/dvqhub_barepsi_us.f90)
+|  |  |  |  +--tg_cgather (FFTXLib/tg_gather.f90)
+|  |  |  |  +--cft_wave_tg
+|  |  |  |  +--apply_dpot
+|  |  |  |  +--cft_wave
+|  |  |  |  +--adddvscf
+|  |  |  |  +--adddvhubscf (PHonon/PH/adddvhubscf.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--el_ph_collect (PHonon/PH/el_ph_collect.f90)
+|  |  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)
+|  |  |  |  *}}}
+|  |  |  +--addnlcc (PHonon/PH/addnlcc.f90)  {{{ 4
+|  |  |  |  +--addcore (PHonon/PH/addcore.f90)
+|  |  |  |  +--daxpy
+|  |  |  |  +--dgradcorr
+|  |  |  |  +--dnonloccorr
+|  |  |  |  +--mp_sum
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--drhodv (PHonon/PH/drhodv.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--calbec
+|  |  |  +--becscal
+|  |  |  +--drhodvnl (PHonon/PH/drhodvnl.f90)  {{{ 4
+|  |  |  |  +--divide (UtilXLib/divide.f90)
+|  |  |  |  +--compute_deff_nc (PW/src/compute_deff.f90)
+|  |  |  |  +--compute_deff (PW/src/compute_deff.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  |  +--drhodvloc (PHonon/PH/drhodvloc.f90)
+|  |  |  |  +--compute_dvloc (PHonon/PH/compute_dvloc.f90)
+|  |  |  |  +--mp_sum
+|  |  |  +--tra_write_matrix (PHonon/PH/tra_write_matrix.f90)
+|  |  |  |  +--symdyn_munu_new (PHonon/PH/symdyn_munu.f90)
+|  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--add_zstar_ue (PHonon/PH/add_zstar_ue.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvpsi_e (PHonon/PH/dvpsi_e.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--commutator_Hx_psi
+|  |  |  |  +--orthogonalize
+|  |  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  |  +--h_prec
+|  |  |  |  +--cgsolve_all
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--divide (UtilXLib/divide.f90)
+|  |  |  |  +--calbec
+|  |  |  |  +--s_psi (PW/src/s_psi.f90)
+|  |  |  |  +--dcopy
+|  |  |  |  +--adddvepsi_us
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  |  *}}}
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--add_zstar_ue_us (PHonon/PH/add_zstar_ue_us.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--compute_qdipol (PW/src/compute_qdipol.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--simpson (Modules/simpsn.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvkb3 (PHonon/PH/dvkb3.f90)  {{{ 4
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--gen_us_dy (PW/src/gen_us_dy.f90)
+|  |  |  |  +--gen_us_dj (PW/src/gen_us_dj.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvpsi_e (PHonon/PH/dvpsi_e.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--commutator_Hx_psi
+|  |  |  |  +--orthogonalize
+|  |  |  |  +--g2_kin (PW/src/g2_kin.f90)
+|  |  |  |  +--h_prec
+|  |  |  |  +--cgsolve_all
+|  |  |  |  +--save_buffer (PW/src/buffers.f90)
+|  |  |  |  +--divide (UtilXLib/divide.f90)
+|  |  |  |  +--calbec
+|  |  |  |  +--s_psi (PW/src/s_psi.f90)
+|  |  |  |  +--dcopy
+|  |  |  |  +--adddvepsi_us
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  |  *}}}
+|  |  |  +--psidspsi (PHonon/PH/psidspsi.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--zgemm
+|  |  |  +--mp_sum
+|  |  |  +--add_for_charges (PHonon/PH/add_for_charges.f90)  {{{ 4
+|  |  |  |  +--allocate_bec_type (Modules/becmod.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--calbec
+|  |  |  |  +--zgemm
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  |  *}}}
+|  |  |  +--add_dkmds (PHonon/PH/add_dkmds.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--calbec
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--zgemm
+|  |  |  |  *}}}
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--dynmat_hub_scf (PHonon/PH/dynmat_hub_scf.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--compute_weight (PHonon/PH/compute_weight.f90)
+|  |  |  |  +--stop_ph (PHonon/PH/stop_ph.f90)
+|  |  |  +--dnsq_scf (PHonon/PH/dnsq_scf.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--syme_dns (PHonon/PH/syme_dns.f90)
+|  |  |  |  +--sym_dns (PHonon/PH/sym_dns.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvqhub_barepsi_us2 (PHonon/PH/dvqhub_barepsi_us2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--dwfc (PHonon/PH/dwfc.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--swfc (PHonon/PH/swfc.f90)
+|  |  |  |  +--delta_sphi (PHonon/PH/delta_sphi.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dpsi_orth (PHonon/PH/dpsi_orth.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--doubleprojqq (PHonon/PH/d2nsq_bare.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  |  +--tra_write_matrix_no_sym (PHonon/PH/tra_write_matrix.f90)
+|  |  |  +--tra_write_matrix (PHonon/PH/tra_write_matrix.f90)
+|  |  |  |  +--symdyn_munu_new (PHonon/PH/symdyn_munu.f90)
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--mp_sum
+|  |  +--stop_smoothly_ph (PHonon/PH/stop_ph.f90)  {{{ 3
+|  |  |  +--collect_grid_files (PHonon/PH/check_initial_status.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--close_phq (PHonon/PH/close_phq.f90)
+|  |  |  |  +--close_buffer (PW/src/buffers.f90)
+|  |  |  |  +--clean_recover (PHonon/PH/write_rec.f90)
+|  |  |  +--stop_ph (PHonon/PH/stop_ph.f90)  {{{ 4
+|  |  |  |  +--clean_input_variables (PHonon/PH/save_ph_input.f90)
+|  |  |  |  +--destroy_status_run (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--deallocate_part (PHonon/PH/deallocate_part.f90)
+|  |  |  |  +--print_clock_ph (PHonon/PH/print_clock_ph.f90)
+|  |  |  |  +--environment_end (Modules/environment.f90)
+|  |  |  |  +--mp_global_end (Modules/mp_global.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--write_rec (PHonon/PH/write_rec.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_qu (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_modes (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_polarization
+|  |  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--iotk_close_write
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--write_dnsscf_ph (PHonon/PH/write_hub.f90)
+|  |  +--write_dynmat_hub (PHonon/PH/write_hub.f90)
+|  |  |  +--tra_write_matrix_no_sym (PHonon/PH/tra_write_matrix.f90)
+|  |  |  +--tra_write_matrix (PHonon/PH/tra_write_matrix.f90)
+|  |  |  |  +--symdyn_munu_new (PHonon/PH/symdyn_munu.f90)
+|  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  *}}}
+|  +--dynmatrix_new (PHonon/PH/dynmatrix.f90)  {{{ 2
+|  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  +--generate_dynamical_matrix (PHonon/PH/generate_dynamical_matrix_c.f90)
+|  |  |  +--zcopy
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  +--set_asr_c (PHonon/PH/set_asr_c.f90)
+|  |  +--symdyn_munu_new (PHonon/PH/symdyn_munu.f90)  {{{ 3
+|  |  |  +--dyn_pattern_to_cart (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  |  +--symdynph_gq_new (PHonon/PH/symdynph_gq.f90)
+|  |  |  +--compact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  *}}}
+|  |  +--stop_ph (PHonon/PH/stop_ph.f90)  {{{ 3
+|  |  |  +--clean_input_variables (PHonon/PH/save_ph_input.f90)
+|  |  |  +--destroy_status_run (PHonon/PH/ph_restart.f90)
+|  |  |  +--deallocate_part (PHonon/PH/deallocate_part.f90)
+|  |  |  +--print_clock_ph (PHonon/PH/print_clock_ph.f90)
+|  |  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--environment_end (Modules/environment.f90)  {{{ 4
+|  |  |  |  +--finalize_hdf5 (Modules/qeh5_module.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--closing_message (Modules/environment.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_global_end (Modules/mp_global.f90)  {{{ 4
+|  |  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mp_stop_orthopools (Modules/mp_pools.f90)
+|  |  |  |  +--mp_world_end (Modules/mp_world.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--close_phq (PHonon/PH/close_phq.f90)
+|  |  |  +--close_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--clean_recover (PHonon/PH/write_rec.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  +--stop_smoothly_ph (PHonon/PH/stop_ph.f90)  {{{ 3
+|  |  |  +--collect_grid_files (PHonon/PH/check_initial_status.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--close_phq (PHonon/PH/close_phq.f90)
+|  |  |  |  +--close_buffer (PW/src/buffers.f90)
+|  |  |  |  +--clean_recover (PHonon/PH/write_rec.f90)
+|  |  |  +--stop_ph (PHonon/PH/stop_ph.f90)  {{{ 4
+|  |  |  |  +--clean_input_variables (PHonon/PH/save_ph_input.f90)
+|  |  |  |  +--destroy_status_run (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--deallocate_part (PHonon/PH/deallocate_part.f90)
+|  |  |  |  +--print_clock_ph (PHonon/PH/print_clock_ph.f90)
+|  |  |  |  +--environment_end (Modules/environment.f90)
+|  |  |  |  +--mp_global_end (Modules/mp_global.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--star_q
+|  |  +--write_dyn_mat_header (PHonon/PH/io_dyn_mat.f90)  {{{ 3
+|  |  |  +--iotk_free_unit
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--iotk_open_write
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_attr
+|  |  |  +--iotk_write_empty
+|  |  |  +--iotk_write_end
+|  |  |  +--iotk_write_END
+|  |  |  *}}}
+|  |  +--write_old_dyn_mat_head (PHonon/PH/io_dyn_mat_old.f90)
+|  |  +--q2qstar_ph (PHonon/PH/q2qstar_ph.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--scompact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  |  +--rotate_and_add_dyn (PHonon/PH/rotate_and_add_dyn.f90)
+|  |  |  +--compact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--write_dyn_mat (PHonon/PH/io_dyn_mat.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_dyn_on_file (PHonon/PH/io_dyn_mat_old.f90)
+|  |  |  *}}}
+|  |  +--write_epsilon_and_zeu (PHonon/PH/write_epsilon_and_zeu.f90)
+|  |  |  +--summarize_epsilon (PHonon/PH/summarize.f90)
+|  |  |  +--summarize_zeu (PHonon/PH/summarize.f90)
+|  |  +--generate_effective_charges_c (PHonon/PH/generate_effective_charges_c.f90)
+|  |  |  +--crys_to_cart (PW/src/symme.f90)
+|  |  +--summarize_zue (PHonon/PH/summarize.f90)
+|  |  +--write_ramtns (PHonon/PH/write_ramtns.f90)
+|  |  +--dyndia (PHonon/PH/dyndia.f90)
+|  |  |  +--cdiagh (PW/src/cdiagh.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ZHEEV
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--write_dyn_mat_tail (PHonon/PH/io_dyn_mat.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  +--iotk_close_write
+|  |  |  |  *}}}
+|  |  +--find_mode_sym_new (PHonon/PH/find_mode_sym.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--rotate_mod (PHonon/PH/find_mode_sym.f90)
+|  |  +--print_mode_sym (PHonon/PH/find_mode_sym.f90)
+|  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 3
+|  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_free_unit
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--create_directory (Modules/io_files.f90)
+|  |  |  |  +--iotk_open_write
+|  |  |  |  +--iotk_open_read
+|  |  |  |  *}}}
+|  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_attr
+|  |  |  |  +--iotk_write_empty
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_qu (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_attr
+|  |  |  |  +--iotk_write_empty
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_modes (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_polarization
+|  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--iotk_close_write
+|  |  |  +--iotk_write_begin
+|  |  |  +--iotk_write_dat
+|  |  |  +--iotk_write_end
+|  |  |  *}}}
+|  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  *}}}
+|  +--rotate_dvscf_star (PHonon/PH/rotate_dvscf_star.f90)  {{{ 2
+|  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  +--star_q
+|  |  +--write_dfile_star (PHonon/PH/dfile_star.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_bcast
+|  |  |  +--create_directory (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--davcio (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--allocate_rotated_pattern_repr (PHonon/PH/dfile_star.f90)
+|  |  |  +--ruotaijk (PW/src/ruotaijk.f90)
+|  |  |  +--rotate_mod (PHonon/PH/find_mode_sym.f90)
+|  |  |  +--io_pattern (PHonon/PH/io_pattern.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  +--deallocate_rotated_pattern_repr (PHonon/PH/dfile_star.f90)
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  *}}}
+|  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  *}}}
+|  +--dvanqq (PHonon/PH/dvanqq.f90)  {{{ 2
+|  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  +--setqmod
+|  |  +--fwfft
+|  |  +--qvan2 (PW/src/qvan2.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  +--mp_sum
+|  |  +--set_int12_nc (PHonon/PH/set_int12_nc.f90)  {{{ 3
+|  |  |  +--transform_int1_so (PHonon/PH/transform_int_so.f90)
+|  |  |  +--transform_int2_so (PHonon/PH/transform_int_so.f90)
+|  |  |  +--transform_int1_nc (PHonon/PH/transform_int_nc.f90)
+|  |  |  +--transform_int2_nc (PHonon/PH/transform_int_nc.f90)
+|  |  |  *}}}
+|  |  +--transform_int4_so (PHonon/PH/transform_int_so.f90)
+|  |  +--transform_int5_so (PHonon/PH/transform_int_so.f90)
+|  |  +--transform_int4_nc (PHonon/PH/transform_int_nc.f90)
+|  |  +--transform_int5_nc (PHonon/PH/transform_int_nc.f90)
+|  |  +--stop_ph (PHonon/PH/stop_ph.f90)  {{{ 3
+|  |  |  +--clean_input_variables (PHonon/PH/save_ph_input.f90)
+|  |  |  +--destroy_status_run (PHonon/PH/ph_restart.f90)
+|  |  |  +--deallocate_part (PHonon/PH/deallocate_part.f90)
+|  |  |  +--print_clock_ph (PHonon/PH/print_clock_ph.f90)
+|  |  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--environment_end (Modules/environment.f90)  {{{ 4
+|  |  |  |  +--finalize_hdf5 (Modules/qeh5_module.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--closing_message (Modules/environment.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_global_end (Modules/mp_global.f90)  {{{ 4
+|  |  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mp_stop_orthopools (Modules/mp_pools.f90)
+|  |  |  |  +--mp_world_end (Modules/mp_world.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  *}}}
+|  +--ep_matrix_element_wannier (PHonon/PH/ep_matrix_element_wannier.f90)  {{{ 2
+|  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  +--davcio_drho (PHonon/PH/davcio_drho.f90)  {{{ 3
+|  |  |  +--mp_bcast
+|  |  |  +--gather_grid
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--davcio (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--scatter_grid
+|  |  |  *}}}
+|  |  +--fft_interpolate
+|  |  +--newdq
+|  |  +--elphel_refolded (PHonon/PH/ep_matrix_element_wannier.f90)  {{{ 3
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--davcio (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--read_wfc_rspace_and_fwfft (PHonon/PH/read_wfc_rspace_and_fwfft.f90)  {{{ 4
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--scatter_grid
+|  |  |  |  +--fwfft
+|  |  |  |  *}}}
+|  |  |  +--calculate_and_apply_phase (PHonon/PH/ep_matrix_element_wannier.f90)  {{{ 4
+|  |  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  |  |  +--gk_sort (PW/src/gk_sort.f90)
+|  |  |  |  +--read_wfc_rspace_and_fwfft (PHonon/PH/read_wfc_rspace_and_fwfft.f90)
+|  |  |  |  +--invfft
+|  |  |  |  +--cft3s
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--fwfft
+|  |  |  |  *}}}
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvqpsi_us (PHonon/PH/dvqpsi_us.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--cutoff_localq
+|  |  |  |  +--invfft
+|  |  |  |  +--dgradcorr
+|  |  |  |  +--dnonloccorr
+|  |  |  |  +--fwfft
+|  |  |  |  +--dvqpsi_us_only (PHonon/PH/dvqpsi_us_only.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--cft_wave
+|  |  |  +--apply_dpot
+|  |  |  +--adddvscf
+|  |  |  +--mp_sum
+|  |  |  *}}}
+|  |  +--readmat (PHonon/PH/elphon.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--cdiagh (PW/src/cdiagh.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ZHEEV
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  +--readmat_findq (PHonon/PH/ep_matrix_element_wannier.f90)  {{{ 3
+|  |  |  +--read_dyn_mat_param (PHonon/PH/io_dyn_mat.f90)  {{{ 4
+|  |  |  |  +--iotk_free_unit
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--iotk_open_read
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  *}}}
+|  |  |  +--read_dyn_mat_header (PHonon/PH/io_dyn_mat.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_empty
+|  |  |  |  +--iotk_scan_attr
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--iotk_scan_END
+|  |  |  |  +--mp_bcast
+|  |  |  |  *}}}
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--read_dyn_mat (PHonon/PH/io_dyn_mat.f90)  {{{ 4
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--mp_bcast
+|  |  |  |  *}}}
+|  |  |  +--read_dyn_mat_tail (PHonon/PH/io_dyn_mat.f90)  {{{ 4
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--iotk_scan_begin
+|  |  |  |  +--iotk_scan_dat
+|  |  |  |  +--iotk_scan_end
+|  |  |  |  +--iotk_close_read
+|  |  |  |  +--mp_bcast
+|  |  |  |  *}}}
+|  |  |  +--cdiagh (PW/src/cdiagh.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ZHEEV
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  *}}}
+|  +--elphon (PHonon/PH/elphon.f90)  {{{ 2
+|  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  +--davcio_drho (PHonon/PH/davcio_drho.f90)  {{{ 3
+|  |  |  +--mp_bcast
+|  |  |  +--gather_grid
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--davcio (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--scatter_grid
+|  |  |  *}}}
+|  |  +--davcio (Modules/io_files.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--mp_bcast
+|  |  +--fft_interpolate
+|  |  +--newdq
+|  |  +--elphel (PHonon/PH/elphon.f90)  {{{ 3
+|  |  |  +--mp_bcast
+|  |  |  +--elphel_read_dnsscf_check (PHonon/PH/elphon.f90)
+|  |  |  +--init_us_2 (PW/src/init_us_2.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ylmr2 (Modules/ylmr2.f90)
+|  |  |  |  +--mk_ffnl_gth (Modules/gth.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--get_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvqpsi_us (PHonon/PH/dvqpsi_us.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--cutoff_localq
+|  |  |  |  +--invfft
+|  |  |  |  +--dgradcorr
+|  |  |  |  +--dnonloccorr
+|  |  |  |  +--fwfft
+|  |  |  |  +--dvqpsi_us_only (PHonon/PH/dvqpsi_us_only.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--dvqhub_barepsi_us (PHonon/PH/dvqhub_barepsi_us.f90)  {{{ 4
+|  |  |  |  +--init_us_2 (PW/src/init_us_2.f90)
+|  |  |  |  +--dwfc (PHonon/PH/dwfc.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--swfc (PHonon/PH/swfc.f90)
+|  |  |  |  +--delta_sphi (PHonon/PH/delta_sphi.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  *}}}
+|  |  |  +--tg_cgather (FFTXLib/tg_gather.f90)  {{{ 4
+|  |  |  |  +--mp_sum
+|  |  |  |  +--MPI_ALLREDUCE
+|  |  |  |  +--fftx_error__ (FFTXLib/fft_error.f90)
+|  |  |  |  +--MPI_Allgatherv
+|  |  |  |  *}}}
+|  |  |  +--cft_wave_tg
+|  |  |  +--apply_dpot
+|  |  |  +--cft_wave
+|  |  |  +--adddvscf
+|  |  |  +--adddvhubscf (PHonon/PH/adddvhubscf.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--get_buffer (PW/src/buffers.f90)
+|  |  |  |  +--mp_sum
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  |  +--el_ph_collect (PHonon/PH/el_ph_collect.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_sum
+|  |  |  +--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 4
+|  |  |  |  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_header_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_control_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_qu (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_status_ph (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_modes (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_polarization
+|  |  |  |  +--write_tensors (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_ph_dyn (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--write_el_phon (PHonon/PH/ph_restart.f90)
+|  |  |  |  +--iotk_close_write
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--readmat (PHonon/PH/elphon.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--cdiagh (PW/src/cdiagh.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--ZHEEV
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--mp_bcast
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  +--read_dyn_mat_param (PHonon/PH/io_dyn_mat.f90)  {{{ 3
+|  |  |  +--iotk_free_unit
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--iotk_open_read
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  *}}}
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--read_dyn_mat_header (PHonon/PH/io_dyn_mat.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_empty
+|  |  |  +--iotk_scan_attr
+|  |  |  +--iotk_scan_end
+|  |  |  +--iotk_scan_END
+|  |  |  +--mp_bcast
+|  |  |  *}}}
+|  |  +--read_dyn_mat (PHonon/PH/io_dyn_mat.f90)  {{{ 3
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  +--mp_bcast
+|  |  |  *}}}
+|  |  +--cdiagh (PW/src/cdiagh.f90)  {{{ 3
+|  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--ZHEEV
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_bcast
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  *}}}
+|  |  +--read_dyn_mat_tail (PHonon/PH/io_dyn_mat.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--iotk_scan_begin
+|  |  |  +--iotk_scan_dat
+|  |  |  +--iotk_scan_end
+|  |  |  +--iotk_close_read
+|  |  |  +--mp_bcast
+|  |  |  *}}}
+|  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  *}}}
+|  +--elphsum_wannier (PHonon/PH/ep_matrix_element_wannier.f90)  {{{ 2
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  +--smallg_q
+|  |  +--inverse_s (PW/src/symm_base.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  +--smallgq (PHonon/PH/obsolete.f90)
+|  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  +--sgam_ph (PHonon/PH/obsolete.f90)
+|  |  +--star_q
+|  |  *}}}
+|  +--elphsum_simple (PHonon/PH/elphon.f90)  {{{ 2
+|  |  +--mp_bcast
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--mp_sum
+|  |  +--symdyn_munu_new (PHonon/PH/symdyn_munu.f90)  {{{ 3
+|  |  |  +--dyn_pattern_to_cart (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  |  +--symdynph_gq_new (PHonon/PH/symdynph_gq.f90)
+|  |  |  +--compact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  *}}}
+|  |  +--star_q
+|  |  *}}}
+|  +--elphfil_epa (PHonon/PH/elphon.f90)  {{{ 2
+|  |  +--mp_bcast
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--date_and_tim (Modules/date_and_tim.f90)
+|  |  |  +--date_and_time
+|  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  +--poolcollect (PW/src/para.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  +--ipoolcollect (PHonon/PH/elphon.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  +--jpoolcollect (PHonon/PH/elphon.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  +--el_ph_collect (PHonon/PH/el_ph_collect.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  *}}}
+|  +--elph_yambo_eval_and_IO (PHonon/PH/yambo.f90)  {{{ 2
+|  |  +--mp_bcast
+|  |  +--create_directory (Modules/io_files.f90)  {{{ 3
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  *}}}
+|  |  +--debye_waller (PHonon/PH/yambo.f90)
+|  |  *}}}
+|  +--elph_tetra_lambda (PHonon/PH/elph_tetra_mod.f90)  {{{ 2
+|  |  +--poolcollect (PW/src/para.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  +--elph_tetra_delta1 (PHonon/PH/elph_tetra_mod.f90)  {{{ 3
+|  |  |  +--hpsort (FFTXLib/stick_base.f90)
+|  |  |  +--elph_tetra_delta2 (PHonon/PH/elph_tetra_mod.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--hpsort (FFTXLib/stick_base.f90)
+|  |  |  +--mp_sum
+|  |  |  *}}}
+|  |  +--poolscatter (PW/src/para.f90)
+|  |  |  +--mp_bcast
+|  |  +--elph_tetra_average_weight (PHonon/PH/elph_tetra_mod.f90)
+|  |  +--mp_sum
+|  |  +--symdyn_munu_new (PHonon/PH/symdyn_munu.f90)  {{{ 3
+|  |  |  +--dyn_pattern_to_cart (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  |  +--symdynph_gq_new (PHonon/PH/symdynph_gq.f90)
+|  |  |  +--compact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  *}}}
+|  |  +--opt_tetra_dos_t (PW/src/tetra.f90)
+|  |  |  +--hpsort (FFTXLib/stick_base.f90)
+|  |  +--mp_bcast
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--create_directory (Modules/io_files.f90)  {{{ 3
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  *}}}
+|  |  +--star_q
+|  |  +--q2qstar_ph (PHonon/PH/q2qstar_ph.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--scompact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  |  +--rotate_and_add_dyn (PHonon/PH/rotate_and_add_dyn.f90)
+|  |  |  +--compact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--write_dyn_mat (PHonon/PH/io_dyn_mat.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_dyn_on_file (PHonon/PH/io_dyn_mat_old.f90)
+|  |  |  *}}}
+|  |  *}}}
+|  +--elph_tetra_gamma (PHonon/PH/elph_tetra_mod.f90)  {{{ 2
+|  |  +--poolcollect (PW/src/para.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  +--elph_tetra_step1 (PHonon/PH/elph_tetra_mod.f90)  {{{ 3
+|  |  |  +--hpsort (FFTXLib/stick_base.f90)
+|  |  |  +--elph_tetra_step2 (PHonon/PH/elph_tetra_mod.f90)
+|  |  |  |  +--hpsort (FFTXLib/stick_base.f90)
+|  |  |  |  +--elph_tetra_delta3 (PHonon/PH/elph_tetra_mod.f90)
+|  |  |  +--mp_sum
+|  |  |  *}}}
+|  |  +--poolscatter (PW/src/para.f90)
+|  |  |  +--mp_bcast
+|  |  +--elph_tetra_average_weight (PHonon/PH/elph_tetra_mod.f90)
+|  |  +--mp_sum
+|  |  +--symdyn_munu_new (PHonon/PH/symdyn_munu.f90)  {{{ 3
+|  |  |  +--dyn_pattern_to_cart (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  |  +--symdynph_gq_new (PHonon/PH/symdynph_gq.f90)
+|  |  |  +--compact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  *}}}
+|  |  +--opt_tetra_dos_t (PW/src/tetra.f90)
+|  |  |  +--hpsort (FFTXLib/stick_base.f90)
+|  |  +--mp_bcast
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--create_directory (Modules/io_files.f90)  {{{ 3
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  *}}}
+|  |  +--star_q
+|  |  +--q2qstar_ph (PHonon/PH/q2qstar_ph.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--scompact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  |  +--rotate_and_add_dyn (PHonon/PH/rotate_and_add_dyn.f90)
+|  |  |  +--compact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--write_dyn_mat (PHonon/PH/io_dyn_mat.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_dyn_on_file (PHonon/PH/io_dyn_mat_old.f90)
+|  |  |  *}}}
+|  |  *}}}
+|  +--elph_scdft (PHonon/PH/elph_scdft_mod.f90)  {{{ 2
+|  |  +--elph_scdft_cnt_and_dsp (PHonon/PH/elph_scdft_mod.f90)
+|  |  |  +--mp_sum
+|  |  +--mp_sum
+|  |  +--lint (PHonon/PH/elphon.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  +--symm (PHonon/PH/symm.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  +--elph_scdft_gather_r (PHonon/PH/elph_scdft_mod.f90)
+|  |  |  +--mp_sum
+|  |  |  +--mp_gather
+|  |  +--elph_scdft_dmuxc (PHonon/PH/elph_scdft_mod.f90)  {{{ 3
+|  |  |  +--elph_scdft_fft (PHonon/PH/elph_scdft_mod.f90)
+|  |  |  |  +--invfft
+|  |  |  |  +--fwfft
+|  |  |  +--mp_max
+|  |  |  +--mp_min
+|  |  |  +--mp_sum
+|  |  |  *}}}
+|  |  *}}}
+|  +--elphsum (PHonon/PH/elphon.f90)  {{{ 2
+|  |  +--mp_bcast
+|  |  +--create_directory (Modules/io_files.f90)  {{{ 3
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  *}}}
+|  |  +--poolcollect (PW/src/para.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  +--el_ph_collect (PHonon/PH/el_ph_collect.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_sum
+|  |  +--seqopn (Modules/io_files.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--poolscatter (PW/src/para.f90)
+|  |  |  +--mp_bcast
+|  |  +--lint (PHonon/PH/elphon.f90)
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  +--cryst_to_cart (Modules/cryst_to_car.f90)
+|  |  +--symm (PHonon/PH/symm.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  +--clinear (PHonon/PH/clinear.f90)
+|  |  +--star_q
+|  |  +--q2qstar_ph (PHonon/PH/q2qstar_ph.f90)  {{{ 3
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--scompact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--trntnsc (PHonon/PH/trntnsc.f90)
+|  |  |  |  +--zcopy
+|  |  |  +--rotate_and_add_dyn (PHonon/PH/rotate_and_add_dyn.f90)
+|  |  |  +--compact_dyn (PHonon/PH/rotate_pattern_add.f90)
+|  |  |  +--write_dyn_mat (PHonon/PH/io_dyn_mat.f90)  {{{ 4
+|  |  |  |  +--iotk_write_begin
+|  |  |  |  +--iotk_write_dat
+|  |  |  |  +--iotk_write_end
+|  |  |  |  *}}}
+|  |  |  +--write_dyn_on_file (PHonon/PH/io_dyn_mat_old.f90)
+|  |  |  *}}}
+|  |  *}}}
+|  +--clean_pw_ph (PHonon/PH/clean_pw_ph.f90)  {{{ 2
+|  |  +--clean_pw (PW/src/clean_pw.f90)  {{{ 3
+|  |  |  +--deallocate_pseudo_upf (Modules/pseudo_types.f90)
+|  |  |  |  +--deallocate_paw_in_upf (Modules/pseudo_types.f90)
+|  |  |  +--deallocate_radial_grid
+|  |  |  +--deallocate_ions_base (Modules/ions_base.f90)
+|  |  |  +--dealloca_london (Modules/mm_dispersion.f90)
+|  |  |  +--cleanup_xdm (PW/src/xdm_dispersion.f90)
+|  |  |  +--dftd3_clean
+|  |  |  +--deallocate_constraint (Modules/constraints_module.f90)
+|  |  |  +--deallocate_tetra (PW/src/tetra.f90)
+|  |  |  +--deallocate_bp_efield (PW/src/bp_mod.f90)
+|  |  |  +--deallocate_ldaU (PW/src/ldaU.f90)
+|  |  |  +--deallocate_gvect (Modules/recvec.f90)
+|  |  |  +--sym_rho_deallocate (PW/src/symme.f90)
+|  |  |  +--destroy_scf_type (PW/src/scf_mod.f90)
+|  |  |  +--deallocate_igk (PW/src/pwcom.f90)
+|  |  |  +--deallocate_uspp (Modules/uspp.f90)
+|  |  |  +--deallocate_gth (Modules/gth.f90)
+|  |  |  +--deallocate_noncol (Modules/noncol.f90)
+|  |  |  +--fft_type_deallocate (FFTXLib/fft_types.f90)
+|  |  |  |  +--MPI_COMM_FREE
+|  |  |  +--pstickdealloc (Modules/fft_base.f90)
+|  |  |  |  +--sticks_map_deallocate (FFTXLib/stick_base.f90)
+|  |  |  +--deallocate_dyn_vars (PW/src/dynamics_module.f90)
+|  |  |  +--deallocate_paw_internals (PW/src/paw_init.f90)
+|  |  |  +--deallocate_realsp (PW/src/realus.f90)
+|  |  |  |  +--deallocate_realsp_aug (PW/src/realus.f90)
+|  |  |  +--wannier_clean (PW/src/wannier_clean.f90)
+|  |  |  |  +--close_buffer (PW/src/buffers.f90)
+|  |  |  +--deallocate_exx (PW/src/exx.f90)
+|  |  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  |  +--tsvdw_finalize (Modules/tsvdw.f90)
+|  |  |  +--plugin_clean (PW/src/plugin_clean.f90)
+|  |  |  *}}}
+|  |  +--deallocate_phq (PHonon/PH/deallocate_phq.f90)
+|  |  |  +--deallocate_pert (PHonon/PH/allocate_pert.f90)
+|  |  |  +--deallocate_bec_type (Modules/becmod.f90)
+|  |  +--close_phq (PHonon/PH/close_phq.f90)
+|  |  |  +--close_buffer (PW/src/buffers.f90)  {{{ 4
+|  |  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--davcio (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--clean_recover (PHonon/PH/write_rec.f90)
+|  |  |  |  +--seqopn (Modules/io_files.f90)
+|  |  +--restore_ph_input_variables (PHonon/PH/save_ph_input.f90)
+|  |  *}}}
+|  *}}}
++--ph_writefile (PHonon/PH/ph_restart.f90)  {{{ 1
+|  +--ph_restart_set_filename (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_free_unit
+|  |  +--mp_bcast
+|  |  +--errore (UtilXLib/error_handler.f90)  {{{ 3
+|  |  |  +--tracebackqq
+|  |  |  +--ptrace
+|  |  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 4
+|  |  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  |  +--mpi_abort
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--create_directory (Modules/io_files.f90)  {{{ 3
+|  |  |  +--mp_bcast
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--MPI_BARRIER
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  *}}}
+|  |  +--iotk_open_write
+|  |  +--iotk_open_read
+|  |  *}}}
+|  +--write_header_ph (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_write_begin
+|  |  +--iotk_write_attr
+|  |  +--iotk_write_empty
+|  |  +--iotk_write_end
+|  |  *}}}
+|  +--write_control_ph (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_write_begin
+|  |  +--iotk_write_dat
+|  |  +--iotk_write_end
+|  |  *}}}
+|  +--write_qu (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_write_begin
+|  |  +--iotk_write_dat
+|  |  +--iotk_write_attr
+|  |  +--iotk_write_empty
+|  |  +--iotk_write_end
+|  |  *}}}
+|  +--write_status_ph (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_write_begin
+|  |  +--iotk_write_dat
+|  |  +--iotk_write_end
+|  |  *}}}
+|  +--write_modes (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_write_begin
+|  |  +--iotk_write_dat
+|  |  +--iotk_write_end
+|  |  *}}}
+|  +--write_polarization
+|  +--write_tensors (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_write_begin
+|  |  +--iotk_write_dat
+|  |  +--iotk_write_end
+|  |  *}}}
+|  +--write_ph_dyn (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_write_begin
+|  |  +--iotk_write_dat
+|  |  +--iotk_write_end
+|  |  *}}}
+|  +--write_el_phon (PHonon/PH/ph_restart.f90)  {{{ 2
+|  |  +--iotk_write_begin
+|  |  +--iotk_write_dat
+|  |  +--iotk_write_end
+|  |  *}}}
+|  +--iotk_close_write
+|  +--iotk_write_begin
+|  +--iotk_write_dat
+|  +--iotk_write_end
+|  *}}}
++--write_qplot_data (PHonon/PH/write_qplot_data.f90)
+|  +--errore (UtilXLib/error_handler.f90)  {{{ 2
+|  |  +--tracebackqq
+|  |  +--ptrace
+|  |  +--mp_abort (UtilXLib/mp.f90)  {{{ 3
+|  |  |  +--deallocate_buffers (UtilXLib/mp_base.f90)
+|  |  |  +--deallocate_buffers_gpu (UtilXLib/mp_base_gpu.f90)
+|  |  |  +--mpi_abort
+|  |  |  *}}}
+|  |  *}}}
++--print_clock_pw (PW/src/print_clock_pw.f90)
+|  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  +--print_this_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--mp_max
+|  +--plugin_clock (PW/src/plugin_clock.f90)
++--unset_mpi_comm_4_solvers
++--stop_smoothly_ph (PHonon/PH/stop_ph.f90)  {{{ 1
+|  +--collect_grid_files (PHonon/PH/check_initial_status.f90)
+|  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  +--MPI_BARRIER
+|  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_abort
+|  +--close_phq (PHonon/PH/close_phq.f90)
+|  |  +--close_buffer (PW/src/buffers.f90)  {{{ 3
+|  |  |  +--diropn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  +--davcio (Modules/io_files.f90)  {{{ 4
+|  |  |  |  +--start_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  |  |  |  +--infomsg (UtilXLib/error_handler.f90)
+|  |  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  *}}}
+|  |  |  +--errore (UtilXLib/error_handler.f90)  {{{ 4
+|  |  |  |  +--tracebackqq
+|  |  |  |  +--ptrace
+|  |  |  |  +--mp_abort (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  +--clean_recover (PHonon/PH/write_rec.f90)
+|  |  |  +--seqopn (Modules/io_files.f90)
+|  |  |  |  +--errore (UtilXLib/error_handler.f90)
+|  +--stop_ph (PHonon/PH/stop_ph.f90)  {{{ 2
+|  |  +--clean_input_variables (PHonon/PH/save_ph_input.f90)
+|  |  +--destroy_status_run (PHonon/PH/ph_restart.f90)
+|  |  +--deallocate_part (PHonon/PH/deallocate_part.f90)
+|  |  +--print_clock_ph (PHonon/PH/print_clock_ph.f90)
+|  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--print_this_clock (UtilXLib/clocks_handler.f90)
+|  |  +--environment_end (Modules/environment.f90)  {{{ 3
+|  |  |  +--finalize_hdf5 (Modules/qeh5_module.f90)
+|  |  |  |  +--h5close_f
+|  |  |  +--stop_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--print_clock (UtilXLib/clocks_handler.f90)
+|  |  |  |  +--print_this_clock (UtilXLib/clocks_handler.f90)
+|  |  |  +--closing_message (Modules/environment.f90)
+|  |  |  |  +--date_and_tim (Modules/date_and_tim.f90)
+|  |  |  *}}}
+|  |  +--mp_global_end (Modules/mp_global.f90)  {{{ 3
+|  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_comm_free
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  +--mp_stop_orthopools (Modules/mp_pools.f90)  {{{ 4
+|  |  |  |  +--mp_comm_free (UtilXLib/mp.f90)
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--mp_comm_split (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  +--mp_world_end (Modules/mp_world.f90)  {{{ 4
+|  |  |  |  +--mp_barrier (UtilXLib/mp.f90)
+|  |  |  |  +--mp_end (UtilXLib/mp.f90)
+|  |  |  |  +--mpi_finalize
+|  |  |  |  +--mp_stop (UtilXLib/mp.f90)
+|  |  |  |  *}}}
+|  |  |  *}}}
+|  |  *}}}
+|  *}}}
